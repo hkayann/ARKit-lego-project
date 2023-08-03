@@ -1,0 +1,405 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AF4CDBBD2998067E00579BAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CDBBC2998067E00579BAF /* AppDelegate.swift */; };
+		AF4CDBBF2998067E00579BAF /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AF4CDBBE2998067E00579BAF /* art.scnassets */; };
+		AF4CDBC12998067E00579BAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CDBC02998067E00579BAF /* ViewController.swift */; };
+		AF4CDBC42998067E00579BAF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF4CDBC22998067E00579BAF /* Main.storyboard */; };
+		AF4CDBC92998067F00579BAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF4CDBC72998067F00579BAF /* LaunchScreen.storyboard */; };
+		FF05CC882A5C5DCB00BA901C /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = FF05CC872A5C5DCB00BA901C /* tree.png */; };
+		FF05CC942A5C9F8600BA901C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF05CC932A5C9F8600BA901C /* Assets.xcassets */; };
+		FF6C068B2A7BB0D600C021AF /* ARKit-lego-project-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF05CC862A5C286400BA901C /* ARKit-lego-project-Info.plist */; };
+		FF6C068E2A7BB5DC00C021AF /* dashes.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6C068D2A7BB5DC00C021AF /* dashes.png */; };
+		FFFB11972A7A6C40002E8BC1 /* qMark.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FFFB11962A7A6C40002E8BC1 /* qMark.usdz */; };
+		FFFB119A2A7A6F05002E8BC1 /* high_poly_question_mark.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FFFB11992A7A6F05002E8BC1 /* high_poly_question_mark.usdz */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AF4CDBB92998067E00579BAF /* ARKit-lego-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARKit-lego-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AF4CDBBC2998067E00579BAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		AF4CDBBE2998067E00579BAF /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
+		AF4CDBC02998067E00579BAF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		AF4CDBC32998067E00579BAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AF4CDBC82998067F00579BAF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		FF05CC862A5C286400BA901C /* ARKit-lego-project-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "ARKit-lego-project-Info.plist"; path = "../ARKit-lego-project-Info.plist"; sourceTree = "<group>"; };
+		FF05CC872A5C5DCB00BA901C /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
+		FF05CC932A5C9F8600BA901C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FF6C068D2A7BB5DC00C021AF /* dashes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashes.png; sourceTree = "<group>"; };
+		FFFB11962A7A6C40002E8BC1 /* qMark.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMark.usdz; sourceTree = "<group>"; };
+		FFFB11992A7A6F05002E8BC1 /* high_poly_question_mark.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = high_poly_question_mark.usdz; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF4CDBB62998067E00579BAF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AF4CDBB02998067E00579BAF = {
+			isa = PBXGroup;
+			children = (
+				AF4CDBBB2998067E00579BAF /* ARKit-lego-project */,
+				AF4CDBBA2998067E00579BAF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AF4CDBBA2998067E00579BAF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AF4CDBB92998067E00579BAF /* ARKit-lego-project.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AF4CDBBB2998067E00579BAF /* ARKit-lego-project */ = {
+			isa = PBXGroup;
+			children = (
+				FFFB11982A7A6C5E002E8BC1 /* objects */,
+				FF05CC932A5C9F8600BA901C /* Assets.xcassets */,
+				FF05CC862A5C286400BA901C /* ARKit-lego-project-Info.plist */,
+				AF4CDBBC2998067E00579BAF /* AppDelegate.swift */,
+				AF4CDBBE2998067E00579BAF /* art.scnassets */,
+				AF4CDBC02998067E00579BAF /* ViewController.swift */,
+				AF4CDBC22998067E00579BAF /* Main.storyboard */,
+				FFF6AAA72A5BF70D00DF6988 /* images */,
+				AF4CDBC72998067F00579BAF /* LaunchScreen.storyboard */,
+			);
+			path = "ARKit-lego-project";
+			sourceTree = "<group>";
+		};
+		FFF6AAA72A5BF70D00DF6988 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				FF05CC872A5C5DCB00BA901C /* tree.png */,
+				FF6C068D2A7BB5DC00C021AF /* dashes.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		FFFB11982A7A6C5E002E8BC1 /* objects */ = {
+			isa = PBXGroup;
+			children = (
+				FFFB11992A7A6F05002E8BC1 /* high_poly_question_mark.usdz */,
+				FFFB11962A7A6C40002E8BC1 /* qMark.usdz */,
+			);
+			path = objects;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		AF4CDBB82998067E00579BAF /* ARKit-lego-project */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AF4CDBCC2998067F00579BAF /* Build configuration list for PBXNativeTarget "ARKit-lego-project" */;
+			buildPhases = (
+				AF4CDBB52998067E00579BAF /* Sources */,
+				AF4CDBB62998067E00579BAF /* Frameworks */,
+				AF4CDBB72998067E00579BAF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ARKit-lego-project";
+			productName = "Display Text ARKit";
+			productReference = AF4CDBB92998067E00579BAF /* ARKit-lego-project.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		AF4CDBB12998067E00579BAF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1410;
+				LastUpgradeCheck = 1410;
+				TargetAttributes = {
+					AF4CDBB82998067E00579BAF = {
+						CreatedOnToolsVersion = 14.1;
+					};
+				};
+			};
+			buildConfigurationList = AF4CDBB42998067E00579BAF /* Build configuration list for PBXProject "ARKit-lego-project" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = AF4CDBB02998067E00579BAF;
+			productRefGroup = AF4CDBBA2998067E00579BAF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AF4CDBB82998067E00579BAF /* ARKit-lego-project */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		AF4CDBB72998067E00579BAF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FF6C068E2A7BB5DC00C021AF /* dashes.png in Resources */,
+				FF6C068B2A7BB0D600C021AF /* ARKit-lego-project-Info.plist in Resources */,
+				FFFB119A2A7A6F05002E8BC1 /* high_poly_question_mark.usdz in Resources */,
+				FFFB11972A7A6C40002E8BC1 /* qMark.usdz in Resources */,
+				AF4CDBBF2998067E00579BAF /* art.scnassets in Resources */,
+				AF4CDBC92998067F00579BAF /* LaunchScreen.storyboard in Resources */,
+				AF4CDBC42998067E00579BAF /* Main.storyboard in Resources */,
+				FF05CC942A5C9F8600BA901C /* Assets.xcassets in Resources */,
+				FF05CC882A5C5DCB00BA901C /* tree.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		AF4CDBB52998067E00579BAF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AF4CDBC12998067E00579BAF /* ViewController.swift in Sources */,
+				AF4CDBBD2998067E00579BAF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		AF4CDBC22998067E00579BAF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF4CDBC32998067E00579BAF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		AF4CDBC72998067F00579BAF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				AF4CDBC82998067F00579BAF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		AF4CDBCA2998067F00579BAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		AF4CDBCB2998067F00579BAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		AF4CDBCD2998067F00579BAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZPL7RSZ997;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ARKit-lego-project-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "hakan.CU-lego-AR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AF4CDBCE2998067F00579BAF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = ZPL7RSZ997;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "ARKit-lego-project-Info.plist";
+				INFOPLIST_KEY_NSCameraUsageDescription = "";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = arkit;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "hakan.CU-lego-AR";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		AF4CDBB42998067E00579BAF /* Build configuration list for PBXProject "ARKit-lego-project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF4CDBCA2998067F00579BAF /* Debug */,
+				AF4CDBCB2998067F00579BAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AF4CDBCC2998067F00579BAF /* Build configuration list for PBXNativeTarget "ARKit-lego-project" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AF4CDBCD2998067F00579BAF /* Debug */,
+				AF4CDBCE2998067F00579BAF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = AF4CDBB12998067E00579BAF /* Project object */;
+}
