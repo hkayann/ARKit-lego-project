@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		281441952A7D312A00BFD700 /* qMarkGreen.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441942A7D312A00BFD700 /* qMarkGreen.usdz */; };
+		281441972A7D38C200BFD700 /* qMarkPurple.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441962A7D38C200BFD700 /* qMarkPurple.usdz */; };
+		281441992A7D39B200BFD700 /* qMarkBlue.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441982A7D39B200BFD700 /* qMarkBlue.usdz */; };
+		2814419B2A7D3ADD00BFD700 /* qMarkDarkPurple.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2814419A2A7D3ADD00BFD700 /* qMarkDarkPurple.usdz */; };
+		2814419D2A7D3B9900BFD700 /* qMarkYellow.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2814419C2A7D3B9900BFD700 /* qMarkYellow.usdz */; };
 		AF4CDBBD2998067E00579BAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CDBBC2998067E00579BAF /* AppDelegate.swift */; };
 		AF4CDBBF2998067E00579BAF /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AF4CDBBE2998067E00579BAF /* art.scnassets */; };
 		AF4CDBC12998067E00579BAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CDBC02998067E00579BAF /* ViewController.swift */; };
@@ -21,6 +26,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		281441942A7D312A00BFD700 /* qMarkGreen.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMarkGreen.usdz; sourceTree = "<group>"; };
+		281441962A7D38C200BFD700 /* qMarkPurple.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMarkPurple.usdz; sourceTree = "<group>"; };
+		281441982A7D39B200BFD700 /* qMarkBlue.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMarkBlue.usdz; sourceTree = "<group>"; };
+		2814419A2A7D3ADD00BFD700 /* qMarkDarkPurple.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMarkDarkPurple.usdz; sourceTree = "<group>"; };
+		2814419C2A7D3B9900BFD700 /* qMarkYellow.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMarkYellow.usdz; sourceTree = "<group>"; };
 		AF4CDBB92998067E00579BAF /* ARKit-lego-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARKit-lego-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF4CDBBC2998067E00579BAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF4CDBBE2998067E00579BAF /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -90,6 +100,11 @@
 		FFFB11982A7A6C5E002E8BC1 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				2814419C2A7D3B9900BFD700 /* qMarkYellow.usdz */,
+				2814419A2A7D3ADD00BFD700 /* qMarkDarkPurple.usdz */,
+				281441982A7D39B200BFD700 /* qMarkBlue.usdz */,
+				281441962A7D38C200BFD700 /* qMarkPurple.usdz */,
+				281441942A7D312A00BFD700 /* qMarkGreen.usdz */,
 				FFFB11992A7A6F05002E8BC1 /* high_poly_question_mark.usdz */,
 				FFFB11962A7A6C40002E8BC1 /* qMark.usdz */,
 			);
@@ -154,6 +169,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2814419D2A7D3B9900BFD700 /* qMarkYellow.usdz in Resources */,
+				2814419B2A7D3ADD00BFD700 /* qMarkDarkPurple.usdz in Resources */,
+				281441992A7D39B200BFD700 /* qMarkBlue.usdz in Resources */,
+				281441972A7D38C200BFD700 /* qMarkPurple.usdz in Resources */,
+				281441952A7D312A00BFD700 /* qMarkGreen.usdz in Resources */,
 				FF6C068E2A7BB5DC00C021AF /* dashes.png in Resources */,
 				FF6C068B2A7BB0D600C021AF /* ARKit-lego-project-Info.plist in Resources */,
 				FFFB119A2A7A6F05002E8BC1 /* high_poly_question_mark.usdz in Resources */,
