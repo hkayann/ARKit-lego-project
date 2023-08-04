@@ -65,10 +65,10 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
         yellowBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
         // Position the qMark node next to the box
-        yellowBoxNode?.position = SCNVector3(-0.5, -1, -1)
+        yellowBoxNode?.position = SCNVector3(0, -1, -1)
         yellowBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(yellowBoxNode!)
-
+        
         guard let purpleBoxUrl = Bundle.main.url(forResource: "purpleBox", withExtension: "usdz") else {
             fatalError("Failed to find purpleBox.usdz in the bundle.")
         }
@@ -81,7 +81,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         purpleBoxNode?.position = SCNVector3(-1, -1, -1)
         purpleBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(purpleBoxNode!)
-        
+        // Add text of purpleBox
+        addStandaloneTextNode(text: "agritech", position: SCNVector3(-1, -0.55, -1))
+
         guard let greenBoxUrl = Bundle.main.url(forResource: "greenBox", withExtension: "usdz") else {
             fatalError("Failed to find greenBox.usdz in the bundle.")
         }
@@ -104,7 +106,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Rotate qMarkYellowNode by 90 degrees around the Y-axis
         pinkBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
         // Position the qMark node next to the box
-        pinkBoxNode?.position = SCNVector3(-2, -1, -1)
+        pinkBoxNode?.position = SCNVector3(1, -1, -1)
         pinkBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(pinkBoxNode!)
         
@@ -117,7 +119,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Rotate qMarkYellowNode by 90 degrees around the Y-axis
         orangeBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
         // Position the qMark node next to the box
-        orangeBoxNode?.position = SCNVector3(-2.5, -1, -1)
+        orangeBoxNode?.position = SCNVector3(1.5, -1, -1)
         orangeBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(orangeBoxNode!)
 
@@ -130,9 +132,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Rotate qMarkYellowNode by 90 degrees around the Y-axis
         blueBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
         // Position the qMark node next to the box
-        blueBoxNode?.position = SCNVector3(-3, -1, -1)
+        blueBoxNode?.position = SCNVector3(2, -1, -1)
         blueBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(blueBoxNode!)
+                
+//        // Create a text geometry
+//         let textGeometry = SCNText(string: "Hello, AR!", extrusionDepth: 0.1)
+//         textGeometry.firstMaterial?.diffuse.contents = UIColor.white
+//
+//         // Create a text node
+//         let textNode = SCNNode(geometry: textGeometry)
+//         textNode.position = SCNVector3(1, -1, -1) // Adjust the position as needed
+//         textNode.scale = SCNVector3(1, 1, 1)
         /*
          3D OBJECTS END
          */
@@ -190,21 +201,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
+    func addStandaloneTextNode(text: String, position: SCNVector3) {
+        // Create a text geometry
+        let textGeometry = SCNText(string: text, extrusionDepth: 0.1)
+        textGeometry.firstMaterial?.diffuse.contents = UIColor.white
+        
+        // Create a text node
+        let textNode = SCNNode(geometry: textGeometry)
+        textNode.position = position
+        textNode.scale = SCNVector3(0.01, 0.01, 0.01) // Scale down the text
+        
+        // Add the text node to the scene
+        sceneView.scene.rootNode.addChildNode(textNode)
+    }
+
 }
 
-func addTextNodeAboveNode(_ targetNode: SCNNode, text: String) {
-    // Create a text geometry
-    let textGeometry = SCNText(string: text, extrusionDepth: 0.1)
-    textGeometry.firstMaterial?.diffuse.contents = UIColor.white
-    
-    // Create a text node
-    let textNode = SCNNode(geometry: textGeometry)
-    textNode.position = SCNVector3(0, 0.1, 0) // Position above the target node
-    textNode.scale = SCNVector3(0.005, 0.005, 0.005) // Scale down the text
-    
-    // Add the text node as a child of the target node
-    targetNode.addChildNode(textNode)
-}
 
 
 
