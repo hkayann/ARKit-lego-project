@@ -6,7 +6,12 @@ import ModelIO
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
-    private var qMarkNode: SCNReferenceNode?
+    private var yellowBoxNode: SCNReferenceNode?
+    private var purpleBoxNode: SCNReferenceNode?
+    private var greenBoxNode: SCNReferenceNode?
+    private var pinkBoxNode: SCNReferenceNode?
+    private var orangeBoxNode: SCNReferenceNode?
+    private var blueBoxNode: SCNReferenceNode?
     private var boxNode: SCNNode?
     private var imageView: UIImageView!
     
@@ -21,8 +26,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // Set the scene to the view
         sceneView.scene = scene
-        
-        
         /*
          LIGHTS START
          */
@@ -51,18 +54,85 @@ class ViewController: UIViewController, ARSCNViewDelegate {
          3D OBJECTS START
          */
         // Load the qMark USDZ model
-        guard let qMarkUrl = Bundle.main.url(forResource: "qMark", withExtension: "usdz") else {
-            fatalError("Failed to find qMark.usdz in the bundle.")
-        }
-        qMarkNode = SCNReferenceNode(url: qMarkUrl)
-        qMarkNode?.load()
-
-        // Position the qMark node next to the box
-        qMarkNode?.position = SCNVector3(0, -1, -1)
-        qMarkNode?.scale = SCNVector3(0.001, 0.001, 0.001)
-        qMarkNode?.name = "qMarkNode"
         
-        scene.rootNode.addChildNode(qMarkNode!)
+        guard let yellowBoxUrl = Bundle.main.url(forResource: "yellowBox", withExtension: "usdz") else {
+            fatalError("Failed to find yellowBox.usdz in the bundle.")
+        }
+        yellowBoxNode = SCNReferenceNode(url: yellowBoxUrl)
+        yellowBoxNode?.load()
+        
+        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
+        let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
+        yellowBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+        // Position the qMark node next to the box
+        yellowBoxNode?.position = SCNVector3(-0.5, -1, -1)
+        yellowBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
+        scene.rootNode.addChildNode(yellowBoxNode!)
+
+        guard let purpleBoxUrl = Bundle.main.url(forResource: "purpleBox", withExtension: "usdz") else {
+            fatalError("Failed to find purpleBox.usdz in the bundle.")
+        }
+        purpleBoxNode = SCNReferenceNode(url: purpleBoxUrl)
+        purpleBoxNode?.load()
+        
+        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
+        purpleBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+        // Position the qMark node next to the box
+        purpleBoxNode?.position = SCNVector3(-1, -1, -1)
+        purpleBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
+        scene.rootNode.addChildNode(purpleBoxNode!)
+        
+        guard let greenBoxUrl = Bundle.main.url(forResource: "greenBox", withExtension: "usdz") else {
+            fatalError("Failed to find greenBox.usdz in the bundle.")
+        }
+        greenBoxNode = SCNReferenceNode(url: greenBoxUrl)
+        greenBoxNode?.load()
+        
+        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
+        greenBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+        // Position the qMark node next to the box
+        greenBoxNode?.position = SCNVector3(-1.5, -1, -1)
+        greenBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
+        scene.rootNode.addChildNode(greenBoxNode!)
+        
+        guard let pinkBoxUrl = Bundle.main.url(forResource: "pinkBox", withExtension: "usdz") else {
+            fatalError("Failed to find greenBox.usdz in the bundle.")
+        }
+        pinkBoxNode = SCNReferenceNode(url: pinkBoxUrl)
+        pinkBoxNode?.load()
+        
+        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
+        pinkBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+        // Position the qMark node next to the box
+        pinkBoxNode?.position = SCNVector3(-2, -1, -1)
+        pinkBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
+        scene.rootNode.addChildNode(pinkBoxNode!)
+        
+        guard let orangeBoxUrl = Bundle.main.url(forResource: "orangeBox", withExtension: "usdz") else {
+            fatalError("Failed to find orangeBox.usdz in the bundle.")
+        }
+        orangeBoxNode = SCNReferenceNode(url: orangeBoxUrl)
+        orangeBoxNode?.load()
+        
+        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
+        orangeBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+        // Position the qMark node next to the box
+        orangeBoxNode?.position = SCNVector3(-2.5, -1, -1)
+        orangeBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
+        scene.rootNode.addChildNode(orangeBoxNode!)
+
+        guard let blueBoxUrl = Bundle.main.url(forResource: "blueBox", withExtension: "usdz") else {
+            fatalError("Failed to find blueBox.usdz in the bundle.")
+        }
+        blueBoxNode = SCNReferenceNode(url: blueBoxUrl)
+        blueBoxNode?.load()
+        
+        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
+        blueBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+        // Position the qMark node next to the box
+        blueBoxNode?.position = SCNVector3(-3, -1, -1)
+        blueBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
+        scene.rootNode.addChildNode(blueBoxNode!)
         /*
          3D OBJECTS END
          */
@@ -94,7 +164,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         if let hitNodeName = hitNode?.name, hitNodeName == "Box005_02___Default_0" {
             // Remove the qMarkNode from the parent node
-            qMarkNode?.removeFromParentNode()
+//            qMarkNode?.removeFromParentNode()
             // Now that the box is removed, show the image
             let image = UIImage(named: "tree.png")
             let imageView = UIImageView(image: image)
@@ -122,6 +192,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     }
 }
 
+func addTextNodeAboveNode(_ targetNode: SCNNode, text: String) {
+    // Create a text geometry
+    let textGeometry = SCNText(string: text, extrusionDepth: 0.1)
+    textGeometry.firstMaterial?.diffuse.contents = UIColor.white
+    
+    // Create a text node
+    let textNode = SCNNode(geometry: textGeometry)
+    textNode.position = SCNVector3(0, 0.1, 0) // Position above the target node
+    textNode.scale = SCNVector3(0.005, 0.005, 0.005) // Scale down the text
+    
+    // Add the text node as a child of the target node
+    targetNode.addChildNode(textNode)
+}
 
 
 
@@ -129,100 +212,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
 
 
-//        // Create a box geometry
-//        let box = SCNBox(width: 0.1, height: 0.1, length: 0.1, chamferRadius: 0)
-//
-//        // Create a material for the box
-//        let material = SCNMaterial()
-//        material.diffuse.contents = UIColor.blue
-//        box.materials = [material]
-//
-//        // Create a node with the box geometry
-//        let boxNode = SCNNode(geometry: box)
-//        boxNode.position = SCNVector3(0, 0, -1)
-//        boxNode.name = "boxNode"
-//
-//        // Add the box node to the scene
-//        sceneView.scene.rootNode.addChildNode(boxNode)
-
-//    @objc func boxTapped(sender: UITapGestureRecognizer) {
-//        let tapLocation = sender.location(in: sceneView)
-//        let hitTestResults = sceneView.hitTest(tapLocation, options: nil)
-//        let hitNode = hitTestResults.first?.node
-//
-//        if let hitNodeName = hitNode?.name, hitNodeName == "boxNode" {
-//            print("Box Tapped")
-//        }
-//
-//    }
-
-
-
-
-//import UIKit
-//import SceneKit
-//import ARKit
-//import Vision
-//import SceneKit.ModelIO
-//
-//class ViewController: UIViewController, ARSCNViewDelegate, ARSessionDelegate {
-//
-//    @IBOutlet var sceneView: ARSCNView!
-//    private var imageView: UIImageView!
-//    // private var imageNode: SCNNode?
-//    private var qMarkNode: SCNNode?
-//
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//
-//        // Set the view's delegate
-//        sceneView.delegate = self
-//
-//        // Enable user interaction on the entire sceneView
-//        sceneView.isUserInteractionEnabled = true
-//
-//        // Show statistics such as fps and timing information
-//        sceneView.showsStatistics = true
-//
-//        // Create a new scene
-//        let scene = SCNScene()
-//
-//        // Set the scene to the view
-//        sceneView.scene = scene
-//
-//        /*
-//         MODELS
-//         */
-//
-//        // Load the qMark USDZ model
-//        guard let qMarkUrl = Bundle.main.url(forResource: "qMark", withExtension: "usdz") else {
-//            fatalError("Failed to find qMark.usdz in the bundle.")
-//        }
-//        let qMarkMdlAsset = MDLAsset(url: qMarkUrl)
-//        let qMarkObjectScene = SCNScene(mdlAsset: qMarkMdlAsset)
-//
-//        // Create a node from the loaded qMark USDZ model
-//        qMarkNode = SCNNode()
-//        for child in qMarkObjectScene.rootNode.childNodes {
-//            qMarkNode?.addChildNode(child)
-//        }
-//
-//        // Set the position and scale of the qMark object node
-//        qMarkNode?.position = SCNVector3(x: 0, y: -1, z: -1)
-//        let qMarkScale: Float = 0.001
-//        qMarkNode?.scale = SCNVector3(qMarkScale, qMarkScale, qMarkScale)
-//
-//        // Set the name of the qMark node for identification
-//        qMarkNode?.name = "qMarkNode"
-//
-//        // Add the qMark object node to the scene
-//        sceneView.scene.rootNode.addChildNode(qMarkNode!)
-//
-//        // Enable user interaction on the qMark object
-//        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(qMarkTapped))
-//        sceneView.addGestureRecognizer(tapGestureRecognizer)
-//
-//    }
 //
 //    @objc func qMarkTapped(sender: UITapGestureRecognizer) {
 //        let tapLocation = sender.location(in: sceneView)

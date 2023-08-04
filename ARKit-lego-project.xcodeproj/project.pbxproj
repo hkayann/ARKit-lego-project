@@ -7,11 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		281441952A7D312A00BFD700 /* qMarkGreen.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441942A7D312A00BFD700 /* qMarkGreen.usdz */; };
-		281441972A7D38C200BFD700 /* qMarkPurple.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441962A7D38C200BFD700 /* qMarkPurple.usdz */; };
-		281441992A7D39B200BFD700 /* qMarkBlue.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441982A7D39B200BFD700 /* qMarkBlue.usdz */; };
-		2814419B2A7D3ADD00BFD700 /* qMarkDarkPurple.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2814419A2A7D3ADD00BFD700 /* qMarkDarkPurple.usdz */; };
-		2814419D2A7D3B9900BFD700 /* qMarkYellow.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 2814419C2A7D3B9900BFD700 /* qMarkYellow.usdz */; };
+		281441AD2A7D5B7400BFD700 /* blueBox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441AC2A7D5B7400BFD700 /* blueBox.usdz */; };
+		281441AF2A7D5C8500BFD700 /* pinkBox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441AE2A7D5C8500BFD700 /* pinkBox.usdz */; };
+		281441B12A7D5D1A00BFD700 /* greenBox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441B02A7D5D1A00BFD700 /* greenBox.usdz */; };
+		281441B32A7D5D9600BFD700 /* orangeBox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441B22A7D5D9600BFD700 /* orangeBox.usdz */; };
+		281441B52A7D5E3700BFD700 /* yellowBox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441B42A7D5E3700BFD700 /* yellowBox.usdz */; };
+		281441B72A7D60CD00BFD700 /* purpleBox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441B62A7D60CD00BFD700 /* purpleBox.usdz */; };
 		AF4CDBBD2998067E00579BAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CDBBC2998067E00579BAF /* AppDelegate.swift */; };
 		AF4CDBBF2998067E00579BAF /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AF4CDBBE2998067E00579BAF /* art.scnassets */; };
 		AF4CDBC12998067E00579BAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CDBC02998067E00579BAF /* ViewController.swift */; };
@@ -19,18 +20,16 @@
 		AF4CDBC92998067F00579BAF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF4CDBC72998067F00579BAF /* LaunchScreen.storyboard */; };
 		FF05CC882A5C5DCB00BA901C /* tree.png in Resources */ = {isa = PBXBuildFile; fileRef = FF05CC872A5C5DCB00BA901C /* tree.png */; };
 		FF05CC942A5C9F8600BA901C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF05CC932A5C9F8600BA901C /* Assets.xcassets */; };
-		FF6C068B2A7BB0D600C021AF /* ARKit-lego-project-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FF05CC862A5C286400BA901C /* ARKit-lego-project-Info.plist */; };
 		FF6C068E2A7BB5DC00C021AF /* dashes.png in Resources */ = {isa = PBXBuildFile; fileRef = FF6C068D2A7BB5DC00C021AF /* dashes.png */; };
-		FFFB11972A7A6C40002E8BC1 /* qMark.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FFFB11962A7A6C40002E8BC1 /* qMark.usdz */; };
-		FFFB119A2A7A6F05002E8BC1 /* high_poly_question_mark.usdz in Resources */ = {isa = PBXBuildFile; fileRef = FFFB11992A7A6F05002E8BC1 /* high_poly_question_mark.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		281441942A7D312A00BFD700 /* qMarkGreen.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMarkGreen.usdz; sourceTree = "<group>"; };
-		281441962A7D38C200BFD700 /* qMarkPurple.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMarkPurple.usdz; sourceTree = "<group>"; };
-		281441982A7D39B200BFD700 /* qMarkBlue.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMarkBlue.usdz; sourceTree = "<group>"; };
-		2814419A2A7D3ADD00BFD700 /* qMarkDarkPurple.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMarkDarkPurple.usdz; sourceTree = "<group>"; };
-		2814419C2A7D3B9900BFD700 /* qMarkYellow.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMarkYellow.usdz; sourceTree = "<group>"; };
+		281441AC2A7D5B7400BFD700 /* blueBox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = blueBox.usdz; path = ../../blueBox.usdz; sourceTree = "<group>"; };
+		281441AE2A7D5C8500BFD700 /* pinkBox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = pinkBox.usdz; path = ../../pinkBox.usdz; sourceTree = "<group>"; };
+		281441B02A7D5D1A00BFD700 /* greenBox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = greenBox.usdz; path = ../../greenBox.usdz; sourceTree = "<group>"; };
+		281441B22A7D5D9600BFD700 /* orangeBox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = orangeBox.usdz; path = ../../orangeBox.usdz; sourceTree = "<group>"; };
+		281441B42A7D5E3700BFD700 /* yellowBox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = yellowBox.usdz; path = ../../yellowBox.usdz; sourceTree = "<group>"; };
+		281441B62A7D60CD00BFD700 /* purpleBox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = purpleBox.usdz; path = ../../purpleBox.usdz; sourceTree = "<group>"; };
 		AF4CDBB92998067E00579BAF /* ARKit-lego-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARKit-lego-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF4CDBBC2998067E00579BAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF4CDBBE2998067E00579BAF /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -41,8 +40,6 @@
 		FF05CC872A5C5DCB00BA901C /* tree.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tree.png; sourceTree = "<group>"; };
 		FF05CC932A5C9F8600BA901C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF6C068D2A7BB5DC00C021AF /* dashes.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = dashes.png; sourceTree = "<group>"; };
-		FFFB11962A7A6C40002E8BC1 /* qMark.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = qMark.usdz; sourceTree = "<group>"; };
-		FFFB11992A7A6F05002E8BC1 /* high_poly_question_mark.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = high_poly_question_mark.usdz; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,13 +97,12 @@
 		FFFB11982A7A6C5E002E8BC1 /* objects */ = {
 			isa = PBXGroup;
 			children = (
-				2814419C2A7D3B9900BFD700 /* qMarkYellow.usdz */,
-				2814419A2A7D3ADD00BFD700 /* qMarkDarkPurple.usdz */,
-				281441982A7D39B200BFD700 /* qMarkBlue.usdz */,
-				281441962A7D38C200BFD700 /* qMarkPurple.usdz */,
-				281441942A7D312A00BFD700 /* qMarkGreen.usdz */,
-				FFFB11992A7A6F05002E8BC1 /* high_poly_question_mark.usdz */,
-				FFFB11962A7A6C40002E8BC1 /* qMark.usdz */,
+				281441B62A7D60CD00BFD700 /* purpleBox.usdz */,
+				281441B42A7D5E3700BFD700 /* yellowBox.usdz */,
+				281441B22A7D5D9600BFD700 /* orangeBox.usdz */,
+				281441B02A7D5D1A00BFD700 /* greenBox.usdz */,
+				281441AE2A7D5C8500BFD700 /* pinkBox.usdz */,
+				281441AC2A7D5B7400BFD700 /* blueBox.usdz */,
 			);
 			path = objects;
 			sourceTree = "<group>";
@@ -139,7 +135,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1410;
-				LastUpgradeCheck = 1410;
+				LastUpgradeCheck = 1430;
 				TargetAttributes = {
 					AF4CDBB82998067E00579BAF = {
 						CreatedOnToolsVersion = 14.1;
@@ -169,15 +165,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2814419D2A7D3B9900BFD700 /* qMarkYellow.usdz in Resources */,
-				2814419B2A7D3ADD00BFD700 /* qMarkDarkPurple.usdz in Resources */,
-				281441992A7D39B200BFD700 /* qMarkBlue.usdz in Resources */,
-				281441972A7D38C200BFD700 /* qMarkPurple.usdz in Resources */,
-				281441952A7D312A00BFD700 /* qMarkGreen.usdz in Resources */,
+				281441B72A7D60CD00BFD700 /* purpleBox.usdz in Resources */,
+				281441B52A7D5E3700BFD700 /* yellowBox.usdz in Resources */,
+				281441B32A7D5D9600BFD700 /* orangeBox.usdz in Resources */,
+				281441B12A7D5D1A00BFD700 /* greenBox.usdz in Resources */,
+				281441AF2A7D5C8500BFD700 /* pinkBox.usdz in Resources */,
+				281441AD2A7D5B7400BFD700 /* blueBox.usdz in Resources */,
 				FF6C068E2A7BB5DC00C021AF /* dashes.png in Resources */,
-				FF6C068B2A7BB0D600C021AF /* ARKit-lego-project-Info.plist in Resources */,
-				FFFB119A2A7A6F05002E8BC1 /* high_poly_question_mark.usdz in Resources */,
-				FFFB11972A7A6C40002E8BC1 /* qMark.usdz in Resources */,
 				AF4CDBBF2998067E00579BAF /* art.scnassets in Resources */,
 				AF4CDBC92998067F00579BAF /* LaunchScreen.storyboard in Resources */,
 				AF4CDBC42998067E00579BAF /* Main.storyboard in Resources */,
