@@ -3,6 +3,7 @@ import SceneKit
 import ARKit
 import ModelIO
 
+
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
@@ -26,6 +27,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // Set the scene to the view
         sceneView.scene = scene
+        
+        // Create an ARAnchor at the desired position
+        let positionVectorBlue = SCNVector3(0.5, -1, -55.5)
+        let blueBoxAnchorTransform = simd_float4x4([
+            SIMD4<Float>(1, 0, 0, 0),
+            SIMD4<Float>(0, 1, 0, 0),
+            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+            SIMD4<Float>(0, 0, 0, 1)])
+        
+        let blueAnchor = ARAnchor(transform: blueBoxAnchorTransform)
+        sceneView.session.add(anchor: blueAnchor)
+        
         /*
          LIGHTS START
          */
@@ -53,13 +66,15 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         /*
          3D OBJECTS START
          */
-        // Load the qMark USDZ model
+        // Create an ARAnchor at the desired position
         
+        // Load the qMark USDZ model
         guard let yellowBoxUrl = Bundle.main.url(forResource: "yellowBoxText", withExtension: "usdz") else {
             fatalError("Failed to find yellowBox.usdz in the bundle.")
         }
         yellowBoxNode = SCNReferenceNode(url: yellowBoxUrl)
         yellowBoxNode?.load()
+        
         
         // Rotate qMarkYellowNode by 90 degrees around the Y-axis
         let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
@@ -68,7 +83,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         yellowBoxNode?.position = SCNVector3(0, -1, -1)
         yellowBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(yellowBoxNode!)
-        
+
         guard let purpleBoxUrl = Bundle.main.url(forResource: "purpleBoxText", withExtension: "usdz") else {
             fatalError("Failed to find purpleBox.usdz in the bundle.")
         }
@@ -78,11 +93,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Rotate qMarkYellowNode by 90 degrees around the Y-axis
         purpleBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
         // Position the qMark node next to the box
-        purpleBoxNode?.position = SCNVector3(-1, -1, -1)
+        purpleBoxNode?.position = SCNVector3(-0.5, -1, -1)
         purpleBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(purpleBoxNode!)
-        // Add text of purpleBox
-        addStandaloneTextNode(text: "agritech", position: SCNVector3(-1, -0.55, -1))
 
         guard let greenBoxUrl = Bundle.main.url(forResource: "greenBoxText", withExtension: "usdz") else {
             fatalError("Failed to find greenBox.usdz in the bundle.")
@@ -93,7 +106,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Rotate qMarkYellowNode by 90 degrees around the Y-axis
         greenBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
         // Position the qMark node next to the box
-        greenBoxNode?.position = SCNVector3(-1.5, -1, -1)
+        greenBoxNode?.position = SCNVector3(0.5, -1, -1)
         greenBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(greenBoxNode!)
         
@@ -106,7 +119,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Rotate qMarkYellowNode by 90 degrees around the Y-axis
         pinkBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
         // Position the qMark node next to the box
-        pinkBoxNode?.position = SCNVector3(1, -1, -1)
+        pinkBoxNode?.position = SCNVector3(0, -1, -1.5)
         pinkBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(pinkBoxNode!)
         
@@ -119,31 +132,22 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Rotate qMarkYellowNode by 90 degrees around the Y-axis
         orangeBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
         // Position the qMark node next to the box
-        orangeBoxNode?.position = SCNVector3(1.5, -1, -1)
+        orangeBoxNode?.position = SCNVector3(-0.5, -1, -1.5)
         orangeBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(orangeBoxNode!)
 
-        guard let blueBoxUrl = Bundle.main.url(forResource: "blueBox", withExtension: "usdz") else {
-            fatalError("Failed to find blueBox.usdz in the bundle.")
-        }
-        blueBoxNode = SCNReferenceNode(url: blueBoxUrl)
-        blueBoxNode?.load()
-        
-        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
-        blueBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-        // Position the qMark node next to the box
-        blueBoxNode?.position = SCNVector3(2, -1, -1)
-        blueBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
-        scene.rootNode.addChildNode(blueBoxNode!)
-                
-//        // Create a text geometry
-//         let textGeometry = SCNText(string: "Hello, AR!", extrusionDepth: 0.1)
-//         textGeometry.firstMaterial?.diffuse.contents = UIColor.white
+//        guard let blueBoxUrl = Bundle.main.url(forResource: "blueBoxText", withExtension: "usdz") else {
+//            fatalError("Failed to find blueBox.usdz in the bundle.")
+//        }
+//        blueBoxNode = SCNReferenceNode(url: blueBoxUrl)
+//        blueBoxNode?.load()
 //
-//         // Create a text node
-//         let textNode = SCNNode(geometry: textGeometry)
-//         textNode.position = SCNVector3(1, -1, -1) // Adjust the position as needed
-//         textNode.scale = SCNVector3(1, 1, 1)
+//        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
+//        blueBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+//        // Position the qMark node next to the box
+//        blueBoxNode?.position = SCNVector3(0.5, -1, -1.5)
+//        blueBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
+//        scene.rootNode.addChildNode(blueBoxNode!)
         /*
          3D OBJECTS END
          */
@@ -194,6 +198,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             sceneView.scene.rootNode.addChildNode(imageNode)
         }
     }
+    
+    func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        print("Anchor added to the scene.")
+        
+        let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
+    
+        if let blueBoxUrl = Bundle.main.url(forResource: "blueBoxText", withExtension: "usdz"),
+           let blueBoxNode = SCNReferenceNode(url: blueBoxUrl) {
+            print("Here")
+            // Load, rotate, scale.
+            blueBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+            blueBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
+            blueBoxNode.load()
+            
+            // Add the blue box node as a child of the anchor's node
+            node.addChildNode(blueBoxNode)
+        } else {
+            fatalError("Failed to find blueBoxText.usdz in the bundle.")
+        }
+    }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
@@ -201,24 +225,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Pause the view's session
         sceneView.session.pause()
     }
-    func addStandaloneTextNode(text: String, position: SCNVector3) {
-        // Create a text geometry
-        let textGeometry = SCNText(string: text, extrusionDepth: 0.1)
-        textGeometry.firstMaterial?.diffuse.contents = UIColor.white
-        
-        // Create a text node
-        let textNode = SCNNode(geometry: textGeometry)
-        textNode.position = position
-        textNode.scale = SCNVector3(0.01, 0.01, 0.01) // Scale down the text
-        
-        // Add the text node to the scene
-        sceneView.scene.rootNode.addChildNode(textNode)
-    }
-
 }
-
-
-
 
 
 

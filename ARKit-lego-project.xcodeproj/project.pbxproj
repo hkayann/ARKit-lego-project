@@ -18,6 +18,7 @@
 		28CF719D2A83D7E20057D798 /* yellowBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF719C2A83D7E20057D798 /* yellowBoxText.usdz */; };
 		28CF719F2A83DBAB0057D798 /* pinkBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF719E2A83DBAB0057D798 /* pinkBoxText.usdz */; };
 		28CF71A12A83DED60057D798 /* orangeBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF71A02A83DED60057D798 /* orangeBoxText.usdz */; };
+		28CF71A32A83E34A0057D798 /* blueBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF71A22A83E34A0057D798 /* blueBoxText.usdz */; };
 		AF4CDBBD2998067E00579BAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CDBBC2998067E00579BAF /* AppDelegate.swift */; };
 		AF4CDBBF2998067E00579BAF /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AF4CDBBE2998067E00579BAF /* art.scnassets */; };
 		AF4CDBC12998067E00579BAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CDBC02998067E00579BAF /* ViewController.swift */; };
@@ -40,6 +41,7 @@
 		28CF719C2A83D7E20057D798 /* yellowBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = yellowBoxText.usdz; sourceTree = "<group>"; };
 		28CF719E2A83DBAB0057D798 /* pinkBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = pinkBoxText.usdz; sourceTree = "<group>"; };
 		28CF71A02A83DED60057D798 /* orangeBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = orangeBoxText.usdz; sourceTree = "<group>"; };
+		28CF71A22A83E34A0057D798 /* blueBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = blueBoxText.usdz; sourceTree = "<group>"; };
 		AF4CDBB92998067E00579BAF /* ARKit-lego-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARKit-lego-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF4CDBBC2998067E00579BAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF4CDBBE2998067E00579BAF /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 		FFFB11982A7A6C5E002E8BC1 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				28CF71A22A83E34A0057D798 /* blueBoxText.usdz */,
 				28CF719E2A83DBAB0057D798 /* pinkBoxText.usdz */,
 				28CF71A02A83DED60057D798 /* orangeBoxText.usdz */,
 				28CF71982A83CC430057D798 /* purpleBoxText.usdz */,
@@ -180,6 +183,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28CF71A32A83E34A0057D798 /* blueBoxText.usdz in Resources */,
 				28CF71A12A83DED60057D798 /* orangeBoxText.usdz in Resources */,
 				28CF719F2A83DBAB0057D798 /* pinkBoxText.usdz in Resources */,
 				28CF719D2A83D7E20057D798 /* yellowBoxText.usdz in Resources */,
