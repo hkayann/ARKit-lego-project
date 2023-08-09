@@ -55,7 +55,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
          */
         // Load the qMark USDZ model
         
-        guard let yellowBoxUrl = Bundle.main.url(forResource: "yellowBox", withExtension: "usdz") else {
+        guard let yellowBoxUrl = Bundle.main.url(forResource: "yellowBoxText", withExtension: "usdz") else {
             fatalError("Failed to find yellowBox.usdz in the bundle.")
         }
         yellowBoxNode = SCNReferenceNode(url: yellowBoxUrl)
@@ -69,7 +69,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         yellowBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(yellowBoxNode!)
         
-        guard let purpleBoxUrl = Bundle.main.url(forResource: "purpleBox", withExtension: "usdz") else {
+        guard let purpleBoxUrl = Bundle.main.url(forResource: "purpleBoxText", withExtension: "usdz") else {
             fatalError("Failed to find purpleBox.usdz in the bundle.")
         }
         purpleBoxNode = SCNReferenceNode(url: purpleBoxUrl)
@@ -84,7 +84,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Add text of purpleBox
         addStandaloneTextNode(text: "agritech", position: SCNVector3(-1, -0.55, -1))
 
-        guard let greenBoxUrl = Bundle.main.url(forResource: "greenBox", withExtension: "usdz") else {
+        guard let greenBoxUrl = Bundle.main.url(forResource: "greenBoxText", withExtension: "usdz") else {
             fatalError("Failed to find greenBox.usdz in the bundle.")
         }
         greenBoxNode = SCNReferenceNode(url: greenBoxUrl)
@@ -97,7 +97,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         greenBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(greenBoxNode!)
         
-        guard let pinkBoxUrl = Bundle.main.url(forResource: "pinkBox", withExtension: "usdz") else {
+        guard let pinkBoxUrl = Bundle.main.url(forResource: "pinkBoxText", withExtension: "usdz") else {
             fatalError("Failed to find greenBox.usdz in the bundle.")
         }
         pinkBoxNode = SCNReferenceNode(url: pinkBoxUrl)
@@ -110,7 +110,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         pinkBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
         scene.rootNode.addChildNode(pinkBoxNode!)
         
-        guard let orangeBoxUrl = Bundle.main.url(forResource: "orangeBox", withExtension: "usdz") else {
+        guard let orangeBoxUrl = Bundle.main.url(forResource: "orangeBoxText", withExtension: "usdz") else {
             fatalError("Failed to find orangeBox.usdz in the bundle.")
         }
         orangeBoxNode = SCNReferenceNode(url: orangeBoxUrl)
