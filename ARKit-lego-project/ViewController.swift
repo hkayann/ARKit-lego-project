@@ -22,6 +22,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     private var pinkBoxNode: SCNReferenceNode?
     private var orangeBoxNode: SCNReferenceNode?
     private var blueBoxNode: SCNReferenceNode?
+    private var blackBoxNode: SCNReferenceNode?
     private var boxNode: SCNNode?
     private var imageView: UIImageView!
     
@@ -65,52 +66,61 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             SIMD4<Float>(1, 0, 0, 0),
             SIMD4<Float>(0, 1, 0, 0),
             SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0, 0, -2, 1)])
+            SIMD4<Float>(0, -1, -2, 1)])
         let blueAnchor = ARAnchor(name: "blueAnchor", transform: blueBoxAnchorTransform)
+        let blackBoxAnchorTransform = simd_float4x4([
+            SIMD4<Float>(1, 0, 0, 0),
+            SIMD4<Float>(0, 1, 0, 0),
+            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+            SIMD4<Float>(0, -1, -3, 1)])
+        let blackAnchor = ARAnchor(name: "blackAnchor", transform: blackBoxAnchorTransform)
         let greenBoxAnchorTransform = simd_float4x4([
             SIMD4<Float>(1, 0, 0, 0),
             SIMD4<Float>(0, 1, 0, 0),
             SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0.5, 0, -2, 1)])
+            SIMD4<Float>(0.5, -1, -2, 1)])
         let greenAnchor = ARAnchor(name: "greenAnchor", transform: greenBoxAnchorTransform)
         let resbeAnchorTransform = simd_float4x4([
             SIMD4<Float>(1, 0, 0, 0),
             SIMD4<Float>(0, 1, 0, 0),
             SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0.5, 0.5, -2, 1)])
+            SIMD4<Float>(0.5, -0.5, -2, 1)])
         let resbeAnchor = ARAnchor(name: "resbeAnchor", transform: resbeAnchorTransform)
         let pinkBoxAnchorTransform = simd_float4x4([
             SIMD4<Float>(1, 0, 0, 0),
             SIMD4<Float>(0, 1, 0, 0),
             SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(-0.5, 0, -2, 1)])
+            SIMD4<Float>(-0.5, -1, -2, 1)])
         let pinkAnchor = ARAnchor(name: "pinkAnchor", transform: pinkBoxAnchorTransform)
         let orangeBoxAnchorTransform = simd_float4x4([
             SIMD4<Float>(1, 0, 0, 0),
             SIMD4<Float>(0, 1, 0, 0),
             SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0, 0, -3, 1)])
+            SIMD4<Float>(0, -1, -4, 1)])
         let orangeAnchor = ARAnchor(name: "orangeAnchor", transform: orangeBoxAnchorTransform)
         let purpleBoxAnchorTransform = simd_float4x4([
             SIMD4<Float>(1, 0, 0, 0),
             SIMD4<Float>(0, 1, 0, 0),
             SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0.5, 0, -3, 1)])
+            SIMD4<Float>(0.5, -1, -3, 1)])
         let purpleAnchor = ARAnchor(name: "purpleAnchor", transform: purpleBoxAnchorTransform)
         let yellowBoxAnchorTransform = simd_float4x4([
             SIMD4<Float>(1, 0, 0, 0),
             SIMD4<Float>(0, 1, 0, 0),
             SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(-0.5, 0, -3, 1)])
+            SIMD4<Float>(-0.5, -1, -3, 1)])
         let yellowAnchor = ARAnchor(name: "yellowAnchor", transform: yellowBoxAnchorTransform)
 
-        // Add the anchor to the AR session
+        // Add anchor for boxes to the AR session
         sceneView.session.add(anchor: blueAnchor)
         sceneView.session.add(anchor: greenAnchor)
         sceneView.session.add(anchor: pinkAnchor)
         sceneView.session.add(anchor: orangeAnchor)
         sceneView.session.add(anchor: purpleAnchor)
         sceneView.session.add(anchor: yellowAnchor)
+        sceneView.session.add(anchor: blackAnchor)
+
+        // Add anchor for boxes to the AR session
         sceneView.session.add(anchor: resbeAnchor)
         /*
          3D OBJECTS END
@@ -133,6 +143,37 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration)
     }
     
+    func addImageNode(imageName: String, duration: TimeInterval, toNode node: SCNNode) {
+        if let image = UIImage(named: imageName) {
+            // Perform UI operations on the main thread
+            DispatchQueue.main.async {
+                // Create an image view to display the image
+                let imageView = UIImageView(image: image)
+                imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+                imageView.contentMode = .scaleAspectFit
+
+                // Create a plane with the same dimensions as the image view
+                let imagePlane = SCNPlane(width: 0.5, height: 0.5)
+                imagePlane.firstMaterial?.diffuse.contents = imageView
+
+                // Create a node with the image plane and adjust its position
+                let imageNode = SCNNode(geometry: imagePlane)
+                node.addChildNode(imageNode)
+
+                // Apply the floating animation to the box
+                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: duration)
+                floatUpAction.timingMode = .easeInEaseOut
+                let floatDownAction = floatUpAction.reversed()
+                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+                imageNode.runAction(floatActionLoop)
+            }
+        } else {
+            fatalError("Failed to load the \(imageName) image.")
+        }
+    }
+
+
     @objc func objectTapped(sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: sceneView)
         let hitTestResults = sceneView.hitTest(tapLocation, options: nil)
@@ -148,33 +189,34 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 for (anchor, node) in anchorNodes {
                     if let anchorName = anchor.name, anchorName == "resbeAnchor" {
                         print("Found anchor with name: \(anchorName)")
+                        addImageNode(imageName: "resbeGreen.png", duration: 1.1, toNode: node)
                         // Load the image
-                        if let resbeImage = UIImage(named: "resbeGreen.png") {
-                            // Perform UI operations on the main thread
-                            DispatchQueue.main.async {
-                                // Create an image view to display the image
-                                let imageView = UIImageView(image: resbeImage)
-                                imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-                                imageView.contentMode = .scaleAspectFit
-
-                                // Create a plane with the same dimensions as the image view
-                                let imagePlane = SCNPlane(width: 0.5, height: 0.5)
-                                imagePlane.firstMaterial?.diffuse.contents = imageView
-
-                                // Create a node with the image plane and adjust its position
-                                let resbeNode = SCNNode(geometry: imagePlane)
-                                node.addChildNode(resbeNode)
-                                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.1)
-                                floatUpAction.timingMode = .easeInEaseOut
-                                let floatDownAction = floatUpAction.reversed()
-                                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
-                                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
-                                // Apply the floating animation to the blue box
-                                resbeNode.runAction(floatActionLoop)
-                            }
-                        } else {
-                            fatalError("Failed to load the resbe image.")
-                        }
+//                        if let resbeImage = UIImage(named: "resbeGreen.png") {
+//                            // Perform UI operations on the main thread
+//                            DispatchQueue.main.async {
+//                                // Create an image view to display the image
+//                                let imageView = UIImageView(image: resbeImage)
+//                                imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+//                                imageView.contentMode = .scaleAspectFit
+//
+//                                // Create a plane with the same dimensions as the image view
+//                                let imagePlane = SCNPlane(width: 0.5, height: 0.5)
+//                                imagePlane.firstMaterial?.diffuse.contents = imageView
+//
+//                                // Create a node with the image plane and adjust its position
+//                                let resbeNode = SCNNode(geometry: imagePlane)
+//                                node.addChildNode(resbeNode)
+//                                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.1)
+//                                floatUpAction.timingMode = .easeInEaseOut
+//                                let floatDownAction = floatUpAction.reversed()
+//                                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+//                                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+//                                // Apply the floating animation to the blue box
+//                                resbeNode.runAction(floatActionLoop)
+//                            }
+//                        } else {
+//                            fatalError("Failed to load the resbe image.")
+//                        }
                     }
                 }
                 // Perform actions when the green box is tapped
