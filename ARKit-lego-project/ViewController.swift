@@ -7,6 +7,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
     var anchors: [ARAnchor] = []
     var anchorNodes: [ARAnchor: SCNNode] = [:]
+    var isGreenTapped = false
+    var isPinkTapped = false
+    var isPurpleTapped = false
+    var isOrangeTapped = false
+    var isYellowTapped = false
+    var isBlueTapped = false
+    var isBlackTapped = false
     
     @IBOutlet var sceneView: ARSCNView!
     private var yellowBoxNode: SCNReferenceNode?
@@ -125,44 +132,56 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Run the view's session
         sceneView.session.run(configuration)
     }
+    
     @objc func objectTapped(sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: sceneView)
         let hitTestResults = sceneView.hitTest(tapLocation, options: nil)
         let hitNode = hitTestResults.first?.node
         // Necessary to see the names.
-        if let hitNodeName = hitNode?.name {
-            print("\(hitNodeName) Tapped")
-        }
-        for (anchor, node) in anchorNodes {
-            if let anchorName = anchor.name, anchorName == "resbeAnchor" {
-                print("Found anchor with name: \(anchorName)")
-                // Load the image
-                if let resbeImage = UIImage(named: "resbeGreen.png") {
-                    // Perform UI operations on the main thread
-                    DispatchQueue.main.async {
-                        // Create an image view to display the image
-                        let imageView = UIImageView(image: resbeImage)
-                        imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-                        imageView.contentMode = .scaleAspectFit
+        let hitNodeName = hitNode?.name
+        print("\(hitNodeName) Tapped")
+        if  hitNodeName == "Box005_09___Green_0"{
+            isGreenTapped = !isGreenTapped
+            // Now you can use the isGreenTapped flag to determine the status of the green box
+            if isGreenTapped {
+                print("Green box is now tapped.")
+                for (anchor, node) in anchorNodes {
+                    if let anchorName = anchor.name, anchorName == "resbeAnchor" {
+                        print("Found anchor with name: \(anchorName)")
+                        // Load the image
+                        if let resbeImage = UIImage(named: "resbeGreen.png") {
+                            // Perform UI operations on the main thread
+                            DispatchQueue.main.async {
+                                // Create an image view to display the image
+                                let imageView = UIImageView(image: resbeImage)
+                                imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+                                imageView.contentMode = .scaleAspectFit
 
-                        // Create a plane with the same dimensions as the image view
-                        let imagePlane = SCNPlane(width: 0.5, height: 0.5)
-                        imagePlane.firstMaterial?.diffuse.contents = imageView
+                                // Create a plane with the same dimensions as the image view
+                                let imagePlane = SCNPlane(width: 0.5, height: 0.5)
+                                imagePlane.firstMaterial?.diffuse.contents = imageView
 
-                        // Create a node with the image plane and adjust its position
-                        let resbeNode = SCNNode(geometry: imagePlane)
-                        node.addChildNode(resbeNode)
-                        let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.1)
-                        floatUpAction.timingMode = .easeInEaseOut
-                        let floatDownAction = floatUpAction.reversed()
-                        let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
-                        let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
-                        // Apply the floating animation to the blue box
-                        resbeNode.runAction(floatActionLoop)
+                                // Create a node with the image plane and adjust its position
+                                let resbeNode = SCNNode(geometry: imagePlane)
+                                node.addChildNode(resbeNode)
+                                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.1)
+                                floatUpAction.timingMode = .easeInEaseOut
+                                let floatDownAction = floatUpAction.reversed()
+                                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+                                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+                                // Apply the floating animation to the blue box
+                                resbeNode.runAction(floatActionLoop)
+                            }
+                        } else {
+                            fatalError("Failed to load the resbe image.")
+                        }
                     }
-                } else {
-                    fatalError("Failed to load the resbe image.")
                 }
+                // Perform actions when the green box is tapped
+            } else {
+                print("Green box is now untapped.")
+                resbeNode.removeFromParentNode()
+                // Perform actions when the green box is untapped
             }
         }
     }
