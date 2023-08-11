@@ -20,6 +20,7 @@
 		28CF71A12A83DED60057D798 /* orangeBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF71A02A83DED60057D798 /* orangeBoxText.usdz */; };
 		28CF71A32A83E34A0057D798 /* blueBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF71A22A83E34A0057D798 /* blueBoxText.usdz */; };
 		28CF71A52A867CC10057D798 /* resbe.png in Resources */ = {isa = PBXBuildFile; fileRef = 28CF71A42A867CC10057D798 /* resbe.png */; };
+		28CF71A72A8687740057D798 /* resbeGreen.png in Resources */ = {isa = PBXBuildFile; fileRef = 28CF71A62A8687740057D798 /* resbeGreen.png */; };
 		AF4CDBBD2998067E00579BAF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CDBBC2998067E00579BAF /* AppDelegate.swift */; };
 		AF4CDBBF2998067E00579BAF /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = AF4CDBBE2998067E00579BAF /* art.scnassets */; };
 		AF4CDBC12998067E00579BAF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF4CDBC02998067E00579BAF /* ViewController.swift */; };
@@ -44,6 +45,7 @@
 		28CF71A02A83DED60057D798 /* orangeBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = orangeBoxText.usdz; sourceTree = "<group>"; };
 		28CF71A22A83E34A0057D798 /* blueBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = blueBoxText.usdz; sourceTree = "<group>"; };
 		28CF71A42A867CC10057D798 /* resbe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resbe.png; sourceTree = "<group>"; };
+		28CF71A62A8687740057D798 /* resbeGreen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = resbeGreen.png; sourceTree = "<group>"; };
 		AF4CDBB92998067E00579BAF /* ARKit-lego-project.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ARKit-lego-project.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF4CDBBC2998067E00579BAF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF4CDBBE2998067E00579BAF /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		FFF6AAA72A5BF70D00DF6988 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				28CF71A62A8687740057D798 /* resbeGreen.png */,
 				28CF71A42A867CC10057D798 /* resbe.png */,
 				FF05CC872A5C5DCB00BA901C /* tree.png */,
 				FF6C068D2A7BB5DC00C021AF /* dashes.png */,
@@ -186,6 +189,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				28CF71A72A8687740057D798 /* resbeGreen.png in Resources */,
 				28CF71A52A867CC10057D798 /* resbe.png in Resources */,
 				28CF71A32A83E34A0057D798 /* blueBoxText.usdz in Resources */,
 				28CF71A12A83DED60057D798 /* orangeBoxText.usdz in Resources */,

@@ -5,6 +5,9 @@ import ModelIO
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 
+    var anchors: [ARAnchor] = []
+    var anchorNodes: [ARAnchor: SCNNode] = [:]
+    
     @IBOutlet var sceneView: ARSCNView!
     private var yellowBoxNode: SCNReferenceNode?
     private var purpleBoxNode: SCNReferenceNode?
@@ -14,9 +17,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     private var blueBoxNode: SCNReferenceNode?
     private var boxNode: SCNNode?
     private var imageView: UIImageView!
-    
-    // Create a dictionary to track anchors by their identifiers (UUIDs)
-    var trackedAnchors: [UUID: ARAnchor] = [:]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,7 +105,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.add(anchor: purpleAnchor)
         sceneView.session.add(anchor: yellowAnchor)
         sceneView.session.add(anchor: resbeAnchor)
-
         /*
          3D OBJECTS END
          */
@@ -126,7 +125,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Run the view's session
         sceneView.session.run(configuration)
     }
-    
     @objc func objectTapped(sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: sceneView)
         let hitTestResults = sceneView.hitTest(tapLocation, options: nil)
@@ -135,32 +133,50 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         if let hitNodeName = hitNode?.name {
             print("\(hitNodeName) Tapped")
         }
-        if let hitNodeName = hitNode?.name, hitNodeName == "Box005_02___Default_0" {
-            // Remove the qMarkNode from the parent node
-//            qMarkNode?.removeFromParentNode()
-            // Now that the box is removed, show the image
-            let image = UIImage(named: "tree.png")
-            let imageView = UIImageView(image: image)
-            imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-            imageView.contentMode = .scaleAspectFit
+        for (anchor, node) in anchorNodes {
+            if let anchorName = anchor.name, anchorName == "resbeAnchor" {
+                print("Found anchor with name: \(anchorName)")
+                // Load the image
+                if let resbeImage = UIImage(named: "resbeGreen.png") {
+                    // Perform UI operations on the main thread
+                    DispatchQueue.main.async {
+                        // Create an image view to display the image
+                        let imageView = UIImageView(image: resbeImage)
+                        imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+                        imageView.contentMode = .scaleAspectFit
 
-            // Create a plane with the same dimensions as the image view
-            let imagePlane = SCNPlane(width: 0.2, height: 0.2)
-            imagePlane.firstMaterial?.diffuse.contents = imageView
+                        // Create a plane with the same dimensions as the image view
+                        let imagePlane = SCNPlane(width: 0.5, height: 0.5)
+                        imagePlane.firstMaterial?.diffuse.contents = imageView
 
-            // Create a node with the image plane and position it
-            let imageNode = SCNNode(geometry: imagePlane)
-            imageNode.position = SCNVector3(x: 0, y: -1, z: -1)
-
-            // Add the image node to the scene
-            sceneView.scene.rootNode.addChildNode(imageNode)
+                        // Create a node with the image plane and adjust its position
+                        let resbeNode = SCNNode(geometry: imagePlane)
+                        node.addChildNode(resbeNode)
+                        let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.1)
+                        floatUpAction.timingMode = .easeInEaseOut
+                        let floatDownAction = floatUpAction.reversed()
+                        let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+                        let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+                        // Apply the floating animation to the blue box
+                        resbeNode.runAction(floatActionLoop)
+                    }
+                } else {
+                    fatalError("Failed to load the resbe image.")
+                }
+            }
         }
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         print("Anchor added to the scene.")
-        print(anchor.name)
+        // print(anchor.name)
+        anchors.append(anchor)
         let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
+        if anchor.name == "resbeAnchor" {
+            // Store the node corresponding to the resbeAnchor in the dictionary
+            anchorNodes[anchor] = node
+            print("Found anchor with name: \(anchor.name ?? "Unnamed anchor")")
+        }
         // Check if the anchor is the blueAnchor
         if anchor.name == "blueAnchor" {
             if let blueBoxUrl = Bundle.main.url(forResource: "blueBoxText", withExtension: "usdz"),
@@ -288,40 +304,45 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 fatalError("Failed to find pinkBoxText.usdz in the bundle.")
             }
         }
-        // Check if the anchor is the resbeAnchor
-        if anchor.name == "resbeAnchor" {
-            print("here")
-            // Load the image
-            if let resbeImage = UIImage(named: "resbe.png") {
-                print("there")
-                // Perform UI operations on the main thread
-                DispatchQueue.main.async {
-                    // Create an image view to display the image
-                    let imageView = UIImageView(image: resbeImage)
-                    imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-                    imageView.contentMode = .scaleAspectFit
-
-                    // Create a plane with the same dimensions as the image view
-                    let imagePlane = SCNPlane(width: 0.5, height: 0.5)
-                    imagePlane.firstMaterial?.diffuse.contents = imageView
-
-                    // Create a node with the image plane and adjust its position
-                    let resbeNode = SCNNode(geometry: imagePlane)
-                    node.addChildNode(resbeNode)
-                    let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.1)
-                    floatUpAction.timingMode = .easeInEaseOut
-                    let floatDownAction = floatUpAction.reversed()
-                    let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
-                    let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
-                    // Apply the floating animation to the blue box
-                    resbeNode.runAction(floatActionLoop)
-                }
-            } else {
-                fatalError("Failed to load the resbe image.")
-            }
-        }
-
     }
+    
+    func accessAllAnchors() {
+        print("Accessing all anchors:")
+        for anchor in anchors {
+            print(anchor.name ?? "Unnamed anchor")
+            // Do whatever you need with each anchor
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // Pause the view's session
+        sceneView.session.pause()
+    }
+}
+
+//        if let hitNodeName = hitNode?.name, hitNodeName == "Box005_02___Default_0" {
+//            // Remove the qMarkNode from the parent node
+//            // qMarkNode?.removeFromParentNode()
+//            // Now that the box is removed, show the image
+//            let image = UIImage(named: "tree.png")
+//            let imageView = UIImageView(image: image)
+//            imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+//            imageView.contentMode = .scaleAspectFit
+//
+//            // Create a plane with the same dimensions as the image view
+//            let imagePlane = SCNPlane(width: 0.2, height: 0.2)
+//            imagePlane.firstMaterial?.diffuse.contents = imageView
+//
+//            // Create a node with the image plane and position it
+//            let imageNode = SCNNode(geometry: imagePlane)
+//            imageNode.position = SCNVector3(x: 0, y: -1, z: -1)
+//
+//            // Add the image node to the scene
+//            sceneView.scene.rootNode.addChildNode(imageNode)
+//        }
+
 //    let image = UIImage(named: "tree.png")
 //    let imageView = UIImageView(image: image)
 //    imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
@@ -334,19 +355,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //    // Create a node with the image plane and position it
 //    let imageNode = SCNNode(geometry: imagePlane)
 //    imageNode.position = SCNVector3(x: 0, y: -1, z: -1)
-
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-
-        // Pause the view's session
-        sceneView.session.pause()
-    }
-}
-
-
-
-
 
 //
 //    @objc func qMarkTapped(sender: UITapGestureRecognizer) {
