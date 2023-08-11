@@ -140,7 +140,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Necessary to see the names.
         let hitNodeName = hitNode?.name
         print("\(hitNodeName) Tapped")
-        if  hitNodeName == "Box005_09___Green_0"{
+        if hitNodeName == "Box005_09___Green_0" {
             isGreenTapped = !isGreenTapped
             // Now you can use the isGreenTapped flag to determine the status of the green box
             if isGreenTapped {
@@ -180,10 +180,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 // Perform actions when the green box is tapped
             } else {
                 print("Green box is now untapped.")
-                resbeNode.removeFromParentNode()
-                // Perform actions when the green box is untapped
+                for (anchor, node) in anchorNodes {
+                    if let anchorName = anchor.name, anchorName == "resbeAnchor" {
+                        for childNode in node.childNodes {
+                            if childNode.geometry is SCNPlane {
+                                childNode.removeFromParentNode()
+                            }
+                        }
+                    }
+                }
             }
         }
+
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
