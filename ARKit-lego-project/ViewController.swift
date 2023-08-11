@@ -16,6 +16,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     private var boxNode: SCNNode?
     private var imageView: UIImageView!
     
+    // Create a dictionary to track anchors by their identifiers (UUIDs)
+    var trackedAnchors: [UUID: ARAnchor] = [:]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,18 +30,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // Set the scene to the view
         sceneView.scene = scene
-        
-        // Create an ARAnchor at the desired position
-        let positionVectorBlue = SCNVector3(0.5, -1, -55.5)
-        let blueBoxAnchorTransform = simd_float4x4([
-            SIMD4<Float>(1, 0, 0, 0),
-            SIMD4<Float>(0, 1, 0, 0),
-            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0, 0, 0, 1)])
-        
-        let blueAnchor = ARAnchor(transform: blueBoxAnchorTransform)
-        sceneView.session.add(anchor: blueAnchor)
-        
         /*
          LIGHTS START
          */
@@ -61,93 +52,53 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         /*
          LIGHTS END
          */
-        
-        
         /*
          3D OBJECTS START
          */
-        // Create an ARAnchor at the desired position
-        
-        // Load the qMark USDZ model
-        guard let yellowBoxUrl = Bundle.main.url(forResource: "yellowBoxText", withExtension: "usdz") else {
-            fatalError("Failed to find yellowBox.usdz in the bundle.")
-        }
-        yellowBoxNode = SCNReferenceNode(url: yellowBoxUrl)
-        yellowBoxNode?.load()
-        
-        
-        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
-        let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
-        yellowBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-        // Position the qMark node next to the box
-        yellowBoxNode?.position = SCNVector3(0, -1, -1)
-        yellowBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
-        scene.rootNode.addChildNode(yellowBoxNode!)
+        let blueBoxAnchorTransform = simd_float4x4([
+            SIMD4<Float>(1, 0, 0, 0),
+            SIMD4<Float>(0, 1, 0, 0),
+            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+            SIMD4<Float>(0, 0, -2, 1)])
+        let blueAnchor = ARAnchor(name: "blueAnchor", transform: blueBoxAnchorTransform)
+        let greenBoxAnchorTransform = simd_float4x4([
+            SIMD4<Float>(1, 0, 0, 0),
+            SIMD4<Float>(0, 1, 0, 0),
+            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+            SIMD4<Float>(0.5, 0, -2, 1)])
+        let greenAnchor = ARAnchor(name: "greenAnchor", transform: greenBoxAnchorTransform)
+        let pinkBoxAnchorTransform = simd_float4x4([
+            SIMD4<Float>(1, 0, 0, 0),
+            SIMD4<Float>(0, 1, 0, 0),
+            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+            SIMD4<Float>(-0.5, 0, -2, 1)])
+        let pinkAnchor = ARAnchor(name: "pinkAnchor", transform: pinkBoxAnchorTransform)
+        let orangeBoxAnchorTransform = simd_float4x4([
+            SIMD4<Float>(1, 0, 0, 0),
+            SIMD4<Float>(0, 1, 0, 0),
+            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+            SIMD4<Float>(0, 0, -3, 1)])
+        let orangeAnchor = ARAnchor(name: "orangeAnchor", transform: orangeBoxAnchorTransform)
+        let purpleBoxAnchorTransform = simd_float4x4([
+            SIMD4<Float>(1, 0, 0, 0),
+            SIMD4<Float>(0, 1, 0, 0),
+            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+            SIMD4<Float>(0.5, 0, -3, 1)])
+        let purpleAnchor = ARAnchor(name: "purpleAnchor", transform: purpleBoxAnchorTransform)
+        let yellowBoxAnchorTransform = simd_float4x4([
+            SIMD4<Float>(1, 0, 0, 0),
+            SIMD4<Float>(0, 1, 0, 0),
+            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+            SIMD4<Float>(-0.5, 0, -3, 1)])
+        let yellowAnchor = ARAnchor(name: "yellowAnchor", transform: yellowBoxAnchorTransform)
 
-        guard let purpleBoxUrl = Bundle.main.url(forResource: "purpleBoxText", withExtension: "usdz") else {
-            fatalError("Failed to find purpleBox.usdz in the bundle.")
-        }
-        purpleBoxNode = SCNReferenceNode(url: purpleBoxUrl)
-        purpleBoxNode?.load()
-        
-        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
-        purpleBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-        // Position the qMark node next to the box
-        purpleBoxNode?.position = SCNVector3(-0.5, -1, -1)
-        purpleBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
-        scene.rootNode.addChildNode(purpleBoxNode!)
-
-        guard let greenBoxUrl = Bundle.main.url(forResource: "greenBoxText", withExtension: "usdz") else {
-            fatalError("Failed to find greenBox.usdz in the bundle.")
-        }
-        greenBoxNode = SCNReferenceNode(url: greenBoxUrl)
-        greenBoxNode?.load()
-        
-        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
-        greenBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-        // Position the qMark node next to the box
-        greenBoxNode?.position = SCNVector3(0.5, -1, -1)
-        greenBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
-        scene.rootNode.addChildNode(greenBoxNode!)
-        
-        guard let pinkBoxUrl = Bundle.main.url(forResource: "pinkBoxText", withExtension: "usdz") else {
-            fatalError("Failed to find greenBox.usdz in the bundle.")
-        }
-        pinkBoxNode = SCNReferenceNode(url: pinkBoxUrl)
-        pinkBoxNode?.load()
-        
-        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
-        pinkBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-        // Position the qMark node next to the box
-        pinkBoxNode?.position = SCNVector3(0, -1, -1.5)
-        pinkBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
-        scene.rootNode.addChildNode(pinkBoxNode!)
-        
-        guard let orangeBoxUrl = Bundle.main.url(forResource: "orangeBoxText", withExtension: "usdz") else {
-            fatalError("Failed to find orangeBox.usdz in the bundle.")
-        }
-        orangeBoxNode = SCNReferenceNode(url: orangeBoxUrl)
-        orangeBoxNode?.load()
-        
-        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
-        orangeBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-        // Position the qMark node next to the box
-        orangeBoxNode?.position = SCNVector3(-0.5, -1, -1.5)
-        orangeBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
-        scene.rootNode.addChildNode(orangeBoxNode!)
-
-//        guard let blueBoxUrl = Bundle.main.url(forResource: "blueBoxText", withExtension: "usdz") else {
-//            fatalError("Failed to find blueBox.usdz in the bundle.")
-//        }
-//        blueBoxNode = SCNReferenceNode(url: blueBoxUrl)
-//        blueBoxNode?.load()
-//
-//        // Rotate qMarkYellowNode by 90 degrees around the Y-axis
-//        blueBoxNode?.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-//        // Position the qMark node next to the box
-//        blueBoxNode?.position = SCNVector3(0.5, -1, -1.5)
-//        blueBoxNode?.scale = SCNVector3(0.001, 0.001, 0.001)
-//        scene.rootNode.addChildNode(blueBoxNode!)
+        // Add the anchor to the AR session
+        sceneView.session.add(anchor: blueAnchor)
+        sceneView.session.add(anchor: greenAnchor)
+        sceneView.session.add(anchor: pinkAnchor)
+        sceneView.session.add(anchor: orangeAnchor)
+        sceneView.session.add(anchor: purpleAnchor)
+        sceneView.session.add(anchor: yellowAnchor)
         /*
          3D OBJECTS END
          */
@@ -168,7 +119,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Run the view's session
         sceneView.session.run(configuration)
     }
-
+    
     @objc func objectTapped(sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: sceneView)
         let hitTestResults = sceneView.hitTest(tapLocation, options: nil)
@@ -201,23 +152,137 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         print("Anchor added to the scene.")
-        
         let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
-    
-        if let blueBoxUrl = Bundle.main.url(forResource: "blueBoxText", withExtension: "usdz"),
-           let blueBoxNode = SCNReferenceNode(url: blueBoxUrl) {
-            print("Here")
-            // Load, rotate, scale.
-            blueBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-            blueBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
-            blueBoxNode.load()
-            
-            // Add the blue box node as a child of the anchor's node
-            node.addChildNode(blueBoxNode)
-        } else {
-            fatalError("Failed to find blueBoxText.usdz in the bundle.")
+        // Check if the anchor is the blueAnchor
+        if anchor.name == "blueAnchor" {
+            if let blueBoxUrl = Bundle.main.url(forResource: "blueBoxText", withExtension: "usdz"),
+               let blueBoxNode = SCNReferenceNode(url: blueBoxUrl) {
+                // Load, rotate, scale.
+                blueBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+                blueBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
+                blueBoxNode.load()
+
+                // Add the blue box node as a child of the anchor's node
+                node.addChildNode(blueBoxNode)
+                // Create a floating animation
+                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.5)
+                floatUpAction.timingMode = .easeInEaseOut
+                let floatDownAction = floatUpAction.reversed()
+                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+                // Apply the floating animation to the blue box
+                blueBoxNode.runAction(floatActionLoop)
+            } else {
+                fatalError("Failed to find blueBoxText.usdz in the bundle.")
+            }
         }
+        if anchor.name == "orangeAnchor" {
+            if let orangeBoxUrl = Bundle.main.url(forResource: "orangeBoxText", withExtension: "usdz"),
+               let orangeBoxNode = SCNReferenceNode(url: orangeBoxUrl) {
+                // Load, rotate, scale.
+                orangeBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+                orangeBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
+                orangeBoxNode.load()
+
+                // Add the blue box node as a child of the anchor's node
+                node.addChildNode(orangeBoxNode)
+                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.4)
+                floatUpAction.timingMode = .easeInEaseOut
+                let floatDownAction = floatUpAction.reversed()
+                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+                // Apply the floating animation to the blue box
+                orangeBoxNode.runAction(floatActionLoop)
+            } else {
+                fatalError("Failed to find orangeBoxText.usdz in the bundle.")
+            }
+        }
+        if anchor.name == "purpleAnchor" {
+            if let purpleBoxUrl = Bundle.main.url(forResource: "purpleBoxText", withExtension: "usdz"),
+               let purpleBoxNode = SCNReferenceNode(url: purpleBoxUrl) {
+                // Load, rotate, scale.
+                purpleBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+                purpleBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
+                purpleBoxNode.load()
+                // Add the blue box node as a child of the anchor's node
+                node.addChildNode(purpleBoxNode)
+                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.3)
+                floatUpAction.timingMode = .easeInEaseOut
+                let floatDownAction = floatUpAction.reversed()
+                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+                // Apply the floating animation to the blue box
+                purpleBoxNode.runAction(floatActionLoop)
+            } else {
+                fatalError("Failed to find purpleBoxText.usdz in the bundle.")
+            }
+        }
+        if anchor.name == "yellowAnchor" {
+            if let yellowBoxUrl = Bundle.main.url(forResource: "yellowBoxText", withExtension: "usdz"),
+               let yellowBoxNode = SCNReferenceNode(url: yellowBoxUrl) {
+                // Load, rotate, scale.
+                yellowBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+                yellowBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
+                yellowBoxNode.load()
+
+                // Add the blue box node as a child of the anchor's node
+                node.addChildNode(yellowBoxNode)
+                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.2)
+                floatUpAction.timingMode = .easeInEaseOut
+                let floatDownAction = floatUpAction.reversed()
+                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+                // Apply the floating animation to the blue box
+                yellowBoxNode.runAction(floatActionLoop)
+            } else {
+                fatalError("Failed to find yellowBoxText.usdz in the bundle.")
+            }
+        }
+        if anchor.name == "greenAnchor" {
+            if let greenBoxUrl = Bundle.main.url(forResource: "greenBoxText", withExtension: "usdz"),
+               let greenBoxNode = SCNReferenceNode(url: greenBoxUrl) {
+                // Load, rotate, scale.
+                greenBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+                greenBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
+                greenBoxNode.load()
+
+                // Add the blue box node as a child of the anchor's node
+                node.addChildNode(greenBoxNode)
+                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.1)
+                floatUpAction.timingMode = .easeInEaseOut
+                let floatDownAction = floatUpAction.reversed()
+                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+                // Apply the floating animation to the blue box
+                greenBoxNode.runAction(floatActionLoop)
+            } else {
+                fatalError("Failed to find greenBoxText.usdz in the bundle.")
+            }
+        }
+        if anchor.name == "pinkAnchor" {
+            if let pinkBoxUrl = Bundle.main.url(forResource: "pinkBoxText", withExtension: "usdz"),
+               let pinkBoxNode = SCNReferenceNode(url: pinkBoxUrl) {
+                // Load, rotate, scale.
+                pinkBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+                pinkBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
+                pinkBoxNode.load()
+
+                // Add the blue box node as a child of the anchor's node
+                node.addChildNode(pinkBoxNode)
+                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.0)
+                floatUpAction.timingMode = .easeInEaseOut
+                let floatDownAction = floatUpAction.reversed()
+                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+                // Apply the floating animation to the blue box
+                pinkBoxNode.runAction(floatActionLoop)
+            } else {
+                fatalError("Failed to find pinkBoxText.usdz in the bundle.")
+            }
+        }
+        
     }
+    
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
