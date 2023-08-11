@@ -3,7 +3,6 @@ import SceneKit
 import ARKit
 import ModelIO
 
-
 class ViewController: UIViewController, ARSCNViewDelegate {
 
     @IBOutlet var sceneView: ARSCNView!
@@ -67,6 +66,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
             SIMD4<Float>(0.5, 0, -2, 1)])
         let greenAnchor = ARAnchor(name: "greenAnchor", transform: greenBoxAnchorTransform)
+        let resbeAnchorTransform = simd_float4x4([
+            SIMD4<Float>(1, 0, 0, 0),
+            SIMD4<Float>(0, 1, 0, 0),
+            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+            SIMD4<Float>(0.5, 0.5, -2, 1)])
+        let resbeAnchor = ARAnchor(name: "resbeAnchor", transform: resbeAnchorTransform)
         let pinkBoxAnchorTransform = simd_float4x4([
             SIMD4<Float>(1, 0, 0, 0),
             SIMD4<Float>(0, 1, 0, 0),
@@ -99,6 +104,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.add(anchor: orangeAnchor)
         sceneView.session.add(anchor: purpleAnchor)
         sceneView.session.add(anchor: yellowAnchor)
+        sceneView.session.add(anchor: resbeAnchor)
+
         /*
          3D OBJECTS END
          */
@@ -152,6 +159,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         print("Anchor added to the scene.")
+        print(anchor.name)
         let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
         // Check if the anchor is the blueAnchor
         if anchor.name == "blueAnchor" {
@@ -280,9 +288,53 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 fatalError("Failed to find pinkBoxText.usdz in the bundle.")
             }
         }
-        
+        // Check if the anchor is the resbeAnchor
+        if anchor.name == "resbeAnchor" {
+            print("here")
+            // Load the image
+            if let resbeImage = UIImage(named: "resbe.png") {
+                print("there")
+                // Perform UI operations on the main thread
+                DispatchQueue.main.async {
+                    // Create an image view to display the image
+                    let imageView = UIImageView(image: resbeImage)
+                    imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+                    imageView.contentMode = .scaleAspectFit
+
+                    // Create a plane with the same dimensions as the image view
+                    let imagePlane = SCNPlane(width: 0.5, height: 0.5)
+                    imagePlane.firstMaterial?.diffuse.contents = imageView
+
+                    // Create a node with the image plane and adjust its position
+                    let resbeNode = SCNNode(geometry: imagePlane)
+                    node.addChildNode(resbeNode)
+                    let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.1)
+                    floatUpAction.timingMode = .easeInEaseOut
+                    let floatDownAction = floatUpAction.reversed()
+                    let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+                    let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+                    // Apply the floating animation to the blue box
+                    resbeNode.runAction(floatActionLoop)
+                }
+            } else {
+                fatalError("Failed to load the resbe image.")
+            }
+        }
+
     }
-    
+//    let image = UIImage(named: "tree.png")
+//    let imageView = UIImageView(image: image)
+//    imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+//    imageView.contentMode = .scaleAspectFit
+//
+//    // Create a plane with the same dimensions as the image view
+//    let imagePlane = SCNPlane(width: 0.2, height: 0.2)
+//    imagePlane.firstMaterial?.diffuse.contents = imageView
+//
+//    // Create a node with the image plane and position it
+//    let imageNode = SCNNode(geometry: imagePlane)
+//    imageNode.position = SCNVector3(x: 0, y: -1, z: -1)
+
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
