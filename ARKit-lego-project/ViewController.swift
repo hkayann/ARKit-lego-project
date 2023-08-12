@@ -62,55 +62,30 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         /*
          3D OBJECTS START
          */
-        let blueBoxAnchorTransform = simd_float4x4([
-            SIMD4<Float>(1, 0, 0, 0),
-            SIMD4<Float>(0, 1, 0, 0),
-            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0, -1, -2, 1)])
-        let blueAnchor = ARAnchor(name: "blueAnchor", transform: blueBoxAnchorTransform)
-        let blackBoxAnchorTransform = simd_float4x4([
-            SIMD4<Float>(1, 0, 0, 0),
-            SIMD4<Float>(0, 1, 0, 0),
-            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0, -1, -3, 1)])
-        let blackAnchor = ARAnchor(name: "blackAnchor", transform: blackBoxAnchorTransform)
-        let greenBoxAnchorTransform = simd_float4x4([
-            SIMD4<Float>(1, 0, 0, 0),
-            SIMD4<Float>(0, 1, 0, 0),
-            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0.5, -1, -2, 1)])
-        let greenAnchor = ARAnchor(name: "greenAnchor", transform: greenBoxAnchorTransform)
-        let resbeAnchorTransform = simd_float4x4([
-            SIMD4<Float>(1, 0, 0, 0),
-            SIMD4<Float>(0, 1, 0, 0),
-            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0.5, -0.5, -2, 1)])
-        let resbeAnchor = ARAnchor(name: "resbeAnchor", transform: resbeAnchorTransform)
-        let pinkBoxAnchorTransform = simd_float4x4([
-            SIMD4<Float>(1, 0, 0, 0),
-            SIMD4<Float>(0, 1, 0, 0),
-            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(-0.5, -1, -2, 1)])
-        let pinkAnchor = ARAnchor(name: "pinkAnchor", transform: pinkBoxAnchorTransform)
-        let orangeBoxAnchorTransform = simd_float4x4([
-            SIMD4<Float>(1, 0, 0, 0),
-            SIMD4<Float>(0, 1, 0, 0),
-            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0, -1, -4, 1)])
-        let orangeAnchor = ARAnchor(name: "orangeAnchor", transform: orangeBoxAnchorTransform)
-        let purpleBoxAnchorTransform = simd_float4x4([
-            SIMD4<Float>(1, 0, 0, 0),
-            SIMD4<Float>(0, 1, 0, 0),
-            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(0.5, -1, -3, 1)])
-        let purpleAnchor = ARAnchor(name: "purpleAnchor", transform: purpleBoxAnchorTransform)
-        let yellowBoxAnchorTransform = simd_float4x4([
-            SIMD4<Float>(1, 0, 0, 0),
-            SIMD4<Float>(0, 1, 0, 0),
-            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-            SIMD4<Float>(-0.5, -1, -3, 1)])
-        let yellowAnchor = ARAnchor(name: "yellowAnchor", transform: yellowBoxAnchorTransform)
+        
+        func createARAnchorWithPosition(name: String, position: SIMD3<Float>) -> ARAnchor {
+            let transform = matrix_identity_float4x4
+            var anchorTransform = transform
+            anchorTransform.columns.3.x = position.x
+            anchorTransform.columns.3.y = position.y
+            anchorTransform.columns.3.z = position.z
+            let anchor = ARAnchor(name: name, transform: anchorTransform)
+            return anchor
+        }
 
+        // Box anchors
+        let greenAnchor = createARAnchorWithPosition(name: "greenAnchor", position: SIMD3<Float>(0.5, -1, -2))
+        let pinkAnchor = createARAnchorWithPosition(name: "pinkAnchor", position: SIMD3<Float>(-0.5, -1, -2))
+        let orangeAnchor = createARAnchorWithPosition(name: "orangeAnchor", position: SIMD3<Float>(0, -1, -4))
+        let blueAnchor = createARAnchorWithPosition(name: "blueAnchor", position: SIMD3<Float>(0, -1, -2))
+        let purpleAnchor = createARAnchorWithPosition(name: "purpleAnchor", position: SIMD3<Float>(0.5, -1, -3))
+        let yellowAnchor = createARAnchorWithPosition(name: "yellowAnchor", position: SIMD3<Float>(-0.5, -1, -3))
+        let blackAnchor = createARAnchorWithPosition(name: "blackAnchor", position: SIMD3<Float>(0, -1, -3))
+
+        // Image anchors
+        let resbeAnchor = createARAnchorWithPosition(name: "resbeAnchor", position: SIMD3<Float>(0.5, -0.5, -2))
+        let aaciotAnchor = createARAnchorWithPosition(name: "aaciotAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
+        
         // Add anchor for boxes to the AR session
         sceneView.session.add(anchor: blueAnchor)
         sceneView.session.add(anchor: greenAnchor)
@@ -122,6 +97,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         // Add anchor for boxes to the AR session
         sceneView.session.add(anchor: resbeAnchor)
+        sceneView.session.add(anchor: aaciotAnchor)
         /*
          3D OBJECTS END
          */
@@ -137,7 +113,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.run(configuration)
     }
     
-    func addImageNode(imageName: String, duration: TimeInterval, toNode node: SCNNode) {
+    func addImageNode(imageName: String, identifier: String, duration: TimeInterval, toNode node: SCNNode) {
         if let image = UIImage(named: imageName) {
             // Perform UI operations on the main thread
             DispatchQueue.main.async {
@@ -152,6 +128,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
                 // Create a node with the image plane and adjust its position
                 let imageNode = SCNNode(geometry: imagePlane)
+                imageNode.name = identifier
                 node.addChildNode(imageNode)
 
                 // Apply the floating animation to the box
@@ -167,10 +144,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
     }
 
-
     @objc func objectTapped(sender: UITapGestureRecognizer) {
         let tapLocation = sender.location(in: sceneView)
-        let hitTestResults = sceneView.hitTest(tapLocation, options: nil)
+        let options: [SCNHitTestOption: Any] = [
+            .boundingBoxOnly: false,
+            .ignoreHiddenNodes: true,
+        ]
+        let hitTestResults = sceneView.hitTest(tapLocation, options: options)
+        print(hitTestResults)
         let hitNode = hitTestResults.first?.node
         // Necessary to see the names.
         let hitNodeName = hitNode?.name
@@ -183,7 +164,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 for (anchor, node) in anchorNodes {
                     if let anchorName = anchor.name, anchorName == "resbeAnchor" {
                         print("Found anchor with name: \(anchorName)")
-                        addImageNode(imageName: "resbeGreen.png", duration: 1.1, toNode: node)
+                        addImageNode(imageName: "resbeGreen.png", identifier: "resbe" ,duration: 1.1, toNode: node)
                     }
                 }
             } else {
@@ -199,10 +180,32 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 }
             }
         }
+        if hitNodeName == "Box005_09___Blue_0" {
+            isBlueTapped = !isBlueTapped
+            // Now you can use the isGreenTapped flag to determine the status of the green box
+            if isBlueTapped {
+                print("Blue box is now tapped.")
+                for (anchor, node) in anchorNodes {
+                    if let anchorName = anchor.name, anchorName == "aaciotAnchor" {
+                        print("Found anchor with name: \(anchorName)")
+                        addImageNode(imageName: "aaciotBlue.png", identifier: "aaciot" ,duration: 1.1, toNode: node)
+                    }
+                }
+            } else {
+                print("Blue box is now untapped.")
+                for (anchor, node) in anchorNodes {
+                    if let anchorName = anchor.name, anchorName == "aaciotAnchor" {
+                        for childNode in node.childNodes {
+                            if childNode.geometry is SCNPlane {
+                                childNode.removeFromParentNode()
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
-    
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
-        
         func addFloatingBox(to anchor: ARAnchor, with resourceName: String, animationDuration: TimeInterval) {
             guard let boxUrl = Bundle.main.url(forResource: resourceName, withExtension: "usdz"),
                   let boxNode = SCNReferenceNode(url: boxUrl) else {
@@ -230,12 +233,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         print("Anchor added to the scene.")
         // print(anchor.name)
         anchors.append(anchor)
+        anchorNodes[anchor] = node
         let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
-        if anchor.name == "resbeAnchor" {
-            // Store the node corresponding to the resbeAnchor in the dictionary
-            anchorNodes[anchor] = node
-            print("Found anchor with name: \(anchor.name ?? "Unnamed anchor")")
-        }
+//        if anchor.name == "resbeAnchor" {
+//            // Store the node corresponding to the resbeAnchor in the dictionary
+//            anchorNodes[anchor] = node
+//            print("Found anchor with name: \(anchor.name ?? "Unnamed anchor")")
+//        }
+//        if anchor.name == "aaciotAnchor" {
+//            // Store the node corresponding to the resbeAnchor in the dictionary
+//            anchorNodes[anchor] = node
+//            print("Found anchor with name: \(anchor.name ?? "Unnamed anchor")")
+//        }
         if anchor.name == "blueAnchor" {
             addFloatingBox(to: anchor, with: "blueBoxText", animationDuration: 1.5)
         }
@@ -274,6 +283,55 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
 }
+
+//        let blueBoxAnchorTransform = simd_float4x4([
+//            SIMD4<Float>(1, 0, 0, 0),
+//            SIMD4<Float>(0, 1, 0, 0),
+//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+//            SIMD4<Float>(0, -1, -2, 1)])
+//        let blueAnchor = ARAnchor(name: "blueAnchor", transform: blueBoxAnchorTransform)
+//        let blackBoxAnchorTransform = simd_float4x4([
+//            SIMD4<Float>(1, 0, 0, 0),
+//            SIMD4<Float>(0, 1, 0, 0),
+//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+//            SIMD4<Float>(0, -1, -3, 1)])
+//        let blackAnchor = ARAnchor(name: "blackAnchor", transform: blackBoxAnchorTransform)
+//        let greenBoxAnchorTransform = simd_float4x4([
+//            SIMD4<Float>(1, 0, 0, 0),
+//            SIMD4<Float>(0, 1, 0, 0),
+//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+//            SIMD4<Float>(0.5, -1, -2, 1)])
+//        let greenAnchor = ARAnchor(name: "greenAnchor", transform: greenBoxAnchorTransform)
+//        let resbeAnchorTransform = simd_float4x4([
+//            SIMD4<Float>(1, 0, 0, 0),
+//            SIMD4<Float>(0, 1, 0, 0),
+//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+//            SIMD4<Float>(0.5, -0.5, -2, 1)])
+//        let resbeAnchor = ARAnchor(name: "resbeAnchor", transform: resbeAnchorTransform)
+//        let pinkBoxAnchorTransform = simd_float4x4([
+//            SIMD4<Float>(1, 0, 0, 0),
+//            SIMD4<Float>(0, 1, 0, 0),
+//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+//            SIMD4<Float>(-0.5, -1, -2, 1)])
+//        let pinkAnchor = ARAnchor(name: "pinkAnchor", transform: pinkBoxAnchorTransform)
+//        let orangeBoxAnchorTransform = simd_float4x4([
+//            SIMD4<Float>(1, 0, 0, 0),
+//            SIMD4<Float>(0, 1, 0, 0),
+//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+//            SIMD4<Float>(0, -1, -4, 1)])
+//        let orangeAnchor = ARAnchor(name: "orangeAnchor", transform: orangeBoxAnchorTransform)
+//        let purpleBoxAnchorTransform = simd_float4x4([
+//            SIMD4<Float>(1, 0, 0, 0),
+//            SIMD4<Float>(0, 1, 0, 0),
+//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+//            SIMD4<Float>(0.5, -1, -3, 1)])
+//        let purpleAnchor = ARAnchor(name: "purpleAnchor", transform: purpleBoxAnchorTransform)
+//        let yellowBoxAnchorTransform = simd_float4x4([
+//            SIMD4<Float>(1, 0, 0, 0),
+//            SIMD4<Float>(0, 1, 0, 0),
+//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
+//            SIMD4<Float>(-0.5, -1, -3, 1)])
+//        let yellowAnchor = ARAnchor(name: "yellowAnchor", transform: yellowBoxAnchorTransform)
 
 //        if let hitNodeName = hitNode?.name, hitNodeName == "Box005_02___Default_0" {
 //            // Remove the qMarkNode from the parent node
