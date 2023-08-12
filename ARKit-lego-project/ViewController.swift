@@ -125,13 +125,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         /*
          3D OBJECTS END
          */
-        
-        /*
-         IMAGES START
-         */
-        /*
-         IMAGES END
-         */
+
         // Add tap gesture recognizer to the sceneView
         let tapGestureRecognizer2 = UITapGestureRecognizer(target: self, action: #selector(objectTapped))
         sceneView.addGestureRecognizer(tapGestureRecognizer2)
@@ -190,36 +184,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                     if let anchorName = anchor.name, anchorName == "resbeAnchor" {
                         print("Found anchor with name: \(anchorName)")
                         addImageNode(imageName: "resbeGreen.png", duration: 1.1, toNode: node)
-                        // Load the image
-//                        if let resbeImage = UIImage(named: "resbeGreen.png") {
-//                            // Perform UI operations on the main thread
-//                            DispatchQueue.main.async {
-//                                // Create an image view to display the image
-//                                let imageView = UIImageView(image: resbeImage)
-//                                imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-//                                imageView.contentMode = .scaleAspectFit
-//
-//                                // Create a plane with the same dimensions as the image view
-//                                let imagePlane = SCNPlane(width: 0.5, height: 0.5)
-//                                imagePlane.firstMaterial?.diffuse.contents = imageView
-//
-//                                // Create a node with the image plane and adjust its position
-//                                let resbeNode = SCNNode(geometry: imagePlane)
-//                                node.addChildNode(resbeNode)
-//                                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.1)
-//                                floatUpAction.timingMode = .easeInEaseOut
-//                                let floatDownAction = floatUpAction.reversed()
-//                                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
-//                                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
-//                                // Apply the floating animation to the blue box
-//                                resbeNode.runAction(floatActionLoop)
-//                            }
-//                        } else {
-//                            fatalError("Failed to load the resbe image.")
-//                        }
                     }
                 }
-                // Perform actions when the green box is tapped
             } else {
                 print("Green box is now untapped.")
                 for (anchor, node) in anchorNodes {
@@ -233,10 +199,34 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 }
             }
         }
-
     }
     
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
+        
+        func addFloatingBox(to anchor: ARAnchor, with resourceName: String, animationDuration: TimeInterval) {
+            guard let boxUrl = Bundle.main.url(forResource: resourceName, withExtension: "usdz"),
+                  let boxNode = SCNReferenceNode(url: boxUrl) else {
+                fatalError("Failed to find \(resourceName).usdz in the bundle.")
+            }
+            
+            // Load, rotate, scale.
+            boxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+            boxNode.scale = SCNVector3(0.001, 0.001, 0.001)
+            boxNode.load()
+            
+            // Add the box node as a child of the anchor's node
+            node.addChildNode(boxNode)
+            
+            // Create a floating animation
+            let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: animationDuration)
+            floatUpAction.timingMode = .easeInEaseOut
+            let floatDownAction = floatUpAction.reversed()
+            let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
+            let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
+            
+            // Apply the floating animation to the box
+            boxNode.runAction(floatActionLoop)
+        }
         print("Anchor added to the scene.")
         // print(anchor.name)
         anchors.append(anchor)
@@ -246,132 +236,26 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             anchorNodes[anchor] = node
             print("Found anchor with name: \(anchor.name ?? "Unnamed anchor")")
         }
-        // Check if the anchor is the blueAnchor
         if anchor.name == "blueAnchor" {
-            if let blueBoxUrl = Bundle.main.url(forResource: "blueBoxText", withExtension: "usdz"),
-               let blueBoxNode = SCNReferenceNode(url: blueBoxUrl) {
-                // Load, rotate, scale.
-                blueBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-                blueBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
-                blueBoxNode.load()
-
-                // Add the blue box node as a child of the anchor's node
-                node.addChildNode(blueBoxNode)
-                // Create a floating animation
-                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.5)
-                floatUpAction.timingMode = .easeInEaseOut
-                let floatDownAction = floatUpAction.reversed()
-                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
-                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
-                // Apply the floating animation to the blue box
-                blueBoxNode.runAction(floatActionLoop)
-            } else {
-                fatalError("Failed to find blueBoxText.usdz in the bundle.")
-            }
-        }
-        if anchor.name == "orangeAnchor" {
-            if let orangeBoxUrl = Bundle.main.url(forResource: "orangeBoxText", withExtension: "usdz"),
-               let orangeBoxNode = SCNReferenceNode(url: orangeBoxUrl) {
-                // Load, rotate, scale.
-                orangeBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-                orangeBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
-                orangeBoxNode.load()
-
-                // Add the blue box node as a child of the anchor's node
-                node.addChildNode(orangeBoxNode)
-                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.4)
-                floatUpAction.timingMode = .easeInEaseOut
-                let floatDownAction = floatUpAction.reversed()
-                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
-                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
-                // Apply the floating animation to the blue box
-                orangeBoxNode.runAction(floatActionLoop)
-            } else {
-                fatalError("Failed to find orangeBoxText.usdz in the bundle.")
-            }
-        }
-        if anchor.name == "purpleAnchor" {
-            if let purpleBoxUrl = Bundle.main.url(forResource: "purpleBoxText", withExtension: "usdz"),
-               let purpleBoxNode = SCNReferenceNode(url: purpleBoxUrl) {
-                // Load, rotate, scale.
-                purpleBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-                purpleBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
-                purpleBoxNode.load()
-                // Add the blue box node as a child of the anchor's node
-                node.addChildNode(purpleBoxNode)
-                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.3)
-                floatUpAction.timingMode = .easeInEaseOut
-                let floatDownAction = floatUpAction.reversed()
-                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
-                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
-                // Apply the floating animation to the blue box
-                purpleBoxNode.runAction(floatActionLoop)
-            } else {
-                fatalError("Failed to find purpleBoxText.usdz in the bundle.")
-            }
-        }
-        if anchor.name == "yellowAnchor" {
-            if let yellowBoxUrl = Bundle.main.url(forResource: "yellowBoxText", withExtension: "usdz"),
-               let yellowBoxNode = SCNReferenceNode(url: yellowBoxUrl) {
-                // Load, rotate, scale.
-                yellowBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-                yellowBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
-                yellowBoxNode.load()
-
-                // Add the blue box node as a child of the anchor's node
-                node.addChildNode(yellowBoxNode)
-                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.2)
-                floatUpAction.timingMode = .easeInEaseOut
-                let floatDownAction = floatUpAction.reversed()
-                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
-                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
-                // Apply the floating animation to the blue box
-                yellowBoxNode.runAction(floatActionLoop)
-            } else {
-                fatalError("Failed to find yellowBoxText.usdz in the bundle.")
-            }
-        }
-        if anchor.name == "greenAnchor" {
-            if let greenBoxUrl = Bundle.main.url(forResource: "greenBoxText", withExtension: "usdz"),
-               let greenBoxNode = SCNReferenceNode(url: greenBoxUrl) {
-                // Load, rotate, scale.
-                greenBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-                greenBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
-                greenBoxNode.load()
-
-                // Add the blue box node as a child of the anchor's node
-                node.addChildNode(greenBoxNode)
-                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.1)
-                floatUpAction.timingMode = .easeInEaseOut
-                let floatDownAction = floatUpAction.reversed()
-                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
-                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
-                // Apply the floating animation to the blue box
-                greenBoxNode.runAction(floatActionLoop)
-            } else {
-                fatalError("Failed to find greenBoxText.usdz in the bundle.")
-            }
+            addFloatingBox(to: anchor, with: "blueBoxText", animationDuration: 1.5)
         }
         if anchor.name == "pinkAnchor" {
-            if let pinkBoxUrl = Bundle.main.url(forResource: "pinkBoxText", withExtension: "usdz"),
-               let pinkBoxNode = SCNReferenceNode(url: pinkBoxUrl) {
-                // Load, rotate, scale.
-                pinkBoxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
-                pinkBoxNode.scale = SCNVector3(0.001, 0.001, 0.001)
-                pinkBoxNode.load()
-
-                // Add the blue box node as a child of the anchor's node
-                node.addChildNode(pinkBoxNode)
-                let floatUpAction = SCNAction.moveBy(x: 0, y: 0.05, z: 0, duration: 1.0)
-                floatUpAction.timingMode = .easeInEaseOut
-                let floatDownAction = floatUpAction.reversed()
-                let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
-                let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
-                // Apply the floating animation to the blue box
-                pinkBoxNode.runAction(floatActionLoop)
-            } else {
-                fatalError("Failed to find pinkBoxText.usdz in the bundle.")
-            }
+            addFloatingBox(to: anchor, with: "pinkBoxText", animationDuration: 1.4)
+        }
+        if anchor.name == "yellowAnchor" {
+            addFloatingBox(to: anchor, with: "yellowBoxText", animationDuration: 1.3)
+        }
+        if anchor.name == "orangeAnchor" {
+            addFloatingBox(to: anchor, with: "orangeBoxText", animationDuration: 1.2)
+        }
+        if anchor.name == "purpleAnchor" {
+            addFloatingBox(to: anchor, with: "purpleBoxText", animationDuration: 1.1)
+        }
+        if anchor.name == "greenAnchor" {
+            addFloatingBox(to: anchor, with: "greenBoxText", animationDuration: 1.0)
+        }
+        if anchor.name == "blackAnchor" {
+            addFloatingBox(to: anchor, with: "blackBoxText", animationDuration: 1.6)
         }
     }
     
