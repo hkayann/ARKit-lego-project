@@ -156,54 +156,82 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Necessary to see the names.
         let hitNodeName = hitNode?.name
         print("\(hitNodeName) Tapped")
+        func handleBoxTap(hitNodeName: String, tapStatus: inout Bool, anchorName: String, imageName: String) {
+            tapStatus = !tapStatus
+            let action = tapStatus ? "tapped" : "untapped"
+            print("\(action) \(hitNodeName) box.")
+            
+            for (anchor, node) in anchorNodes {
+                if let anchorNameValue = anchor.name, anchorNameValue == anchorName {
+                    if tapStatus {
+                        addImageNode(imageName: imageName, identifier: anchorName, duration: 1.1, toNode: node)
+                    } else {
+                        for childNode in node.childNodes {
+                            if childNode.geometry is SCNPlane {
+                                childNode.removeFromParentNode()
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        let defaultNodeName = "SomeDefaultValue"
         if hitNodeName == "Box005_09___Green_0" {
-            isGreenTapped = !isGreenTapped
-            // Now you can use the isGreenTapped flag to determine the status of the green box
-            if isGreenTapped {
-                print("Green box is now tapped.")
-                for (anchor, node) in anchorNodes {
-                    if let anchorName = anchor.name, anchorName == "resbeAnchor" {
-                        print("Found anchor with name: \(anchorName)")
-                        addImageNode(imageName: "resbeGreen.png", identifier: "resbe" ,duration: 1.1, toNode: node)
-                    }
-                }
-            } else {
-                print("Green box is now untapped.")
-                for (anchor, node) in anchorNodes {
-                    if let anchorName = anchor.name, anchorName == "resbeAnchor" {
-                        for childNode in node.childNodes {
-                            if childNode.geometry is SCNPlane {
-                                childNode.removeFromParentNode()
-                            }
-                        }
-                    }
-                }
-            }
+            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isGreenTapped, anchorName: "resbeAnchor", imageName: "resbeGreen.png")
         }
+
         if hitNodeName == "Box005_09___Blue_0" {
-            isBlueTapped = !isBlueTapped
-            // Now you can use the isGreenTapped flag to determine the status of the green box
-            if isBlueTapped {
-                print("Blue box is now tapped.")
-                for (anchor, node) in anchorNodes {
-                    if let anchorName = anchor.name, anchorName == "aaciotAnchor" {
-                        print("Found anchor with name: \(anchorName)")
-                        addImageNode(imageName: "aaciotBlue.png", identifier: "aaciot" ,duration: 1.1, toNode: node)
-                    }
-                }
-            } else {
-                print("Blue box is now untapped.")
-                for (anchor, node) in anchorNodes {
-                    if let anchorName = anchor.name, anchorName == "aaciotAnchor" {
-                        for childNode in node.childNodes {
-                            if childNode.geometry is SCNPlane {
-                                childNode.removeFromParentNode()
-                            }
-                        }
-                    }
-                }
-            }
+            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isBlueTapped, anchorName: "aaciotAnchor", imageName: "aaciotBlue.png")
         }
+
+//        if hitNodeName == "Box005_09___Green_0" {
+//            isGreenTapped = !isGreenTapped
+//            // Now you can use the isGreenTapped flag to determine the status of the green box
+//            if isGreenTapped {
+//                print("Green box is now tapped.")
+//                for (anchor, node) in anchorNodes {
+//                    if let anchorName = anchor.name, anchorName == "resbeAnchor" {
+//                        print("Found anchor with name: \(anchorName)")
+//                        addImageNode(imageName: "resbeGreen.png", identifier: "resbe" ,duration: 1.1, toNode: node)
+//                    }
+//                }
+//            } else {
+//                print("Green box is now untapped.")
+//                for (anchor, node) in anchorNodes {
+//                    if let anchorName = anchor.name, anchorName == "resbeAnchor" {
+//                        for childNode in node.childNodes {
+//                            if childNode.geometry is SCNPlane {
+//                                childNode.removeFromParentNode()
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//        if hitNodeName == "Box005_09___Blue_0" {
+//            isBlueTapped = !isBlueTapped
+//            // Now you can use the isGreenTapped flag to determine the status of the green box
+//            if isBlueTapped {
+//                print("Blue box is now tapped.")
+//                for (anchor, node) in anchorNodes {
+//                    if let anchorName = anchor.name, anchorName == "aaciotAnchor" {
+//                        print("Found anchor with name: \(anchorName)")
+//                        addImageNode(imageName: "aaciotBlue.png", identifier: "aaciot" ,duration: 1.1, toNode: node)
+//                    }
+//                }
+//            } else {
+//                print("Blue box is now untapped.")
+//                for (anchor, node) in anchorNodes {
+//                    if let anchorName = anchor.name, anchorName == "aaciotAnchor" {
+//                        for childNode in node.childNodes {
+//                            if childNode.geometry is SCNPlane {
+//                                childNode.removeFromParentNode()
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         func addFloatingBox(to anchor: ARAnchor, with resourceName: String, animationDuration: TimeInterval) {
@@ -235,16 +263,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         anchors.append(anchor)
         anchorNodes[anchor] = node
         let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
-//        if anchor.name == "resbeAnchor" {
-//            // Store the node corresponding to the resbeAnchor in the dictionary
-//            anchorNodes[anchor] = node
-//            print("Found anchor with name: \(anchor.name ?? "Unnamed anchor")")
-//        }
-//        if anchor.name == "aaciotAnchor" {
-//            // Store the node corresponding to the resbeAnchor in the dictionary
-//            anchorNodes[anchor] = node
-//            print("Found anchor with name: \(anchor.name ?? "Unnamed anchor")")
-//        }
         if anchor.name == "blueAnchor" {
             addFloatingBox(to: anchor, with: "blueBoxText", animationDuration: 1.5)
         }
