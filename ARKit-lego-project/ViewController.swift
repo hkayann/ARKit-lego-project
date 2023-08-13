@@ -366,34 +366,122 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             .ignoreHiddenNodes: true,
         ]
         let hitTestResults = sceneView.hitTest(tapLocation, options: options)
-        print(hitTestResults)
         let hitNode = hitTestResults.first?.node
         // Necessary to see the names.
         let hitNodeName = hitNode?.name
         print("\(hitNodeName) Tapped")
-//        func handleBoxTap(hitNodeName: String, tapStatus: inout Bool, anchorName: String, imageName: String) {
-//            tapStatus = !tapStatus
-//            let action = tapStatus ? "tapped" : "untapped"
-//            print("\(action) \(hitNodeName) box.")
-//            for (anchor, node) in anchorNodes {
-//                if let anchorNameValue = anchor.name, anchorNameValue == anchorName {
-//                    if tapStatus {
-//                        addImageNode(imageName: imageName, identifier: anchorName, duration: 1.1, toNode: node)
-//                    } else {
-//                        for childNode in node.childNodes {
-//                            if childNode.geometry is SCNPlane {
-//                                childNode.removeFromParentNode()
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        let defaultNodeName = "SomeDefaultValue"
-//        if hitNodeName == "Box005_09___Green_0" {
-//            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isGreenTapped, anchorName: "resbeAnchor", imageName: "resbeGreen.png")
-//            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isGreenTapped, anchorName: "ariotAnchor", imageName: "ariotGreen.png")
-//        }
+        func openWebsiteIfNodeTapped(imageName: String, websiteURL: String) {
+            if let hitNodeName = hitNode?.name, hitNodeName == imageName {
+                if let url = URL(string: websiteURL) {
+                    UIApplication.shared.open(url, options: [:], completionHandler: nil)
+                }
+            }
+        }
+        openWebsiteIfNodeTapped(imageName: "aaciotBlue.png", websiteURL: "https://petras-iot.org/project/authentication-and-access-control-with-multiple-iot-devices-aaciot/")
+        openWebsiteIfNodeTapped(imageName: "aikemaYellow.png", websiteURL: "https://petras-iot.org/project/aikema/")
+        openWebsiteIfNodeTapped(imageName: "amloeYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "amloeYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "ariotGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "beclBlue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "blataOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "blockitOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "botthingsOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "btsOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "cedeOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "costcmorsYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "cp-sociamBlue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "cracsOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "cratePink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "csi+Orange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "csiOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "cyberhygieneOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "cyferBlue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "cyfooPurple.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "dashBlue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "ddip-iotYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "depriotGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "dtcemOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "ebis+Pink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "elliottPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "erGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "etGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "evaluateGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "eviotPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "exiotGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "farmPurple.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "fireOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "g-iotGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "geosecYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "gistOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "graphsecOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "health-iOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "hipsterBlue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "iamPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "ice-aiGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "ice-odsPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "icecOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "idiceGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "iot-dependsPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "iotincontrolOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "iotinparkGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "iotmspOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "iotobservatoryOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "iototGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "isctiesPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "logistics40Pink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "macsGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "magicYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "maiseYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "massPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "nipcOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "nusbiotPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "p-carsYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "p-piteeGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "p2p-ioetOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "peiesiBlue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "petras-dsfOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "power-sprintPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "power2Orange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "ppiemGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "prioteOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "prismBlue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "pristineBlue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "priviotGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "pswarmsPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "pt-heatGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "pubviaGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "raceGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "reappearGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "recopsGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "red-aidBlue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "reg-medtechBlue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "resbeGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "retconOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "retipsGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "rioteOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "roadmappYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "roast-iotOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "rsiotOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "sdriotss-2Orange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "sdriotssOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "sec-qbsPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "secrisOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "semiotGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "senth+Blue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "senthBlue.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "sofiotsPink.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "spiotshOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "spiseGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "stipsGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "tansecOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "teamGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "thingsd-artGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "tmdaYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "tomsacYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "trusdedOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "udaiotGreen.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "umisYellow.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
+        openWebsiteIfNodeTapped(imageName: "uncanaiOrange.png", websiteURL: "https://petras-iot.org/project/adversarial-machine-learning-on-the-edge-amloe/")
         // Define a data structure to track added image nodes for each anchor
         var addedImageNodes: [String: Set<String>] = [:]
 
@@ -637,76 +725,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.pause()
     }
 }
-
-//        let blueBoxAnchorTransform = simd_float4x4([
-//            SIMD4<Float>(1, 0, 0, 0),
-//            SIMD4<Float>(0, 1, 0, 0),
-//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-//            SIMD4<Float>(0, -1, -2, 1)])
-//        let blueAnchor = ARAnchor(name: "blueAnchor", transform: blueBoxAnchorTransform)
-//        let blackBoxAnchorTransform = simd_float4x4([
-//            SIMD4<Float>(1, 0, 0, 0),
-//            SIMD4<Float>(0, 1, 0, 0),
-//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-//            SIMD4<Float>(0, -1, -3, 1)])
-//        let blackAnchor = ARAnchor(name: "blackAnchor", transform: blackBoxAnchorTransform)
-//        let greenBoxAnchorTransform = simd_float4x4([
-//            SIMD4<Float>(1, 0, 0, 0),
-//            SIMD4<Float>(0, 1, 0, 0),
-//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-//            SIMD4<Float>(0.5, -1, -2, 1)])
-//        let greenAnchor = ARAnchor(name: "greenAnchor", transform: greenBoxAnchorTransform)
-//        let resbeAnchorTransform = simd_float4x4([
-//            SIMD4<Float>(1, 0, 0, 0),
-//            SIMD4<Float>(0, 1, 0, 0),
-//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-//            SIMD4<Float>(0.5, -0.5, -2, 1)])
-//        let resbeAnchor = ARAnchor(name: "resbeAnchor", transform: resbeAnchorTransform)
-//        let pinkBoxAnchorTransform = simd_float4x4([
-//            SIMD4<Float>(1, 0, 0, 0),
-//            SIMD4<Float>(0, 1, 0, 0),
-//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-//            SIMD4<Float>(-0.5, -1, -2, 1)])
-//        let pinkAnchor = ARAnchor(name: "pinkAnchor", transform: pinkBoxAnchorTransform)
-//        let orangeBoxAnchorTransform = simd_float4x4([
-//            SIMD4<Float>(1, 0, 0, 0),
-//            SIMD4<Float>(0, 1, 0, 0),
-//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-//            SIMD4<Float>(0, -1, -4, 1)])
-//        let orangeAnchor = ARAnchor(name: "orangeAnchor", transform: orangeBoxAnchorTransform)
-//        let purpleBoxAnchorTransform = simd_float4x4([
-//            SIMD4<Float>(1, 0, 0, 0),
-//            SIMD4<Float>(0, 1, 0, 0),
-//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-//            SIMD4<Float>(0.5, -1, -3, 1)])
-//        let purpleAnchor = ARAnchor(name: "purpleAnchor", transform: purpleBoxAnchorTransform)
-//        let yellowBoxAnchorTransform = simd_float4x4([
-//            SIMD4<Float>(1, 0, 0, 0),
-//            SIMD4<Float>(0, 1, 0, 0),
-//            SIMD4<Float>(0, 0, 1, 0),  // Adjust the z-coordinate as needed
-//            SIMD4<Float>(-0.5, -1, -3, 1)])
-//        let yellowAnchor = ARAnchor(name: "yellowAnchor", transform: yellowBoxAnchorTransform)
-
-//        if let hitNodeName = hitNode?.name, hitNodeName == "Box005_02___Default_0" {
-//            // Remove the qMarkNode from the parent node
-//            // qMarkNode?.removeFromParentNode()
-//            // Now that the box is removed, show the image
-//            let image = UIImage(named: "tree.png")
-//            let imageView = UIImageView(image: image)
-//            imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
-//            imageView.contentMode = .scaleAspectFit
-//
-//            // Create a plane with the same dimensions as the image view
-//            let imagePlane = SCNPlane(width: 0.2, height: 0.2)
-//            imagePlane.firstMaterial?.diffuse.contents = imageView
-//
-//            // Create a node with the image plane and position it
-//            let imageNode = SCNNode(geometry: imagePlane)
-//            imageNode.position = SCNVector3(x: 0, y: -1, z: -1)
-//
-//            // Add the image node to the scene
-//            sceneView.scene.rootNode.addChildNode(imageNode)
-//        }
 
 //    let image = UIImage(named: "tree.png")
 //    let imageView = UIImageView(image: image)
