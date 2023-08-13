@@ -394,36 +394,47 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isGreenTapped, anchorName: "resbeAnchor", imageName: "resbeGreen.png")
 //            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isGreenTapped, anchorName: "ariotAnchor", imageName: "ariotGreen.png")
 //        }
+        // Define a data structure to track added image nodes for each anchor
+        var addedImageNodes: [String: Set<String>] = [:]
+
         func handleBoxTap(hitNodeName: String, tapStatus: inout Bool, anchorNames: [String], imageNames: [String]) {
             tapStatus = !tapStatus
             let action = tapStatus ? "tapped" : "untapped"
             print("\(action) \(hitNodeName) box.")
-
+            
             for anchorName in anchorNames {
-                for (anchor, node) in anchorNodes {
-                    if let anchorNameValue = anchor.name, anchorNameValue == anchorName {
-                        if tapStatus {
-                            for imageName in imageNames {
-                                // Check if the image node with the same identifier already exists
-                                if !node.childNodes.contains(where: { $0.name == anchorName }) {
-                                    addImageNode(imageName: imageName, identifier: anchorName, duration: 1.1, toNode: node)
-                                }
+                guard let anchorNode = anchorNodes.first(where: { $0.key.name == anchorName })?.value else {
+                    continue
+                }
+                
+                let addedNodesForAnchor = addedImageNodes[anchorName, default: Set()]
+                let imageNodesToRemove = anchorNode.childNodes.filter { imageNames.contains($0.name ?? "") }
+                
+                for imageName in imageNames {
+                    if tapStatus {
+                        // Check if the image name is related to the current anchor
+                        if anchorName == "resbeAnchor" && imageName == "resbeGreen.png" {
+                            if !addedNodesForAnchor.contains(imageName) {
+                                addImageNode(imageName: imageName, identifier: imageName, duration: 1.1, toNode: anchorNode)
+                                addedImageNodes[anchorName, default: Set()].insert(imageName)
                             }
-                        } else {
-                            var imageNodesToRemove: [SCNNode] = []
-                            for childNode in node.childNodes {
-                                if childNode.geometry is SCNPlane && childNode.name == anchorName {
-                                    imageNodesToRemove.append(childNode)
-                                }
+                        } else if anchorName == "ariotAnchor" && imageName == "ariotGreen.png" {
+                            if !addedNodesForAnchor.contains(imageName) {
+                                addImageNode(imageName: imageName, identifier: imageName, duration: 1.1, toNode: anchorNode)
+                                addedImageNodes[anchorName, default: Set()].insert(imageName)
                             }
-                            for imageNode in imageNodesToRemove {
-                                imageNode.removeFromParentNode()
-                            }
+                        }
+                    } else {
+                        for imageNode in imageNodesToRemove {
+                            imageNode.removeFromParentNode()
+                            addedImageNodes[anchorName]?.remove(imageNode.name ?? "")
                         }
                     }
                 }
             }
         }
+
+
 
         let defaultNodeName = "SomeDefaultValue"
 
