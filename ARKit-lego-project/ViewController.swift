@@ -397,123 +397,177 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Define a data structure to track added image nodes for each anchor
         var addedImageNodes: [String: Set<String>] = [:]
 
-        func handleBoxTap(hitNodeName: String, tapStatus: inout Bool, anchorNames: [String], imageNames: [String]) {
+        func handleBoxTap(hitNodeName: String, tapStatus: inout Bool, anchorImagePairs: [(anchorName: String, imageName: String)]) {
             tapStatus = !tapStatus
             let action = tapStatus ? "tapped" : "untapped"
             print("\(action) \(hitNodeName) box.")
             
-            for anchorName in anchorNames {
+            for (anchorName, imageName) in anchorImagePairs {
                 guard let anchorNode = anchorNodes.first(where: { $0.key.name == anchorName })?.value else {
                     continue
                 }
                 
                 let addedNodesForAnchor = addedImageNodes[anchorName, default: Set()]
-                let imageNodesToRemove = anchorNode.childNodes.filter { imageNames.contains($0.name ?? "") }
-                
-                for imageName in imageNames {
-                    if tapStatus {
-                        // Check if the image name is related to the current anchor
-                        if anchorName == "resbeAnchor" && imageName == "resbeGreen.png" {
-                            if !addedNodesForAnchor.contains(imageName) {
-                                addImageNode(imageName: imageName, identifier: imageName, duration: 1.1, toNode: anchorNode)
-                                addedImageNodes[anchorName, default: Set()].insert(imageName)
-                            }
-                        } else if anchorName == "ariotAnchor" && imageName == "ariotGreen.png" {
-                            if !addedNodesForAnchor.contains(imageName) {
-                                addImageNode(imageName: imageName, identifier: imageName, duration: 1.1, toNode: anchorNode)
-                                addedImageNodes[anchorName, default: Set()].insert(imageName)
-                            }
-                        }
-                    } else {
-                        for imageNode in imageNodesToRemove {
-                            imageNode.removeFromParentNode()
-                            addedImageNodes[anchorName]?.remove(imageNode.name ?? "")
-                        }
+                let imageNodesToRemove = anchorNode.childNodes.filter { $0.name == imageName }
+
+                if tapStatus {
+                    if !addedNodesForAnchor.contains(imageName) && !imageName.isEmpty {
+                        addImageNode(imageName: imageName, identifier: imageName, duration: 1.1, toNode: anchorNode)
+                        addedImageNodes[anchorName, default: Set()].insert(imageName)
+                    }
+                } else {
+                    for imageNode in imageNodesToRemove {
+                        imageNode.removeFromParentNode()
+                        addedImageNodes[anchorName]?.remove(imageName)
                     }
                 }
             }
         }
 
-
-
         let defaultNodeName = "SomeDefaultValue"
 
         if hitNodeName == "Box005_09___Green_0" {
-            let anchorNames = ["resbeAnchor", "ariotAnchor"]
-            let imageNames = ["resbeGreen.png", "ariotGreen.png"]
-
-            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isGreenTapped, anchorNames: anchorNames, imageNames: imageNames)
+            let anchorImagePairs: [(anchorName: String, imageName: String)] = [
+                ("resbeAnchor", "resbeGreen.png"),
+                ("ariotAnchor", "ariotGreen.png"),
+                ("depriotAnchor", "depriotGreen.png"),
+                ("disscAnchor", "disscGreen.png"),
+                ("erAnchor", "erGreen.png"),
+                ("etAnchor", "etGreen.png"),
+                ("evaluateAnchor", "evaluateGreen.png"),
+                ("exiotAnchor", "exiotGreen.png"),
+                ("giotAnchor", "g-iotGreen.png"),
+                ("iceaiAnchor", "ice-aiGreen.png"),
+                ("idiceAnchor", "idiceGreen.png"),
+                ("iotinparkAnchor", "iotinparkGreen.png"),
+                ("iototAnchor", "iototGreen.png"),
+                ("macsAnchor", "macsGreen.png"),
+                ("ppiteeAnchor", "p-piteeGreen.png"),
+                ("ppiemAnchor", "ppiemGreen.png"),
+                ("priviotAnchor", "priviotGreen.png"),
+                ("ptheatAnchor", "pt-heatGreen.png"),
+                ("pubviaAnchor", "pubviaGreen.png"),
+                ("raceAnchor", "raceGreen.png"),
+                ("reappearAnchor", "reappearGreen.png"),
+                ("recopsAnchor", "recopsGreen.png"),
+                ("retipsAnchor", "retipsGreen.png"),
+                ("semiotAnchor", "semiotGreen.png"),
+                ("spiseAnchor", "spiseGreen.png"),
+                ("stipsAnchor", "stipsGreen.png"),
+                ("teamAnchor", "teamGreen.png"),
+                ("thingsdartAnchor", "thingsd-artGreen.png"),
+                ("udaiotAnchor", "udaiotGreen.png"),
+            ]
+            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isGreenTapped, anchorImagePairs: anchorImagePairs)
         }
-
-
-//        if hitNodeName == "Box005_09___Blue_0" {
-//            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isBlueTapped, anchorName: "aaciotAnchor", imageName: "aaciotBlue.png")
-//        }
-//        if hitNodeName == "Box005_09___Pink_0" {
-//            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isPinkTapped, anchorName: "resbeAnchor", imageName: "resbeGreen.png")
-//        }
-//        if hitNodeName == "Box005_09___Yellow_0" {
-////            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isYellowTapped, anchorName: "aikemaAnchor", imageName: "aikemaYellow.png")
-//            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isYellowTapped, anchorName: "amloeAnchor", imageName: "amloeYellow.png")
-//        }
-//        if hitNodeName == "Box005_09___Purple_0" {
-//            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isPurpleTapped, anchorName: "resbeAnchor", imageName: "resbeGreen.png")
-//        }
-//        if hitNodeName == "Box005_09___Orange_0" {
-//            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isOrangeTapped, anchorName: "resbeAnchor", imageName: "resbeGreen.png")
-//        }
-//        if hitNodeName == "Box005_09___Black_0" {
-//            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isBlackTapped, anchorName: "resbeAnchor", imageName: "resbeGreen.png")
-//        }
-
-//        if hitNodeName == "Box005_09___Green_0" {
-//            isGreenTapped = !isGreenTapped
-//            // Now you can use the isGreenTapped flag to determine the status of the green box
-//            if isGreenTapped {
-//                print("Green box is now tapped.")
-//                for (anchor, node) in anchorNodes {
-//                    if let anchorName = anchor.name, anchorName == "resbeAnchor" {
-//                        print("Found anchor with name: \(anchorName)")
-//                        addImageNode(imageName: "resbeGreen.png", identifier: "resbe" ,duration: 1.1, toNode: node)
-//                    }
-//                }
-//            } else {
-//                print("Green box is now untapped.")
-//                for (anchor, node) in anchorNodes {
-//                    if let anchorName = anchor.name, anchorName == "resbeAnchor" {
-//                        for childNode in node.childNodes {
-//                            if childNode.geometry is SCNPlane {
-//                                childNode.removeFromParentNode()
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        if hitNodeName == "Box005_09___Blue_0" {
-//            isBlueTapped = !isBlueTapped
-//            // Now you can use the isGreenTapped flag to determine the status of the green box
-//            if isBlueTapped {
-//                print("Blue box is now tapped.")
-//                for (anchor, node) in anchorNodes {
-//                    if let anchorName = anchor.name, anchorName == "aaciotAnchor" {
-//                        print("Found anchor with name: \(anchorName)")
-//                        addImageNode(imageName: "aaciotBlue.png", identifier: "aaciot" ,duration: 1.1, toNode: node)
-//                    }
-//                }
-//            } else {
-//                print("Blue box is now untapped.")
-//                for (anchor, node) in anchorNodes {
-//                    if let anchorName = anchor.name, anchorName == "aaciotAnchor" {
-//                        for childNode in node.childNodes {
-//                            if childNode.geometry is SCNPlane {
-//                                childNode.removeFromParentNode()
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-//        }
+        if hitNodeName == "Box005_09___Yellow_0" {
+            let anchorImagePairs: [(anchorName: String, imageName: String)] = [
+                ("aikemaAnchor", "aikemaYellow.png"),
+                ("amloeAnchor", "amloeYellow.png"),
+                ("costcmorsAnchor", "costcmorsYellow.png"),
+                ("ddipiotAnchor", "ddip-iotYellow.png"),
+                ("geosecAnchor", "geosecYellow.png"),
+                ("magicAnchor", "magicYellow.png"),
+                ("maiseAnchor", "maiseYellow.png"),
+                ("pcarsAnchor", "p-carsYellow.png"),
+                ("roadmappAnchor", "roadmappYellow.png"),
+                ("tmdaAnchor", "tmdaYellow.png"),
+                ("tomsacAnchor", "tomsacYellow.png"),
+                ("umisAnchor", "umisYellow.png"),
+            ]
+            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isYellowTapped, anchorImagePairs: anchorImagePairs)
+        }
+        if hitNodeName == "Box005_09___Purple_0" {
+            let anchorImagePairs: [(anchorName: String, imageName: String)] = [
+                ("cyfooAnchor", "cyfooPurple.png"),
+                ("farmAnchor", "farmPurple.png"),
+            ]
+            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isPurpleTapped, anchorImagePairs: anchorImagePairs)
+        }
+        if hitNodeName == "Box005_09___Orange_0" {
+            let anchorImagePairs: [(anchorName: String, imageName: String)] = [
+                ("blataAnchor", "blataOrange.png"),
+                ("blockitAnchor", "blockitOrange.png"),
+                ("botthingsAnchor", "botthingsOrange.png"),
+                ("btsAnchor", "btsOrange.png"),
+                ("cedeAnchor", "cedeOrange.png"),
+                ("cracsAnchor", "cracsOrange.png"),
+                ("csiplusAnchor", "csi+Orange.png"),
+                ("csiAnchor", "csiOrange.png"),
+                ("cyberhygieneAnchor", "cyberhygieneOrange.png"),
+                ("dtcemAnchor", "dtcemOrange.png"),
+                ("fireAnchor", "fireOrange.png"),
+                ("gistAnchor", "gistOrange.png"),
+                ("graphsecAnchor", "graphsecOrange.png"),
+                ("healthiAnchor", "health-iOrange.png"),
+                ("icecAnchor", "icecOrange.png"),
+                ("iotincontrolAnchor", "iotincontrolOrange.png"),
+                ("iotmspAnchor", "iotmspOrange.png"),
+                ("iotobservatoryAnchor", "iotobservatoryOrange.png"),
+                ("nipcAnchor", "nipcOrange.png"),
+                ("p2pioetAnchor", "p2p-ioetOrange.png"),
+                ("petrasdsfAnchor", "petras-dsfOrange.png"),
+                ("power2Anchor", "power2Orange.png"),
+                ("prioteAnchor", "prioteOrange.png"),
+                ("retconAnchor", "retconOrange.png"),
+                ("rioteAnchor", "rioteOrange.png"),
+                ("roastiotAnchor", "roast-iotOrange.png"),
+                ("rsiotAnchor", "rsiotOrange.png"),
+                ("sdriotss2Anchor", "sdriotss-2Orange.png"),
+                ("sdriotssAnchor", "sdriotssOrange.png"),
+                ("secrisAnchor", "secrisOrange.png"),
+                ("spiotshAnchor", "spiotshOrange.png"),
+                ("tansecAnchor", "tansecOrange.png"),
+                ("trusdedAnchor", "trusdedOrange.png"),
+                ("uncanaiAnchor", "uncanaiOrange.png"),
+            ]
+            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isOrangeTapped, anchorImagePairs: anchorImagePairs)
+        }
+        if hitNodeName == "Box005_09___Blue_0" {
+            let anchorImagePairs: [(anchorName: String, imageName: String)] = [
+                ("aaciotAnchor", "aaciotBlue.png"),
+                ("beclAnchor", "beclBlue.png"),
+                ("cpsociamAnchor", "cp-sociamBlue.png"),
+                ("cyferAnchor", "cyferBlue.png"),
+                ("dashAnchor", "dashBlue.png"),
+                ("hipsterAnchor", "hipsterBlue.png"),
+                ("peiesiAnchor", "peiesiBlue.png"),
+                ("prismAnchor", "prismBlue.png"),
+                ("pristineAnchor", "pristineBlue.png"),
+                ("redaidAnchor", "red-aidBlue.png"),
+                ("regmedtechAnchor", "reg-medtechBlue.png"),
+                ("senthplusAnchor", "senth+Blue.png"),
+                ("senthAnchor", "senthBlue.png"),
+            ]
+            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isBlueTapped, anchorImagePairs: anchorImagePairs)
+        }
+        if hitNodeName == "Box005_09___Pink_0" {
+            let anchorImagePairs: [(anchorName: String, imageName: String)] = [
+                ("crateAnchor", "cratePink.png"),
+                ("digiportAnchor", "digiportPink.png"),
+                ("ebisplusAnchor", "ebis+Pink.png"),
+                ("elliottAnchor", "elliottPink.png"),
+                ("eviotAnchor", "eviotPink.png"),
+                ("iamAnchor", "iamPink.png"),
+                ("iceodsAnchor", "ice-odsPink.png"),
+                ("iotdependsAnchor", "iot-dependsPink.png"),
+                ("isctiesAnchor", "isctiesPink.png"),
+                ("logistics40Anchor", "logistics40Pink.png"),
+                ("massAnchor", "massPink.png"),
+                ("nusbiotAnchor", "nusbiotPink.png"),
+                ("powersprintAnchor", "power-sprintPink.png"),
+                ("pswarmsAnchor", "pswarmsPink.png"),
+                ("secqbsAnchor", "sec-qbsPink.png"),
+                ("sofiotsAnchor", "sofiotsPink.png"),
+            ]
+            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isPinkTapped, anchorImagePairs: anchorImagePairs)
+        }
+        if hitNodeName == "Box005_09___Black_0" {
+            let anchorImagePairs: [(anchorName: String, imageName: String)] = [
+                
+            ]
+            handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isBlackTapped, anchorImagePairs: anchorImagePairs)
+        }
     }
     func renderer(_ renderer: SCNSceneRenderer, didAdd node: SCNNode, for anchor: ARAnchor) {
         func addFloatingBox(to anchor: ARAnchor, with resourceName: String, animationDuration: TimeInterval) {
