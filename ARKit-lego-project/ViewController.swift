@@ -50,8 +50,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create and add a directional light to the scene
         let directionalLight = SCNLight()
         directionalLight.type = .directional
-        directionalLight.intensity = 1000
-        directionalLight.castsShadow = true
+        directionalLight.intensity = 500
+        directionalLight.castsShadow = false
         let directionalLightNode = SCNNode()
         directionalLightNode.light = directionalLight
         directionalLightNode.position = SCNVector3(0, 10, 10) // Adjust the position as needed
@@ -72,13 +72,13 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             return anchor
         }
         // Box anchors
-        let greenAnchor = createARAnchorWithPosition(name: "greenAnchor", position: SIMD3<Float>(0.5, -0.2, -2))
-        let pinkAnchor = createARAnchorWithPosition(name: "pinkAnchor", position: SIMD3<Float>(-0.5, -0.2, -2))
-        let orangeAnchor = createARAnchorWithPosition(name: "orangeAnchor", position: SIMD3<Float>(0, -0.2, -4))
-        let blueAnchor = createARAnchorWithPosition(name: "blueAnchor", position: SIMD3<Float>(0, -0.2, -2))
-        let purpleAnchor = createARAnchorWithPosition(name: "purpleAnchor", position: SIMD3<Float>(0.5, -0.2, -3))
-        let yellowAnchor = createARAnchorWithPosition(name: "yellowAnchor", position: SIMD3<Float>(-0.5, -0.2, -3))
-        let blackAnchor = createARAnchorWithPosition(name: "blackAnchor", position: SIMD3<Float>(0, -0.2, -3))
+        let greenAnchor = createARAnchorWithPosition(name: "greenAnchor", position: SIMD3<Float>(1.05, -0.2, -1.75))
+        let pinkAnchor = createARAnchorWithPosition(name: "pinkAnchor", position: SIMD3<Float>(-1.05, -0.2, -1.75))
+        let orangeAnchor = createARAnchorWithPosition(name: "orangeAnchor", position: SIMD3<Float>(0.70, -0.2, -1.75))
+        let blueAnchor = createARAnchorWithPosition(name: "blueAnchor", position: SIMD3<Float>(0.35, -0.2, -1.75))
+        let purpleAnchor = createARAnchorWithPosition(name: "purpleAnchor", position: SIMD3<Float>(-0.70, -0.2, -1.75))
+        let yellowAnchor = createARAnchorWithPosition(name: "yellowAnchor", position: SIMD3<Float>(-0.35, -0.2, -1.75))
+        let blackAnchor = createARAnchorWithPosition(name: "blackAnchor", position: SIMD3<Float>(0, -0.2, -1.75))
 
         // Image anchors blue
         let aaciotAnchor = createARAnchorWithPosition(name: "aaciotAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
@@ -91,7 +91,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let prismAnchor = createARAnchorWithPosition(name: "prismAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let pristineAnchor = createARAnchorWithPosition(name: "pristineAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let redaidAnchor = createARAnchorWithPosition(name: "redaidAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
-        let regmedtechAnchor = createARAnchorWithPosition(name: "regmedtechAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
+        let regmedtechAnchor = createARAnchorWithPosition(name: "regmedtechAnchor", position: SIMD3<Float>(-0.90, -0.55, -1.75))
         let senthplusAnchor = createARAnchorWithPosition(name: "senthplusAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let senthAnchor = createARAnchorWithPosition(name: "senthAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         
@@ -144,7 +144,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let iceaiAnchor = createARAnchorWithPosition(name: "iceaiAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let idiceAnchor = createARAnchorWithPosition(name: "idiceAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let iotinparkAnchor = createARAnchorWithPosition(name: "iotinparkAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
-        let iototAnchor = createARAnchorWithPosition(name: "iototAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
+        let iototAnchor = createARAnchorWithPosition(name: "iototAnchor", position: SIMD3<Float>(-0.90, -0.55, -1.75))
         let macsAnchor = createARAnchorWithPosition(name: "macsAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let ppiteeAnchor = createARAnchorWithPosition(name: "ppiteeAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let ppiemAnchor = createARAnchorWithPosition(name: "ppiemAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
@@ -334,11 +334,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             DispatchQueue.main.async {
                 // Create an image view to display the image
                 let imageView = UIImageView(image: image)
-                imageView.frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+                imageView.frame = CGRect(x: 0, y: 0, width: image.size.width * 0.25, height: image.size.height * 0.25)
                 imageView.contentMode = .scaleAspectFit
 
-                // Create a plane with the same dimensions as the image view
-                let imagePlane = SCNPlane(width: 0.5, height: 0.5)
+                // Create a plane with the same dimensions as the scaled image view
+                let imagePlane = SCNPlane(width: imageView.frame.size.width / 1000, height: imageView.frame.size.height / 1000)
                 imagePlane.firstMaterial?.diffuse.contents = imageView
 
                 // Create a node with the image plane and adjust its position
@@ -515,248 +515,248 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 
         if hitNodeName == "Box005_09___Green_0" {
             let anchorImagePairs: [(anchorName: String, imageName: String)] = [
-                ("resbeAnchor", "resbeGreen.png"),
-                ("ariotAnchor", "ariotGreen.png"),
-                ("depriotAnchor", "depriotGreen.png"),
-                ("disscAnchor", "disscGreen.png"),
-                ("erAnchor", "erGreen.png"),
-                ("etAnchor", "etGreen.png"),
-                ("evaluateAnchor", "evaluateGreen.png"),
-                ("exiotAnchor", "exiotGreen.png"),
-                ("giotAnchor", "g-iotGreen.png"),
-                ("iceaiAnchor", "ice-aiGreen.png"),
-                ("idiceAnchor", "idiceGreen.png"),
-                ("iotinparkAnchor", "iotinparkGreen.png"),
+//                ("resbeAnchor", "resbeGreen.png"),
+//                ("ariotAnchor", "ariotGreen.png"),
+//                ("depriotAnchor", "depriotGreen.png"),
+//                ("disscAnchor", "disscGreen.png"),
+//                ("erAnchor", "erGreen.png"),
+//                ("etAnchor", "etGreen.png"),
+//                ("evaluateAnchor", "evaluateGreen.png"),
+//                ("exiotAnchor", "exiotGreen.png"),
+//                ("giotAnchor", "g-iotGreen.png"),
+//                ("iceaiAnchor", "ice-aiGreen.png"),
+//                ("idiceAnchor", "idiceGreen.png"),
+//                ("iotinparkAnchor", "iotinparkGreen.png"),
                 ("iototAnchor", "iototGreen.png"),
-                ("macsAnchor", "macsGreen.png"),
-                ("ppiteeAnchor", "p-piteeGreen.png"),
-                ("ppiemAnchor", "ppiemGreen.png"),
-                ("priviotAnchor", "priviotGreen.png"),
-                ("ptheatAnchor", "pt-heatGreen.png"),
-                ("pubviaAnchor", "pubviaGreen.png"),
-                ("raceAnchor", "raceGreen.png"),
-                ("reappearAnchor", "reappearGreen.png"),
-                ("recopsAnchor", "recopsGreen.png"),
-                ("retipsAnchor", "retipsGreen.png"),
-                ("semiotAnchor", "semiotGreen.png"),
-                ("spiseAnchor", "spiseGreen.png"),
-                ("stipsAnchor", "stipsGreen.png"),
-                ("teamAnchor", "teamGreen.png"),
-                ("thingsdartAnchor", "thingsd-artGreen.png"),
-                ("udaiotAnchor", "udaiotGreen.png"),
+//                ("macsAnchor", "macsGreen.png"),
+//                ("ppiteeAnchor", "p-piteeGreen.png"),
+//                ("ppiemAnchor", "ppiemGreen.png"),
+//                ("priviotAnchor", "priviotGreen.png"),
+//                ("ptheatAnchor", "pt-heatGreen.png"),
+//                ("pubviaAnchor", "pubviaGreen.png"),
+//                ("raceAnchor", "raceGreen.png"),
+//                ("reappearAnchor", "reappearGreen.png"),
+//                ("recopsAnchor", "recopsGreen.png"),
+//                ("retipsAnchor", "retipsGreen.png"),
+//                ("semiotAnchor", "semiotGreen.png"),
+//                ("spiseAnchor", "spiseGreen.png"),
+//                ("stipsAnchor", "stipsGreen.png"),
+//                ("teamAnchor", "teamGreen.png"),
+//                ("thingsdartAnchor", "thingsd-artGreen.png"),
+//                ("udaiotAnchor", "udaiotGreen.png"),
             ]
             handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isGreenTapped, anchorImagePairs: anchorImagePairs)
         }
         if hitNodeName == "Box005_09___Yellow_0" {
             let anchorImagePairs: [(anchorName: String, imageName: String)] = [
-                ("aikemaAnchor", "aikemaYellow.png"),
-                ("amloeAnchor", "amloeYellow.png"),
-                ("costcmorsAnchor", "costcmorsYellow.png"),
-                ("ddipiotAnchor", "ddip-iotYellow.png"),
-                ("geosecAnchor", "geosecYellow.png"),
-                ("magicAnchor", "magicYellow.png"),
-                ("maiseAnchor", "maiseYellow.png"),
-                ("pcarsAnchor", "p-carsYellow.png"),
-                ("roadmappAnchor", "roadmappYellow.png"),
-                ("tmdaAnchor", "tmdaYellow.png"),
-                ("tomsacAnchor", "tomsacYellow.png"),
-                ("umisAnchor", "umisYellow.png"),
+//                ("aikemaAnchor", "aikemaYellow.png"),
+//                ("amloeAnchor", "amloeYellow.png"),
+//                ("costcmorsAnchor", "costcmorsYellow.png"),
+//                ("ddipiotAnchor", "ddip-iotYellow.png"),
+//                ("geosecAnchor", "geosecYellow.png"),
+//                ("magicAnchor", "magicYellow.png"),
+//                ("maiseAnchor", "maiseYellow.png"),
+//                ("pcarsAnchor", "p-carsYellow.png"),
+//                ("roadmappAnchor", "roadmappYellow.png"),
+//                ("tmdaAnchor", "tmdaYellow.png"),
+//                ("tomsacAnchor", "tomsacYellow.png"),
+//                ("umisAnchor", "umisYellow.png"),
             ]
             handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isYellowTapped, anchorImagePairs: anchorImagePairs)
         }
         if hitNodeName == "Box005_09___Purple_0" {
             let anchorImagePairs: [(anchorName: String, imageName: String)] = [
-                ("cyfooAnchor", "cyfooPurple.png"),
-                ("farmAnchor", "farmPurple.png"),
+//                ("cyfooAnchor", "cyfooPurple.png"),
+//                ("farmAnchor", "farmPurple.png"),
             ]
             handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isPurpleTapped, anchorImagePairs: anchorImagePairs)
         }
         if hitNodeName == "Box005_09___Orange_0" {
             let anchorImagePairs: [(anchorName: String, imageName: String)] = [
-                ("blataAnchor", "blataOrange.png"),
-                ("blockitAnchor", "blockitOrange.png"),
-                ("botthingsAnchor", "botthingsOrange.png"),
-                ("btsAnchor", "btsOrange.png"),
-                ("cedeAnchor", "cedeOrange.png"),
-                ("cracsAnchor", "cracsOrange.png"),
-                ("csiplusAnchor", "csi+Orange.png"),
-                ("csiAnchor", "csiOrange.png"),
-                ("cyberhygieneAnchor", "cyberhygieneOrange.png"),
-                ("dtcemAnchor", "dtcemOrange.png"),
-                ("fireAnchor", "fireOrange.png"),
-                ("gistAnchor", "gistOrange.png"),
-                ("graphsecAnchor", "graphsecOrange.png"),
-                ("healthiAnchor", "health-iOrange.png"),
-                ("icecAnchor", "icecOrange.png"),
-                ("iotincontrolAnchor", "iotincontrolOrange.png"),
-                ("iotmspAnchor", "iotmspOrange.png"),
-                ("iotobservatoryAnchor", "iotobservatoryOrange.png"),
-                ("nipcAnchor", "nipcOrange.png"),
-                ("p2pioetAnchor", "p2p-ioetOrange.png"),
-                ("petrasdsfAnchor", "petras-dsfOrange.png"),
-                ("power2Anchor", "power2Orange.png"),
-                ("prioteAnchor", "prioteOrange.png"),
-                ("retconAnchor", "retconOrange.png"),
-                ("rioteAnchor", "rioteOrange.png"),
-                ("roastiotAnchor", "roast-iotOrange.png"),
-                ("rsiotAnchor", "rsiotOrange.png"),
-                ("sdriotss2Anchor", "sdriotss-2Orange.png"),
-                ("sdriotssAnchor", "sdriotssOrange.png"),
-                ("secrisAnchor", "secrisOrange.png"),
-                ("spiotshAnchor", "spiotshOrange.png"),
-                ("tansecAnchor", "tansecOrange.png"),
-                ("trusdedAnchor", "trusdedOrange.png"),
-                ("uncanaiAnchor", "uncanaiOrange.png"),
+//                ("blataAnchor", "blataOrange.png"),
+//                ("blockitAnchor", "blockitOrange.png"),
+//                ("botthingsAnchor", "botthingsOrange.png"),
+//                ("btsAnchor", "btsOrange.png"),
+//                ("cedeAnchor", "cedeOrange.png"),
+//                ("cracsAnchor", "cracsOrange.png"),
+//                ("csiplusAnchor", "csi+Orange.png"),
+//                ("csiAnchor", "csiOrange.png"),
+//                ("cyberhygieneAnchor", "cyberhygieneOrange.png"),
+//                ("dtcemAnchor", "dtcemOrange.png"),
+//                ("fireAnchor", "fireOrange.png"),
+//                ("gistAnchor", "gistOrange.png"),
+//                ("graphsecAnchor", "graphsecOrange.png"),
+//                ("healthiAnchor", "health-iOrange.png"),
+//                ("icecAnchor", "icecOrange.png"),
+//                ("iotincontrolAnchor", "iotincontrolOrange.png"),
+//                ("iotmspAnchor", "iotmspOrange.png"),
+//                ("iotobservatoryAnchor", "iotobservatoryOrange.png"),
+//                ("nipcAnchor", "nipcOrange.png"),
+//                ("p2pioetAnchor", "p2p-ioetOrange.png"),
+//                ("petrasdsfAnchor", "petras-dsfOrange.png"),
+//                ("power2Anchor", "power2Orange.png"),
+//                ("prioteAnchor", "prioteOrange.png"),
+//                ("retconAnchor", "retconOrange.png"),
+//                ("rioteAnchor", "rioteOrange.png"),
+//                ("roastiotAnchor", "roast-iotOrange.png"),
+//                ("rsiotAnchor", "rsiotOrange.png"),
+//                ("sdriotss2Anchor", "sdriotss-2Orange.png"),
+//                ("sdriotssAnchor", "sdriotssOrange.png"),
+//                ("secrisAnchor", "secrisOrange.png"),
+//                ("spiotshAnchor", "spiotshOrange.png"),
+//                ("tansecAnchor", "tansecOrange.png"),
+//                ("trusdedAnchor", "trusdedOrange.png"),
+//                ("uncanaiAnchor", "uncanaiOrange.png"),
             ]
             handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isOrangeTapped, anchorImagePairs: anchorImagePairs)
         }
         if hitNodeName == "Box005_09___Blue_0" {
             let anchorImagePairs: [(anchorName: String, imageName: String)] = [
-                ("aaciotAnchor", "aaciotBlue.png"),
-                ("beclAnchor", "beclBlue.png"),
-                ("cpsociamAnchor", "cp-sociamBlue.png"),
-                ("cyferAnchor", "cyferBlue.png"),
-                ("dashAnchor", "dashBlue.png"),
-                ("hipsterAnchor", "hipsterBlue.png"),
-                ("peiesiAnchor", "peiesiBlue.png"),
-                ("prismAnchor", "prismBlue.png"),
-                ("pristineAnchor", "pristineBlue.png"),
-                ("redaidAnchor", "red-aidBlue.png"),
+//                ("aaciotAnchor", "aaciotBlue.png"),
+//                ("beclAnchor", "beclBlue.png"),
+//                ("cpsociamAnchor", "cp-sociamBlue.png"),
+//                ("cyferAnchor", "cyferBlue.png"),
+//                ("dashAnchor", "dashBlue.png"),
+//                ("hipsterAnchor", "hipsterBlue.png"),
+//                ("peiesiAnchor", "peiesiBlue.png"),
+//                ("prismAnchor", "prismBlue.png"),
+//                ("pristineAnchor", "pristineBlue.png"),
+//                ("redaidAnchor", "red-aidBlue.png"),
                 ("regmedtechAnchor", "reg-medtechBlue.png"),
-                ("senthplusAnchor", "senth+Blue.png"),
-                ("senthAnchor", "senthBlue.png"),
+//                ("senthplusAnchor", "senth+Blue.png"),
+//                ("senthAnchor", "senthBlue.png"),
             ]
             handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isBlueTapped, anchorImagePairs: anchorImagePairs)
         }
         if hitNodeName == "Box005_09___Pink_0" {
             let anchorImagePairs: [(anchorName: String, imageName: String)] = [
-                ("crateAnchor", "cratePink.png"),
-                ("digiportAnchor", "digiportPink.png"),
-                ("ebisplusAnchor", "ebis+Pink.png"),
-                ("elliottAnchor", "elliottPink.png"),
-                ("eviotAnchor", "eviotPink.png"),
-                ("iamAnchor", "iamPink.png"),
-                ("iceodsAnchor", "ice-odsPink.png"),
-                ("iotdependsAnchor", "iot-dependsPink.png"),
-                ("isctiesAnchor", "isctiesPink.png"),
-                ("logistics40Anchor", "logistics40Pink.png"),
-                ("massAnchor", "massPink.png"),
-                ("nusbiotAnchor", "nusbiotPink.png"),
-                ("powersprintAnchor", "power-sprintPink.png"),
-                ("pswarmsAnchor", "pswarmsPink.png"),
-                ("secqbsAnchor", "sec-qbsPink.png"),
-                ("sofiotsAnchor", "sofiotsPink.png"),
+//                ("crateAnchor", "cratePink.png"),
+//                ("digiportAnchor", "digiportPink.png"),
+//                ("ebisplusAnchor", "ebis+Pink.png"),
+//                ("elliottAnchor", "elliottPink.png"),
+//                ("eviotAnchor", "eviotPink.png"),
+//                ("iamAnchor", "iamPink.png"),
+//                ("iceodsAnchor", "ice-odsPink.png"),
+//                ("iotdependsAnchor", "iot-dependsPink.png"),
+//                ("isctiesAnchor", "isctiesPink.png"),
+//                ("logistics40Anchor", "logistics40Pink.png"),
+//                ("massAnchor", "massPink.png"),
+//                ("nusbiotAnchor", "nusbiotPink.png"),
+//                ("powersprintAnchor", "power-sprintPink.png"),
+//                ("pswarmsAnchor", "pswarmsPink.png"),
+//                ("secqbsAnchor", "sec-qbsPink.png"),
+//                ("sofiotsAnchor", "sofiotsPink.png"),
             ]
             handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isPinkTapped, anchorImagePairs: anchorImagePairs)
         }
         if hitNodeName == "Box005_09___Black_0" {
             let anchorImagePairs: [(anchorName: String, imageName: String)] = [
-                ("resbeAnchor", "resbeGreen.png"),
-                ("ariotAnchor", "ariotGreen.png"),
-                ("depriotAnchor", "depriotGreen.png"),
-                ("disscAnchor", "disscGreen.png"),
-                ("erAnchor", "erGreen.png"),
-                ("etAnchor", "etGreen.png"),
-                ("evaluateAnchor", "evaluateGreen.png"),
-                ("exiotAnchor", "exiotGreen.png"),
-                ("giotAnchor", "g-iotGreen.png"),
-                ("iceaiAnchor", "ice-aiGreen.png"),
-                ("idiceAnchor", "idiceGreen.png"),
-                ("iotinparkAnchor", "iotinparkGreen.png"),
-                ("iototAnchor", "iototGreen.png"),
-                ("macsAnchor", "macsGreen.png"),
-                ("ppiteeAnchor", "p-piteeGreen.png"),
-                ("ppiemAnchor", "ppiemGreen.png"),
-                ("priviotAnchor", "priviotGreen.png"),
-                ("ptheatAnchor", "pt-heatGreen.png"),
-                ("pubviaAnchor", "pubviaGreen.png"),
-                ("raceAnchor", "raceGreen.png"),
-                ("reappearAnchor", "reappearGreen.png"),
-                ("recopsAnchor", "recopsGreen.png"),
-                ("retipsAnchor", "retipsGreen.png"),
-                ("semiotAnchor", "semiotGreen.png"),
-                ("spiseAnchor", "spiseGreen.png"),
-                ("stipsAnchor", "stipsGreen.png"),
-                ("teamAnchor", "teamGreen.png"),
-                ("thingsdartAnchor", "thingsd-artGreen.png"),
-                ("udaiotAnchor", "udaiotGreen.png"),
-                ("aikemaAnchor", "aikemaYellow.png"),
-                ("amloeAnchor", "amloeYellow.png"),
-                ("costcmorsAnchor", "costcmorsYellow.png"),
-                ("ddipiotAnchor", "ddip-iotYellow.png"),
-                ("geosecAnchor", "geosecYellow.png"),
-                ("magicAnchor", "magicYellow.png"),
-                ("maiseAnchor", "maiseYellow.png"),
-                ("pcarsAnchor", "p-carsYellow.png"),
-                ("roadmappAnchor", "roadmappYellow.png"),
-                ("tmdaAnchor", "tmdaYellow.png"),
-                ("tomsacAnchor", "tomsacYellow.png"),
-                ("umisAnchor", "umisYellow.png"),
-                ("cyfooAnchor", "cyfooPurple.png"),
-                ("farmAnchor", "farmPurple.png"),
-                ("blataAnchor", "blataOrange.png"),
-                ("blockitAnchor", "blockitOrange.png"),
-                ("botthingsAnchor", "botthingsOrange.png"),
-                ("btsAnchor", "btsOrange.png"),
-                ("cedeAnchor", "cedeOrange.png"),
-                ("cracsAnchor", "cracsOrange.png"),
-                ("csiplusAnchor", "csi+Orange.png"),
-                ("csiAnchor", "csiOrange.png"),
-                ("cyberhygieneAnchor", "cyberhygieneOrange.png"),
-                ("dtcemAnchor", "dtcemOrange.png"),
-                ("fireAnchor", "fireOrange.png"),
-                ("gistAnchor", "gistOrange.png"),
-                ("graphsecAnchor", "graphsecOrange.png"),
-                ("healthiAnchor", "health-iOrange.png"),
-                ("icecAnchor", "icecOrange.png"),
-                ("iotincontrolAnchor", "iotincontrolOrange.png"),
-                ("iotmspAnchor", "iotmspOrange.png"),
-                ("iotobservatoryAnchor", "iotobservatoryOrange.png"),
-                ("nipcAnchor", "nipcOrange.png"),
-                ("p2pioetAnchor", "p2p-ioetOrange.png"),
-                ("petrasdsfAnchor", "petras-dsfOrange.png"),
-                ("power2Anchor", "power2Orange.png"),
-                ("prioteAnchor", "prioteOrange.png"),
-                ("retconAnchor", "retconOrange.png"),
-                ("rioteAnchor", "rioteOrange.png"),
-                ("roastiotAnchor", "roast-iotOrange.png"),
-                ("rsiotAnchor", "rsiotOrange.png"),
-                ("sdriotss2Anchor", "sdriotss-2Orange.png"),
-                ("sdriotssAnchor", "sdriotssOrange.png"),
-                ("secrisAnchor", "secrisOrange.png"),
-                ("spiotshAnchor", "spiotshOrange.png"),
-                ("tansecAnchor", "tansecOrange.png"),
-                ("trusdedAnchor", "trusdedOrange.png"),
-                ("uncanaiAnchor", "uncanaiOrange.png"),
-                ("aaciotAnchor", "aaciotBlue.png"),
-                ("beclAnchor", "beclBlue.png"),
-                ("cpsociamAnchor", "cp-sociamBlue.png"),
-                ("cyferAnchor", "cyferBlue.png"),
-                ("dashAnchor", "dashBlue.png"),
-                ("hipsterAnchor", "hipsterBlue.png"),
-                ("peiesiAnchor", "peiesiBlue.png"),
-                ("prismAnchor", "prismBlue.png"),
-                ("pristineAnchor", "pristineBlue.png"),
-                ("redaidAnchor", "red-aidBlue.png"),
-                ("regmedtechAnchor", "reg-medtechBlue.png"),
-                ("senthplusAnchor", "senth+Blue.png"),
-                ("senthAnchor", "senthBlue.png"),
-                ("crateAnchor", "cratePink.png"),
-                ("digiportAnchor", "digiportPink.png"),
-                ("ebisplusAnchor", "ebis+Pink.png"),
-                ("elliottAnchor", "elliottPink.png"),
-                ("eviotAnchor", "eviotPink.png"),
-                ("iamAnchor", "iamPink.png"),
-                ("iceodsAnchor", "ice-odsPink.png"),
-                ("iotdependsAnchor", "iot-dependsPink.png"),
-                ("isctiesAnchor", "isctiesPink.png"),
-                ("logistics40Anchor", "logistics40Pink.png"),
-                ("massAnchor", "massPink.png"),
-                ("nusbiotAnchor", "nusbiotPink.png"),
-                ("powersprintAnchor", "power-sprintPink.png"),
-                ("pswarmsAnchor", "pswarmsPink.png"),
-                ("secqbsAnchor", "sec-qbsPink.png"),
-                ("sofiotsAnchor", "sofiotsPink.png"),
+//                ("resbeAnchor", "resbeGreen.png"),
+//                ("ariotAnchor", "ariotGreen.png"),
+//                ("depriotAnchor", "depriotGreen.png"),
+//                ("disscAnchor", "disscGreen.png"),
+//                ("erAnchor", "erGreen.png"),
+//                ("etAnchor", "etGreen.png"),
+//                ("evaluateAnchor", "evaluateGreen.png"),
+//                ("exiotAnchor", "exiotGreen.png"),
+//                ("giotAnchor", "g-iotGreen.png"),
+//                ("iceaiAnchor", "ice-aiGreen.png"),
+//                ("idiceAnchor", "idiceGreen.png"),
+//                ("iotinparkAnchor", "iotinparkGreen.png"),
+//                ("iototAnchor", "iototGreen.png"),
+//                ("macsAnchor", "macsGreen.png"),
+//                ("ppiteeAnchor", "p-piteeGreen.png"),
+//                ("ppiemAnchor", "ppiemGreen.png"),
+//                ("priviotAnchor", "priviotGreen.png"),
+//                ("ptheatAnchor", "pt-heatGreen.png"),
+//                ("pubviaAnchor", "pubviaGreen.png"),
+//                ("raceAnchor", "raceGreen.png"),
+//                ("reappearAnchor", "reappearGreen.png"),
+//                ("recopsAnchor", "recopsGreen.png"),
+//                ("retipsAnchor", "retipsGreen.png"),
+//                ("semiotAnchor", "semiotGreen.png"),
+//                ("spiseAnchor", "spiseGreen.png"),
+//                ("stipsAnchor", "stipsGreen.png"),
+//                ("teamAnchor", "teamGreen.png"),
+//                ("thingsdartAnchor", "thingsd-artGreen.png"),
+//                ("udaiotAnchor", "udaiotGreen.png"),
+//                ("aikemaAnchor", "aikemaYellow.png"),
+//                ("amloeAnchor", "amloeYellow.png"),
+//                ("costcmorsAnchor", "costcmorsYellow.png"),
+//                ("ddipiotAnchor", "ddip-iotYellow.png"),
+//                ("geosecAnchor", "geosecYellow.png"),
+//                ("magicAnchor", "magicYellow.png"),
+//                ("maiseAnchor", "maiseYellow.png"),
+//                ("pcarsAnchor", "p-carsYellow.png"),
+//                ("roadmappAnchor", "roadmappYellow.png"),
+//                ("tmdaAnchor", "tmdaYellow.png"),
+//                ("tomsacAnchor", "tomsacYellow.png"),
+//                ("umisAnchor", "umisYellow.png"),
+//                ("cyfooAnchor", "cyfooPurple.png"),
+//                ("farmAnchor", "farmPurple.png"),
+//                ("blataAnchor", "blataOrange.png"),
+//                ("blockitAnchor", "blockitOrange.png"),
+//                ("botthingsAnchor", "botthingsOrange.png"),
+//                ("btsAnchor", "btsOrange.png"),
+//                ("cedeAnchor", "cedeOrange.png"),
+//                ("cracsAnchor", "cracsOrange.png"),
+//                ("csiplusAnchor", "csi+Orange.png"),
+//                ("csiAnchor", "csiOrange.png"),
+//                ("cyberhygieneAnchor", "cyberhygieneOrange.png"),
+//                ("dtcemAnchor", "dtcemOrange.png"),
+//                ("fireAnchor", "fireOrange.png"),
+//                ("gistAnchor", "gistOrange.png"),
+//                ("graphsecAnchor", "graphsecOrange.png"),
+//                ("healthiAnchor", "health-iOrange.png"),
+//                ("icecAnchor", "icecOrange.png"),
+//                ("iotincontrolAnchor", "iotincontrolOrange.png"),
+//                ("iotmspAnchor", "iotmspOrange.png"),
+//                ("iotobservatoryAnchor", "iotobservatoryOrange.png"),
+//                ("nipcAnchor", "nipcOrange.png"),
+//                ("p2pioetAnchor", "p2p-ioetOrange.png"),
+//                ("petrasdsfAnchor", "petras-dsfOrange.png"),
+//                ("power2Anchor", "power2Orange.png"),
+//                ("prioteAnchor", "prioteOrange.png"),
+//                ("retconAnchor", "retconOrange.png"),
+//                ("rioteAnchor", "rioteOrange.png"),
+//                ("roastiotAnchor", "roast-iotOrange.png"),
+//                ("rsiotAnchor", "rsiotOrange.png"),
+//                ("sdriotss2Anchor", "sdriotss-2Orange.png"),
+//                ("sdriotssAnchor", "sdriotssOrange.png"),
+//                ("secrisAnchor", "secrisOrange.png"),
+//                ("spiotshAnchor", "spiotshOrange.png"),
+//                ("tansecAnchor", "tansecOrange.png"),
+//                ("trusdedAnchor", "trusdedOrange.png"),
+//                ("uncanaiAnchor", "uncanaiOrange.png"),
+//                ("aaciotAnchor", "aaciotBlue.png"),
+//                ("beclAnchor", "beclBlue.png"),
+//                ("cpsociamAnchor", "cp-sociamBlue.png"),
+//                ("cyferAnchor", "cyferBlue.png"),
+//                ("dashAnchor", "dashBlue.png"),
+//                ("hipsterAnchor", "hipsterBlue.png"),
+//                ("peiesiAnchor", "peiesiBlue.png"),
+//                ("prismAnchor", "prismBlue.png"),
+//                ("pristineAnchor", "pristineBlue.png"),
+//                ("redaidAnchor", "red-aidBlue.png"),
+//                ("regmedtechAnchor", "reg-medtechBlue.png"),
+//                ("senthplusAnchor", "senth+Blue.png"),
+//                ("senthAnchor", "senthBlue.png"),
+//                ("crateAnchor", "cratePink.png"),
+//                ("digiportAnchor", "digiportPink.png"),
+//                ("ebisplusAnchor", "ebis+Pink.png"),
+//                ("elliottAnchor", "elliottPink.png"),
+//                ("eviotAnchor", "eviotPink.png"),
+//                ("iamAnchor", "iamPink.png"),
+//                ("iceodsAnchor", "ice-odsPink.png"),
+//                ("iotdependsAnchor", "iot-dependsPink.png"),
+//                ("isctiesAnchor", "isctiesPink.png"),
+//                ("logistics40Anchor", "logistics40Pink.png"),
+//                ("massAnchor", "massPink.png"),
+//                ("nusbiotAnchor", "nusbiotPink.png"),
+//                ("powersprintAnchor", "power-sprintPink.png"),
+//                ("pswarmsAnchor", "pswarmsPink.png"),
+//                ("secqbsAnchor", "sec-qbsPink.png"),
+//                ("sofiotsAnchor", "sofiotsPink.png"),
             ]
             handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isBlackTapped, anchorImagePairs: anchorImagePairs)
         }
@@ -769,7 +769,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             }
             
             // Load, rotate, scale.
-            boxNode.eulerAngles = SCNVector3(-rotationAngle, 0, 0)
+            boxNode.eulerAngles = SCNVector3(0, Float.pi, Float.pi)
             boxNode.scale = SCNVector3(0.001, 0.001, 0.001)
             boxNode.load()
             
@@ -783,34 +783,34 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let floatActionSequence = SCNAction.sequence([floatUpAction, floatDownAction])
             let floatActionLoop = SCNAction.repeatForever(floatActionSequence)
             
-            // Apply the floating animation to the box
-            boxNode.runAction(floatActionLoop)
+             //Apply the floating animation to the box
+             boxNode.runAction(floatActionLoop)
         }
         print("Anchor added to the scene.")
         // print(anchor.name)
         anchors.append(anchor)
         anchorNodes[anchor] = node
-        let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
+        // let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
         if anchor.name == "blueAnchor" {
-            addFloatingBox(to: anchor, with: "blueBoxText", animationDuration: 1.5)
+            addFloatingBox(to: anchor, with: "blueBoxTextRotated", animationDuration: 1.5)
         }
         if anchor.name == "pinkAnchor" {
-            addFloatingBox(to: anchor, with: "pinkBoxText", animationDuration: 1.4)
+            addFloatingBox(to: anchor, with: "pinkBoxTextRotated", animationDuration: 1.4)
         }
         if anchor.name == "yellowAnchor" {
-            addFloatingBox(to: anchor, with: "yellowBoxText", animationDuration: 1.3)
+            addFloatingBox(to: anchor, with: "yellowBoxTextRotated", animationDuration: 1.3)
         }
         if anchor.name == "orangeAnchor" {
-            addFloatingBox(to: anchor, with: "orangeBoxText", animationDuration: 1.2)
+            addFloatingBox(to: anchor, with: "orangeBoxTextRotated", animationDuration: 1.2)
         }
         if anchor.name == "purpleAnchor" {
-            addFloatingBox(to: anchor, with: "purpleBoxText", animationDuration: 1.1)
+            addFloatingBox(to: anchor, with: "purpleBoxTextRotated", animationDuration: 1.1)
         }
         if anchor.name == "greenAnchor" {
-            addFloatingBox(to: anchor, with: "greenBoxText", animationDuration: 1.0)
+            addFloatingBox(to: anchor, with: "greenBoxTextRotated", animationDuration: 1.0)
         }
         if anchor.name == "blackAnchor" {
-            addFloatingBox(to: anchor, with: "blackBoxText", animationDuration: 1.6)
+            addFloatingBox(to: anchor, with: "blackBoxTextRotated", animationDuration: 1.6)
         }
     }
     
