@@ -91,14 +91,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let prismAnchor = createARAnchorWithPosition(name: "prismAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let pristineAnchor = createARAnchorWithPosition(name: "pristineAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let redaidAnchor = createARAnchorWithPosition(name: "redaidAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
-        let regmedtechAnchor = createARAnchorWithPosition(name: "regmedtechAnchor", position: SIMD3<Float>(-0.90, -0.55, -1.75))
+        let regmedtechAnchor = createARAnchorWithPosition(name: "regmedtechAnchor", position: SIMD3<Float>(-0.75, -0.55, -0.30))
         let senthplusAnchor = createARAnchorWithPosition(name: "senthplusAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let senthAnchor = createARAnchorWithPosition(name: "senthAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         
         // Image anchors yellow
         let aikemaAnchor = createARAnchorWithPosition(name: "aikemaAnchor", position: SIMD3<Float>(0.5, -0.5, -2))
         let amloeAnchor = createARAnchorWithPosition(name: "amloeAnchor", position: SIMD3<Float>(1.5, -0.5, -2))
-        let costcmorsAnchor = createARAnchorWithPosition(name: "costcmorsAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
+        let costcmorsAnchor = createARAnchorWithPosition(name: "costcmorsAnchor", position: SIMD3<Float>(0.35, -0.55, -1.20))
         let ddipiotAnchor = createARAnchorWithPosition(name: "ddipiotAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let geosecAnchor = createARAnchorWithPosition(name: "geosecAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let magicAnchor = createARAnchorWithPosition(name: "magicAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
@@ -107,7 +107,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let roadmappAnchor = createARAnchorWithPosition(name: "roadmappAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let tmdaAnchor = createARAnchorWithPosition(name: "tmdaAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let tomsacAnchor = createARAnchorWithPosition(name: "tomsacAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
-        let umisAnchor = createARAnchorWithPosition(name: "umisAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
+        let umisAnchor = createARAnchorWithPosition(name: "umisAnchor", position: SIMD3<Float>(1.05, -0.5, -1.75))
         
         // Image anchors pink
         let crateAnchor = createARAnchorWithPosition(name: "crateAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
@@ -128,8 +128,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let sofiotsAnchor = createARAnchorWithPosition(name: "sofiotsAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         
         // Image anchors purple
-        let cyfooAnchor = createARAnchorWithPosition(name: "cyfooAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
-        let farmAnchor = createARAnchorWithPosition(name: "farmAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
+        let cyfooAnchor = createARAnchorWithPosition(name: "cyfooAnchor", position: SIMD3<Float>(-0.45, -0.55, -0.65))
+        let farmAnchor = createARAnchorWithPosition(name: "farmAnchor", position: SIMD3<Float>(-0.1, -0.55, -0.3))
         
         // Image anchors green
         let resbeAnchor = createARAnchorWithPosition(name: "resbeAnchor", position: SIMD3<Float>(0.4, -0.4, -2))
@@ -140,7 +140,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let etAnchor = createARAnchorWithPosition(name: "etAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let evaluateAnchor = createARAnchorWithPosition(name: "evaluateAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let exiotAnchor = createARAnchorWithPosition(name: "exiotAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
-        let giotAnchor = createARAnchorWithPosition(name: "giotAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
+        let giotAnchor = createARAnchorWithPosition(name: "giotAnchor", position: SIMD3<Float>(-0.85, -0.55, -1.00))
         let iceaiAnchor = createARAnchorWithPosition(name: "iceaiAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let idiceAnchor = createARAnchorWithPosition(name: "idiceAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let iotinparkAnchor = createARAnchorWithPosition(name: "iotinparkAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
@@ -186,7 +186,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let petrasdsfAnchor = createARAnchorWithPosition(name: "petrasdsfAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let power2Anchor = createARAnchorWithPosition(name: "power2Anchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let prioteAnchor = createARAnchorWithPosition(name: "prioteAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
-        let retconAnchor = createARAnchorWithPosition(name: "retconAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
+        let retconAnchor = createARAnchorWithPosition(name: "retconAnchor", position: SIMD3<Float>(0.20, -0.55, -0.3))
         let rioteAnchor = createARAnchorWithPosition(name: "rioteAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let roastiotAnchor = createARAnchorWithPosition(name: "roastiotAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let rsiotAnchor = createARAnchorWithPosition(name: "rsiotAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
@@ -523,7 +523,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //                ("etAnchor", "etGreen.png"),
 //                ("evaluateAnchor", "evaluateGreen.png"),
 //                ("exiotAnchor", "exiotGreen.png"),
-//                ("giotAnchor", "g-iotGreen.png"),
+                ("giotAnchor", "g-iotGreen.png"),
 //                ("iceaiAnchor", "ice-aiGreen.png"),
 //                ("idiceAnchor", "idiceGreen.png"),
 //                ("iotinparkAnchor", "iotinparkGreen.png"),
@@ -551,7 +551,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             let anchorImagePairs: [(anchorName: String, imageName: String)] = [
 //                ("aikemaAnchor", "aikemaYellow.png"),
 //                ("amloeAnchor", "amloeYellow.png"),
-//                ("costcmorsAnchor", "costcmorsYellow.png"),
+                ("costcmorsAnchor", "costcmorsYellow.png"),
 //                ("ddipiotAnchor", "ddip-iotYellow.png"),
 //                ("geosecAnchor", "geosecYellow.png"),
 //                ("magicAnchor", "magicYellow.png"),
@@ -560,14 +560,14 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //                ("roadmappAnchor", "roadmappYellow.png"),
 //                ("tmdaAnchor", "tmdaYellow.png"),
 //                ("tomsacAnchor", "tomsacYellow.png"),
-//                ("umisAnchor", "umisYellow.png"),
+                ("umisAnchor", "umisYellow.png"),
             ]
             handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isYellowTapped, anchorImagePairs: anchorImagePairs)
         }
         if hitNodeName == "Box005_09___Purple_0" {
             let anchorImagePairs: [(anchorName: String, imageName: String)] = [
-//                ("cyfooAnchor", "cyfooPurple.png"),
-//                ("farmAnchor", "farmPurple.png"),
+                ("cyfooAnchor", "cyfooPurple.png"),
+                ("farmAnchor", "farmPurple.png"),
             ]
             handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isPurpleTapped, anchorImagePairs: anchorImagePairs)
         }
@@ -596,7 +596,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //                ("petrasdsfAnchor", "petras-dsfOrange.png"),
 //                ("power2Anchor", "power2Orange.png"),
 //                ("prioteAnchor", "prioteOrange.png"),
-//                ("retconAnchor", "retconOrange.png"),
+                ("retconAnchor", "retconOrange.png"),
 //                ("rioteAnchor", "rioteOrange.png"),
 //                ("roastiotAnchor", "roast-iotOrange.png"),
 //                ("rsiotAnchor", "rsiotOrange.png"),
@@ -659,11 +659,11 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //                ("etAnchor", "etGreen.png"),
 //                ("evaluateAnchor", "evaluateGreen.png"),
 //                ("exiotAnchor", "exiotGreen.png"),
-//                ("giotAnchor", "g-iotGreen.png"),
+                ("giotAnchor", "g-iotGreen.png"),
 //                ("iceaiAnchor", "ice-aiGreen.png"),
 //                ("idiceAnchor", "idiceGreen.png"),
 //                ("iotinparkAnchor", "iotinparkGreen.png"),
-//                ("iototAnchor", "iototGreen.png"),
+                ("iototAnchor", "iototGreen.png"),
 //                ("macsAnchor", "macsGreen.png"),
 //                ("ppiteeAnchor", "p-piteeGreen.png"),
 //                ("ppiemAnchor", "ppiemGreen.png"),
@@ -682,7 +682,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //                ("udaiotAnchor", "udaiotGreen.png"),
 //                ("aikemaAnchor", "aikemaYellow.png"),
 //                ("amloeAnchor", "amloeYellow.png"),
-//                ("costcmorsAnchor", "costcmorsYellow.png"),
+                ("costcmorsAnchor", "costcmorsYellow.png"),
 //                ("ddipiotAnchor", "ddip-iotYellow.png"),
 //                ("geosecAnchor", "geosecYellow.png"),
 //                ("magicAnchor", "magicYellow.png"),
@@ -691,9 +691,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //                ("roadmappAnchor", "roadmappYellow.png"),
 //                ("tmdaAnchor", "tmdaYellow.png"),
 //                ("tomsacAnchor", "tomsacYellow.png"),
-//                ("umisAnchor", "umisYellow.png"),
-//                ("cyfooAnchor", "cyfooPurple.png"),
-//                ("farmAnchor", "farmPurple.png"),
+                ("umisAnchor", "umisYellow.png"),
+                ("cyfooAnchor", "cyfooPurple.png"),
+                ("farmAnchor", "farmPurple.png"),
 //                ("blataAnchor", "blataOrange.png"),
 //                ("blockitAnchor", "blockitOrange.png"),
 //                ("botthingsAnchor", "botthingsOrange.png"),
@@ -717,7 +717,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //                ("petrasdsfAnchor", "petras-dsfOrange.png"),
 //                ("power2Anchor", "power2Orange.png"),
 //                ("prioteAnchor", "prioteOrange.png"),
-//                ("retconAnchor", "retconOrange.png"),
+                ("retconAnchor", "retconOrange.png"),
 //                ("rioteAnchor", "rioteOrange.png"),
 //                ("roastiotAnchor", "roast-iotOrange.png"),
 //                ("rsiotAnchor", "rsiotOrange.png"),
@@ -738,7 +738,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
 //                ("prismAnchor", "prismBlue.png"),
 //                ("pristineAnchor", "pristineBlue.png"),
 //                ("redaidAnchor", "red-aidBlue.png"),
-//                ("regmedtechAnchor", "reg-medtechBlue.png"),
+                ("regmedtechAnchor", "reg-medtechBlue.png"),
 //                ("senthplusAnchor", "senth+Blue.png"),
 //                ("senthAnchor", "senthBlue.png"),
 //                ("crateAnchor", "cratePink.png"),
