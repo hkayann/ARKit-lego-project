@@ -13,6 +13,8 @@
 		281441B32A7D5D9600BFD700 /* orangeBox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441B22A7D5D9600BFD700 /* orangeBox.usdz */; };
 		281441B52A7D5E3700BFD700 /* yellowBox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441B42A7D5E3700BFD700 /* yellowBox.usdz */; };
 		281441B72A7D60CD00BFD700 /* purpleBox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441B62A7D60CD00BFD700 /* purpleBox.usdz */; };
+		281FC8DB2AB0A5E000CC1B88 /* blackBoxTextRotatedHub.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281FC8DA2AB0A5E000CC1B88 /* blackBoxTextRotatedHub.usdz */; };
+		281FC8DD2AB0A8F200CC1B88 /* blackBoxTextRotatedCentre.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281FC8DC2AB0A8F200CC1B88 /* blackBoxTextRotatedCentre.usdz */; };
 		28CF71992A83CC430057D798 /* purpleBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF71982A83CC430057D798 /* purpleBoxText.usdz */; };
 		28CF719B2A83D54B0057D798 /* greenBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF719A2A83D54B0057D798 /* greenBoxText.usdz */; };
 		28CF719D2A83D7E20057D798 /* yellowBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF719C2A83D7E20057D798 /* yellowBoxText.usdz */; };
@@ -152,6 +154,8 @@
 		281441B22A7D5D9600BFD700 /* orangeBox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = orangeBox.usdz; path = ../../orangeBox.usdz; sourceTree = "<group>"; };
 		281441B42A7D5E3700BFD700 /* yellowBox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = yellowBox.usdz; path = ../../yellowBox.usdz; sourceTree = "<group>"; };
 		281441B62A7D60CD00BFD700 /* purpleBox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = purpleBox.usdz; path = ../../purpleBox.usdz; sourceTree = "<group>"; };
+		281FC8DA2AB0A5E000CC1B88 /* blackBoxTextRotatedHub.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = blackBoxTextRotatedHub.usdz; path = ../../blackBoxTextRotatedHub.usdz; sourceTree = "<group>"; };
+		281FC8DC2AB0A8F200CC1B88 /* blackBoxTextRotatedCentre.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = blackBoxTextRotatedCentre.usdz; sourceTree = "<group>"; };
 		28CF71982A83CC430057D798 /* purpleBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = purpleBoxText.usdz; sourceTree = "<group>"; };
 		28CF719A2A83D54B0057D798 /* greenBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = greenBoxText.usdz; sourceTree = "<group>"; };
 		28CF719C2A83D7E20057D798 /* yellowBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = yellowBoxText.usdz; sourceTree = "<group>"; };
@@ -449,6 +453,8 @@
 		FFFB11982A7A6C5E002E8BC1 /* objects */ = {
 			isa = PBXGroup;
 			children = (
+				281FC8DC2AB0A8F200CC1B88 /* blackBoxTextRotatedCentre.usdz */,
+				281FC8DA2AB0A5E000CC1B88 /* blackBoxTextRotatedHub.usdz */,
 				28CF728C2A8A8A0C0057D798 /* yellowBoxTextRotated.usdz */,
 				28CF728A2A8A87080057D798 /* purpleBoxTextRotated.usdz */,
 				28CF72862A8A83BB0057D798 /* orangeBoxTextRotated.usdz */,
@@ -531,6 +537,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				281FC8DD2AB0A8F200CC1B88 /* blackBoxTextRotatedCentre.usdz in Resources */,
+				281FC8DB2AB0A5E000CC1B88 /* blackBoxTextRotatedHub.usdz in Resources */,
 				28CF728D2A8A8A0C0057D798 /* yellowBoxTextRotated.usdz in Resources */,
 				28CF728B2A8A87080057D798 /* purpleBoxTextRotated.usdz in Resources */,
 				28CF72892A8A84C80057D798 /* blueBoxTextRotated.usdz in Resources */,
