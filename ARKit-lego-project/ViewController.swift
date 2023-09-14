@@ -182,7 +182,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let cyberhygieneAnchor = createARAnchorWithPosition(name: "cyberhygieneAnchor", position: SIMD3<Float>(-0.68, -0.55, -0.6))
         let dtcemAnchor = createARAnchorWithPosition(name: "dtcemAnchor", position: SIMD3<Float>(0.71, -0.55, -1.78))
         let fireAnchor = createARAnchorWithPosition(name: "fireAnchor", position: SIMD3<Float>(-0.34, -0.55, -1.40))
-        let gistAnchor = createARAnchorWithPosition(name: "gistAnchor", position: SIMD3<Float>(-0.24, -0.55, -0.55))
+        let gistAnchor = createARAnchorWithPosition(name: "gistAnchor", position: SIMD3<Float>(-1.50, -0.420, -1.70))
         let graphsecAnchor = createARAnchorWithPosition(name: "graphsecAnchor", position: SIMD3<Float>(0.23, -0.55, -1.8))
         let healthiAnchor = createARAnchorWithPosition(name: "healthiAnchor", position: SIMD3<Float>(-0.49, -0.55, -0.35))
         let icecAnchor = createARAnchorWithPosition(name: "icecAnchor", position: SIMD3<Float>(-0.3, -0.55, -1.67))
@@ -523,6 +523,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(90) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
                         } else if imageName == "retconOrange.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(90) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "cedeOrange.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(90) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "gistOrange.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(90) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
                         } else if imageName == "sdriotss-2Orange.png"{
@@ -1021,7 +1027,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 ("macsAnchor", "macsGreen.png"), // k
                 ("logistics40Anchor", "logistics40Pink.png"), // k
                 ("blataAnchor", "blataOrange.png"), // k
-//                ("gistAnchor", "gistOrange.png"), // tray
+                ("gistAnchor", "gistOrange.png"), // tray
                 ("petrasdsfAnchor", "petras-dsfOrange.png"), // tray
                 ("power2Anchor", "power2Orange.png"), // k
                 ("roastiotAnchor", "roast-iotOrange.png"), // tray
@@ -1108,7 +1114,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
             addFloatingBox(to: anchor, with: "blackBoxTextRotatedCentre", animationDuration: 1.25)
         }
         if anchor.name == "shelfAnchor" {
-            addFloatingBox(to: anchor, with: "shelf", animationDuration: 1000)
+            addFloatingBox(to: anchor, with: "shelf", animationDuration: 1.8e308)
         }
     }
     
