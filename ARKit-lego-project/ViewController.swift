@@ -27,6 +27,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
     private var blackBoxNode: SCNReferenceNode?
     private var blackBoxHubNode: SCNReferenceNode?
     private var blackBoxCentreNode: SCNReferenceNode?
+    private var shelfNode: SCNReferenceNode?
     private var boxNode: SCNNode?
     private var imageView: UIImageView!
     
@@ -85,30 +86,31 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let blackAnchor = createARAnchorWithPosition(name: "blackAnchor", position: SIMD3<Float>(-0.15, -0.2, -2))
         let blackAnchorHub = createARAnchorWithPosition(name: "blackAnchorHub", position: SIMD3<Float>(-0.15, -0.35, -2))
         let blackAnchorCentre = createARAnchorWithPosition(name: "blackAnchorCentre", position: SIMD3<Float>(-0.15, -0.05, -2))
+        let shelfAnchor = createARAnchorWithPosition(name: "shelfAnchor", position: SIMD3<Float>(-1.55, -0.2, -1.5))
         
         // Image anchors blue - health
         let aaciotAnchor = createARAnchorWithPosition(name: "aaciotAnchor", position: SIMD3<Float>(-0.77, -0.55, -0.82))
         let beclAnchor = createARAnchorWithPosition(name: "beclAnchor", position: SIMD3<Float>(-0.85, -0.55, -0.3))
-        let cpsociamAnchor = createARAnchorWithPosition(name: "cpsociamAnchor", position: SIMD3<Float>(-0.80, -0.55, -0.45))
+        let cpsociamAnchor = createARAnchorWithPosition(name: "cpsociamAnchor", position: SIMD3<Float>(-0.85, -0.35, -0.34))
         let cyferAnchor = createARAnchorWithPosition(name: "cyferAnchor", position: SIMD3<Float>(-0.69, -0.55, -0.3))
         let dashAnchor = createARAnchorWithPosition(name: "dashAnchor", position: SIMD3<Float>(-0.84, -0.55, -0.40))
-        let hipsterAnchor = createARAnchorWithPosition(name: "hipsterAnchor", position: SIMD3<Float>(-0.78, -0.55, -0.48))
+        let hipsterAnchor = createARAnchorWithPosition(name: "hipsterAnchor", position: SIMD3<Float>(-0.69, -0.35, -0.31))
         let peiesiAnchor = createARAnchorWithPosition(name: "peiesiAnchor", position: SIMD3<Float>(-0.68, -0.55, -0.52))
         let prismAnchor = createARAnchorWithPosition(name: "prismAnchor", position: SIMD3<Float>(0.3, -0.55, -0.75))
-        let pristineAnchor = createARAnchorWithPosition(name: "pristineAnchor", position: SIMD3<Float>(-0.81, -0.55, -0.57))
+        let pristineAnchor = createARAnchorWithPosition(name: "pristineAnchor", position: SIMD3<Float>(-0.69, -0.45, -0.33))
         let redaidAnchor = createARAnchorWithPosition(name: "redaidAnchor", position: SIMD3<Float>(-0.87, -0.55, -0.45))
-        let regmedtechAnchor = createARAnchorWithPosition(name: "regmedtechAnchor", position: SIMD3<Float>(-0.75, -0.55, -0.35))
+        let regmedtechAnchor = createARAnchorWithPosition(name: "regmedtechAnchor", position: SIMD3<Float>(-0.85, -0.45, -0.32))
         let senthplusAnchor = createARAnchorWithPosition(name: "senthplusAnchor", position: SIMD3<Float>(-0.81, -0.55, -0.77))
         let senthAnchor = createARAnchorWithPosition(name: "senthAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         
         // Image anchors yellow - transport
         let aikemaAnchor = createARAnchorWithPosition(name: "aikemaAnchor", position: SIMD3<Float>(-0.47, -0.55, -1.0))
-        let amloeAnchor = createARAnchorWithPosition(name: "amloeAnchor", position: SIMD3<Float>(0.28, -0.55, -1.41))
+        let amloeAnchor = createARAnchorWithPosition(name: "amloeAnchor", position: SIMD3<Float>(0.33, -0.55, -1.6))
         let costcmorsAnchor = createARAnchorWithPosition(name: "costcmorsAnchor", position: SIMD3<Float>(0.32, -0.55, -1.3))
         let ddipiotAnchor = createARAnchorWithPosition(name: "ddipiotAnchor", position: SIMD3<Float>(0.18, -0.55, -1.42))
         let geosecAnchor = createARAnchorWithPosition(name: "geosecAnchor", position: SIMD3<Float>(0.32, -0.55, -1.25))
-        let magicAnchor = createARAnchorWithPosition(name: "magicAnchor", position: SIMD3<Float>(0.29, -0.55, -1.15))
-        let maiseAnchor = createARAnchorWithPosition(name: "maiseAnchor", position: SIMD3<Float>(0.25, -0.55, -1))
+        let magicAnchor = createARAnchorWithPosition(name: "magicAnchor", position: SIMD3<Float>(0.91, -0.55, -1.58))
+        let maiseAnchor = createARAnchorWithPosition(name: "maiseAnchor", position: SIMD3<Float>(-0.37, -0.55, -1.0))
         let pcarsAnchor = createARAnchorWithPosition(name: "pcarsAnchor", position: SIMD3<Float>(0, -0.55, -0.95))
         let roadmappAnchor = createARAnchorWithPosition(name: "roadmappAnchor", position: SIMD3<Float>(0.14, -0.55, -1.24))
         let tmdaAnchor = createARAnchorWithPosition(name: "tmdaAnchor", position: SIMD3<Float>(0, -0.55, -1.26))
@@ -116,69 +118,69 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let umisAnchor = createARAnchorWithPosition(name: "umisAnchor", position: SIMD3<Float>(-0.68, -0.55, -1.33))
         
         // Image anchors pink - supply
-        let crateAnchor = createARAnchorWithPosition(name: "crateAnchor", position: SIMD3<Float>(-0.45, -0.55, -1.60))
+        let crateAnchor = createARAnchorWithPosition(name: "crateAnchor", position: SIMD3<Float>(-0.87, -0.45, -0.47))
         let digiportAnchor = createARAnchorWithPosition(name: "digiportAnchor", position: SIMD3<Float>(0.55, -0.55, -0.75))
         let ebisplusAnchor = createARAnchorWithPosition(name: "ebisplusAnchor", position: SIMD3<Float>(-0.51, -0.55, -1.65))
         let elliottAnchor = createARAnchorWithPosition(name: "elliottAnchor", position: SIMD3<Float>(0.2, -0.55, -0.98))
         let eviotAnchor = createARAnchorWithPosition(name: "eviotAnchor", position: SIMD3<Float>(-0.4, -0.5, -2))
         let iamAnchor = createARAnchorWithPosition(name: "iamAnchor", position: SIMD3<Float>(-0.50, -0.55, -1.95))
-        let iceodsAnchor = createARAnchorWithPosition(name: "iceodsAnchor", position: SIMD3<Float>(-0.71, -0.55, -1.55))
+        let iceodsAnchor = createARAnchorWithPosition(name: "iceodsAnchor", position: SIMD3<Float>(1.20, -0.55, -1.78))
         let iotdependsAnchor = createARAnchorWithPosition(name: "iotdependsAnchor", position: SIMD3<Float>(0.95, -0.55, -1.70))
         let isctiesAnchor = createARAnchorWithPosition(name: "isctiesAnchor", position: SIMD3<Float>(-0.50, -0.55, -2.05))
-        let logistics40Anchor = createARAnchorWithPosition(name: "logistics40Anchor", position: SIMD3<Float>(0.65, -0.55, -1.72))
+        let logistics40Anchor = createARAnchorWithPosition(name: "logistics40Anchor", position: SIMD3<Float>(0.81, -0.45, -1.82))
         let massAnchor = createARAnchorWithPosition(name: "massAnchor", position: SIMD3<Float>(-0.78, -0.55, -1.2))
         let nusbiotAnchor = createARAnchorWithPosition(name: "nusbiotAnchor", position: SIMD3<Float>(0.45, -0.55, -1.61))
         let powersprintAnchor = createARAnchorWithPosition(name: "powersprintAnchor", position: SIMD3<Float>(0, -0.55, -0.25))
-        let pswarmsAnchor = createARAnchorWithPosition(name: "pswarmsAnchor", position: SIMD3<Float>(0.25, -0.55, -1.75))
-        let secqbsAnchor = createARAnchorWithPosition(name: "secqbsAnchor", position: SIMD3<Float>(-0.66, -0.55, -1.35))
-        let sofiotsAnchor = createARAnchorWithPosition(name: "sofiotsAnchor", position: SIMD3<Float>(-0.56, -0.55, -1.39))
+        let pswarmsAnchor = createARAnchorWithPosition(name: "pswarmsAnchor", position: SIMD3<Float>(-0.91, -0.45, -1.45))
+        let secqbsAnchor = createARAnchorWithPosition(name: "secqbsAnchor", position: SIMD3<Float>(0.43, -0.55, -1.7))
+        let sofiotsAnchor = createARAnchorWithPosition(name: "sofiotsAnchor", position: SIMD3<Float>(0.25, -0.45, -1.85))
         
         // Image anchors purple - agritech
         let cyfooAnchor = createARAnchorWithPosition(name: "cyfooAnchor", position: SIMD3<Float>(-0.18, -0.55, -0.3))
         let farmAnchor = createARAnchorWithPosition(name: "farmAnchor", position: SIMD3<Float>(-0.45, -0.55, -0.3))
         
         // Image anchors green - ambient
-        let resbeAnchor = createARAnchorWithPosition(name: "resbeAnchor", position: SIMD3<Float>(0.32, -0.55, -1.0))
+        let resbeAnchor = createARAnchorWithPosition(name: "resbeAnchor", position: SIMD3<Float>(0.32, -0.45, -1.05))
         let ariotAnchor = createARAnchorWithPosition(name: "ariotAnchor", position: SIMD3<Float>(-0.2, -0.55, -0.95))
         let depriotAnchor = createARAnchorWithPosition(name: "depriotAnchor", position: SIMD3<Float>(0.3, -0.55, -0.6))
         let disscAnchor = createARAnchorWithPosition(name: "disscAnchor", position: SIMD3<Float>(0.2, -0.55, -0.65))
-        let erAnchor = createARAnchorWithPosition(name: "erAnchor", position: SIMD3<Float>(0.35, -0.55, -0.55))
-        let etAnchor = createARAnchorWithPosition(name: "etAnchor", position: SIMD3<Float>(0.3, -0.55, -0.45))
-        let evaluateAnchor = createARAnchorWithPosition(name: "evaluateAnchor", position: SIMD3<Float>(0.41, -0.55, -0.40))
-        let exiotAnchor = createARAnchorWithPosition(name: "exiotAnchor", position: SIMD3<Float>(0.28, -0.55, -0.42))
+        let erAnchor = createARAnchorWithPosition(name: "erAnchor", position: SIMD3<Float>(-0.91, -0.55, -1.65))
+        let etAnchor = createARAnchorWithPosition(name: "etAnchor", position: SIMD3<Float>(0.3, -0.45, -0.80))
+        let evaluateAnchor = createARAnchorWithPosition(name: "evaluateAnchor", position: SIMD3<Float>(-0.13, -0.55, -0.95))
+        let exiotAnchor = createARAnchorWithPosition(name: "exiotAnchor", position: SIMD3<Float>(-0.47, -0.45, -1.15))
         let giotAnchor = createARAnchorWithPosition(name: "giotAnchor", position: SIMD3<Float>(-0.85, -0.55, -1.00))
-        let iceaiAnchor = createARAnchorWithPosition(name: "iceaiAnchor", position: SIMD3<Float>(0.20, -0.55, -0.50))
+        let iceaiAnchor = createARAnchorWithPosition(name: "iceaiAnchor", position: SIMD3<Float>(0.25, -0.45, -0.28))
         let idiceAnchor = createARAnchorWithPosition(name: "idiceAnchor", position: SIMD3<Float>(0.1, -0.55, -0.6))
         let iotinparkAnchor = createARAnchorWithPosition(name: "iotinparkAnchor", position: SIMD3<Float>(-0.3, -0.55, -0.85))
         let iototAnchor = createARAnchorWithPosition(name: "iototAnchor", position: SIMD3<Float>(-0.90, -0.55, -1.75))
         let macsAnchor = createARAnchorWithPosition(name: "macsAnchor", position: SIMD3<Float>(-0.03, -0.55, -0.75))
         let ppiteeAnchor = createARAnchorWithPosition(name: "ppiteeAnchor", position: SIMD3<Float>(-0.23, -0.55, -0.85))
-        let ppiemAnchor = createARAnchorWithPosition(name: "ppiemAnchor", position: SIMD3<Float>(-0.47, -0.55, -0.60))
+        let ppiemAnchor = createARAnchorWithPosition(name: "ppiemAnchor", position: SIMD3<Float>(-0.52, -0.45, -0.60))
         let priviotAnchor = createARAnchorWithPosition(name: "priviotAnchor", position: SIMD3<Float>(0.3, -0.55, -0.88))
         let ptheatAnchor = createARAnchorWithPosition(name: "ptheatAnchor", position: SIMD3<Float>(-0.93, -0.55, -0.98))
-        let pubviaAnchor = createARAnchorWithPosition(name: "pubviaAnchor", position: SIMD3<Float>(-0.14, -0.55, -0.76))
-        let raceAnchor = createARAnchorWithPosition(name: "raceAnchor", position: SIMD3<Float>(-0.31, -0.55, -0.72))
-        let reappearAnchor = createARAnchorWithPosition(name: "reappearAnchor", position: SIMD3<Float>(0.45, -0.55, -0.65))
+        let pubviaAnchor = createARAnchorWithPosition(name: "pubviaAnchor", position: SIMD3<Float>(0.32, -0.35, -1.1))
+        let raceAnchor = createARAnchorWithPosition(name: "raceAnchor", position: SIMD3<Float>(-1.50, -0.065, -1.25))
+        let reappearAnchor = createARAnchorWithPosition(name: "reappearAnchor", position: SIMD3<Float>(0.35, -0.55, -1.0))
         let recopsAnchor = createARAnchorWithPosition(name: "recopsAnchor", position: SIMD3<Float>(0, -0.55, -0.7))
         let retipsAnchor = createARAnchorWithPosition(name: "retipsAnchor", position: SIMD3<Float>(0.27, -0.55, -0.72))
         let semiotAnchor = createARAnchorWithPosition(name: "semiotAnchor", position: SIMD3<Float>(0.15, -0.55, -0.55))
         let spiseAnchor = createARAnchorWithPosition(name: "spiseAnchor", position: SIMD3<Float>(-1.2, -0.55, -1.08))
         let stipsAnchor = createARAnchorWithPosition(name: "stipsAnchor", position: SIMD3<Float>(0.05, -0.55, -1.03))
-        let teamAnchor = createARAnchorWithPosition(name: "teamAnchor", position: SIMD3<Float>(0.30, -0.55, -0.88))
+        let teamAnchor = createARAnchorWithPosition(name: "teamAnchor", position: SIMD3<Float>(-0.07, -0.55, -0.45))
         let thingsdartAnchor = createARAnchorWithPosition(name: "thingsdartAnchor", position: SIMD3<Float>(-0.3, -0.55, -1.02))
         let udaiotAnchor = createARAnchorWithPosition(name: "udaiotAnchor", position: SIMD3<Float>(0.18, -0.55, -0.41))
         
         // Image anchors orange - infrastructure
-        let blataAnchor = createARAnchorWithPosition(name: "blataAnchor", position: SIMD3<Float>(0.12, -0.55, -0.33))
+        let blataAnchor = createARAnchorWithPosition(name: "blataAnchor", position: SIMD3<Float>(-0.78, -0.45, -1.25))
         let blockitAnchor = createARAnchorWithPosition(name: "blockitAnchor", position: SIMD3<Float>(0, -0.55, -0.36))
         let botthingsAnchor = createARAnchorWithPosition(name: "botthingsAnchor", position: SIMD3<Float>(-0.2, -0.55, -0.39))
         let btsAnchor = createARAnchorWithPosition(name: "btsAnchor", position: SIMD3<Float>(0, -0.55, -0.42))
-        let cedeAnchor = createARAnchorWithPosition(name: "cedeAnchor", position: SIMD3<Float>(-0.15, -0.55, -0.44))
+        let cedeAnchor = createARAnchorWithPosition(name: "cedeAnchor", position: SIMD3<Float>(-1.50, -0.25, -1.70))
         let cracsAnchor = createARAnchorWithPosition(name: "cracsAnchor", position: SIMD3<Float>(-0.30, -0.55, -0.43))
         let csiplusAnchor = createARAnchorWithPosition(name: "csiplusAnchor", position: SIMD3<Float>(-0.30, -0.55, -0.48))
         let csiAnchor = createARAnchorWithPosition(name: "csiAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let cyberhygieneAnchor = createARAnchorWithPosition(name: "cyberhygieneAnchor", position: SIMD3<Float>(-0.68, -0.55, -0.6))
-        let dtcemAnchor = createARAnchorWithPosition(name: "dtcemAnchor", position: SIMD3<Float>(-0.35, -0.55, -0.34))
+        let dtcemAnchor = createARAnchorWithPosition(name: "dtcemAnchor", position: SIMD3<Float>(0.71, -0.55, -1.78))
         let fireAnchor = createARAnchorWithPosition(name: "fireAnchor", position: SIMD3<Float>(-0.34, -0.55, -1.40))
         let gistAnchor = createARAnchorWithPosition(name: "gistAnchor", position: SIMD3<Float>(-0.24, -0.55, -0.55))
         let graphsecAnchor = createARAnchorWithPosition(name: "graphsecAnchor", position: SIMD3<Float>(0.23, -0.55, -1.8))
@@ -189,18 +191,18 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         let iotobservatoryAnchor = createARAnchorWithPosition(name: "iotobservatoryAnchor", position: SIMD3<Float>(-0.64, -0.55, -0.65))
         let nipcAnchor = createARAnchorWithPosition(name: "nipcAnchor", position: SIMD3<Float>(-0.1, -0.55, -1.5))
         let p2pioetAnchor = createARAnchorWithPosition(name: "p2pioetAnchor", position: SIMD3<Float>(-0.18, -0.55, -1.2))
-        let petrasdsfAnchor = createARAnchorWithPosition(name: "petrasdsfAnchor", position: SIMD3<Float>(0.1, -0.55, -1.6))
-        let power2Anchor = createARAnchorWithPosition(name: "power2Anchor", position: SIMD3<Float>(-0.15, -0.55, -1.5))
-        let prioteAnchor = createARAnchorWithPosition(name: "prioteAnchor", position: SIMD3<Float>(-0.66, -0.55, -0.7))
-        let retconAnchor = createARAnchorWithPosition(name: "retconAnchor", position: SIMD3<Float>(0.20, -0.55, -0.3))
+        let petrasdsfAnchor = createARAnchorWithPosition(name: "petrasdsfAnchor", position: SIMD3<Float>(-1.50, -0.25, -1.4))
+        let power2Anchor = createARAnchorWithPosition(name: "power2Anchor", position: SIMD3<Float>(-0.13, -0.45, -1.1))
+        let prioteAnchor = createARAnchorWithPosition(name: "prioteAnchor", position: SIMD3<Float>(-0.25, -0.55, -0.5))
+        let retconAnchor = createARAnchorWithPosition(name: "retconAnchor", position: SIMD3<Float>(-1.50, -0.065, -1.40))
         let rioteAnchor = createARAnchorWithPosition(name: "rioteAnchor", position: SIMD3<Float>(-0.48, -0.55, -1.40))
-        let roastiotAnchor = createARAnchorWithPosition(name: "roastiotAnchor", position: SIMD3<Float>(-0.2, -0.55, -1.42))
+        let roastiotAnchor = createARAnchorWithPosition(name: "roastiotAnchor", position: SIMD3<Float>(-1.50, -0.25, -1.25))
         let rsiotAnchor = createARAnchorWithPosition(name: "rsiotAnchor", position: SIMD3<Float>(-0.35, -0.55, -1.34))
-        let sdriotss2Anchor = createARAnchorWithPosition(name: "sdriotss2Anchor", position: SIMD3<Float>(-0.45, -0.55, -1.14))
+        let sdriotss2Anchor = createARAnchorWithPosition(name: "sdriotss2Anchor", position: SIMD3<Float>(-1.50, -0.25, -1.55))
         let sdriotssAnchor = createARAnchorWithPosition(name: "sdriotssAnchor", position: SIMD3<Float>(0.4, -0.5, -2))
         let secrisAnchor = createARAnchorWithPosition(name: "secrisAnchor", position: SIMD3<Float>(-0.60, -0.55, -1.04))
         let spiotshAnchor = createARAnchorWithPosition(name: "spiotshAnchor", position: SIMD3<Float>(0.32, -0.55, -0.85))
-        let tansecAnchor = createARAnchorWithPosition(name: "tansecAnchor", position: SIMD3<Float>(-0.56, -0.55, -1.21))
+        let tansecAnchor = createARAnchorWithPosition(name: "tansecAnchor", position: SIMD3<Float>(0.15, -0.55, -0.25))
         let trusdedAnchor = createARAnchorWithPosition(name: "trusdedAnchor", position: SIMD3<Float>(-0.71, -0.55, -1.0))
         let uncanaiAnchor = createARAnchorWithPosition(name: "uncanaiAnchor", position: SIMD3<Float>(-0.62, -0.55, -1.63))
         
@@ -214,7 +216,8 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // sceneView.session.add(anchor: blackAnchor)
         sceneView.session.add(anchor: blackAnchorHub)
         sceneView.session.add(anchor: blackAnchorCentre)
-
+        sceneView.session.add(anchor: shelfAnchor)
+        
         // Add anchor for images to the AR session
         sceneView.session.add(anchor: resbeAnchor)
         
@@ -283,6 +286,7 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         sceneView.session.add(anchor: peiesiAnchor)
         sceneView.session.add(anchor: petrasdsfAnchor)
         sceneView.session.add(anchor: powersprintAnchor)
+        sceneView.session.add(anchor: power2Anchor)
         sceneView.session.add(anchor: ppiemAnchor)
         sceneView.session.add(anchor: prioteAnchor)
         sceneView.session.add(anchor: prismAnchor)
@@ -515,7 +519,24 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                         } else if imageName == "costcmorsYellow.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(25) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
-                            
+                        } else if imageName == "raceGreen.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(90) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "retconOrange.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(90) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "sdriotss-2Orange.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(90) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "roast-iotOrange.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(90) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "petras-dsfOrange.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(90) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "sec-qbsPink.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(35) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
                         } else if imageName == "spiotshOrange.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(-25) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
@@ -547,7 +568,19 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(35) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
                             
+                        } else if imageName == "pristineBlue.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(35) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                            
+                        } else if imageName == "hipsterBlue.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(35) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                            
                         } else if imageName == "red-aidBlue.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(-55) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                            
+                        } else if imageName == "cratePink.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(-55) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
                             
@@ -567,6 +600,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                         } else if imageName == "spiseGreen.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(-72) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "erGreen.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(-80) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "pswarmsPink.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(-74) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
                         } else if imageName == "fireOrange.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(-72) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
@@ -582,6 +621,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                         } else if imageName == "massPink.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(-67) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "blataOrange.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(-67) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
                         } else if imageName == "prismBlue.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(15) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
@@ -594,17 +636,32 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                         } else if imageName == "resbeGreen.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(70) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "pubviaGreen.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(70) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "reappearGreen.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(70) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
                         } else if imageName == "costcmorsYellow.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(80) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
                         } else if imageName == "tomsacYellow.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(80) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "amloeYellow.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(80) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
                         } else if imageName == "graphsecOrange.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(77) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "sofiotsPink.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(77) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
                         } else if imageName == "icecOrange.png"{
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(77) , toNode: anchorNode)
+                            addedImageNodes[anchorName, default: Set()].insert(imageName)
+                        } else if imageName == "etGreen.png"{
+                            addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: dToR(15) , toNode: anchorNode)
                             addedImageNodes[anchorName, default: Set()].insert(imageName)
                         } else {
                             addImageNode(imageName: imageName, identifier: imageName, duration: randomDuration,rotationAngleRadians: 0 , toNode: anchorNode)
@@ -621,7 +678,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                 }
             }
         }
-
         let defaultNodeName = "SomeDefaultValue"
 
         if hitNodeName == "Box005_09___Green_0" {
@@ -920,67 +976,67 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         if hitNodeName == "Box005_09___BlackCENTRE_0" {
             let anchorImagePairs: [(anchorName: String, imageName: String)] = [
-//                ("exiotAnchor", "exiotGreen.png"), // k
-//                ("raceAnchor", "raceGreen.png"), // k
+                ("exiotAnchor", "exiotGreen.png"), // k
+                ("raceAnchor", "raceGreen.png"), // tray
                 ("resbeAnchor", "resbeGreen.png"), // k
                 ("spiseAnchor", "spiseGreen.png"), // k
                 ("ptheatAnchor", "pt-heatGreen.png"), // k
-//                ("teamAnchor", "teamGreen.png"), // k
-//                ("crateAnchor", "cratePink.png"), // k
+                ("teamAnchor", "teamGreen.png"), // k
+                ("crateAnchor", "cratePink.png"), // k
                 ("digiportAnchor", "digiportPink.png"), // k
                 ("elliottAnchor", "elliottPink.png"), // k
-//                ("iceodsAnchor", "ice-odsPink.png"), // k
+                ("iceodsAnchor", "ice-odsPink.png"), // k
                 ("isctiesAnchor", "isctiesPink.png"), // k
                 ("massAnchor", "massPink.png"), // k
                 ("powersprintAnchor", "power-sprintPink.png"), // k
-//                ("pswarmsAnchor", "pswarmsPink.png"), // k
-//                ("sofiotsAnchor", "sofiotsPink.png"), // k
-//                ("dtcemAnchor", "dtcemOrange.png"), // k
+                ("pswarmsAnchor", "pswarmsPink.png"), // k
+                ("sofiotsAnchor", "sofiotsPink.png"), // k
+                ("dtcemAnchor", "dtcemOrange.png"), // k
                 ("icecAnchor", "icecOrange.png"), // k
-//                ("prioteAnchor", "prioteOrange.png"),
-//                ("retconAnchor", "retconOrange.png"), // k
+                ("prioteAnchor", "prioteOrange.png"),
+                ("retconAnchor", "retconOrange.png"), // tray
                 ("rioteAnchor", "rioteOrange.png"), // k
                 ("trusdedAnchor", "trusdedOrange.png"), // k
                 ("cyferAnchor", "cyferBlue.png"), // k
-//                ("hipsterAnchor", "hipsterBlue.png"), // k
+                ("hipsterAnchor", "hipsterBlue.png"), // k
                 ("prismAnchor", "prismBlue.png"), // k
                 ("redaidAnchor", "red-aidBlue.png"), // k
                 ("cyfooAnchor", "cyfooPurple.png"), // k
-//                ("amloeAnchor", "amloeYellow.png"), // k
+                ("amloeAnchor", "amloeYellow.png"), // k
                 ("costcmorsAnchor", "costcmorsYellow.png"), // k
-//                ("maiseAnchor", "maiseYellow.png"), // k
-//                ("magicAnchor", "magicYellow.png"), // k
+                ("maiseAnchor", "maiseYellow.png"), // k
+                ("magicAnchor", "magicYellow.png"), // k
                 ("tomsacAnchor", "tomsacYellow.png"), // k
-//                ("evaluateAnchor", "evaluateGreen.png"), // k
-//                ("reappearAnchor", "reappearGreen.png"), // k
-//                ("iceaiAnchor", "ice-aiGreen.png"), // k
-//                ("cedeAnchor", "cedeOrange.png"), // k
+                ("evaluateAnchor", "evaluateGreen.png"), // k
+                ("reappearAnchor", "reappearGreen.png"), // k
+                ("iceaiAnchor", "ice-aiGreen.png"), // k
+                ("cedeAnchor", "cedeOrange.png"), // tray
                 ("graphsecAnchor", "graphsecOrange.png"), // k
-//                ("sdriotss2Anchor", "sdriotss-2Orange.png"), // k
+                ("sdriotss2Anchor", "sdriotss-2Orange.png"), // tray
 ////                ("sdriotssAnchor", "sdriotssOrange.png"),
-//                ("tansecAnchor", "tansecOrange.png"), // k
+                ("tansecAnchor", "tansecOrange.png"), // k
                 ("uncanaiAnchor", "uncanaiOrange.png"), // k
-//                ("pristineAnchor", "pristineBlue.png"), // k
+                ("pristineAnchor", "pristineBlue.png"), // k
                 ("farmAnchor", "farmPurple.png"), // k
                 ("macsAnchor", "macsGreen.png"), // k
-//                ("logistics40Anchor", "logistics40Pink.png"), // k
-//                ("blataAnchor", "blataOrange.png"), // k
-//                ("gistAnchor", "gistOrange.png"), // k
-//                ("petrasdsfAnchor", "petras-dsfOrange.png"), // k
-//                ("power2Anchor", "power2Orange.png"), // k
-//                ("roastiotAnchor", "roast-iotOrange.png"), // k
+                ("logistics40Anchor", "logistics40Pink.png"), // k
+                ("blataAnchor", "blataOrange.png"), // k
+//                ("gistAnchor", "gistOrange.png"), // tray
+                ("petrasdsfAnchor", "petras-dsfOrange.png"), // tray
+                ("power2Anchor", "power2Orange.png"), // k
+                ("roastiotAnchor", "roast-iotOrange.png"), // tray
                 ("beclAnchor", "beclBlue.png"), // k
-//                ("regmedtechAnchor", "reg-medtechBlue.png"), // k
+                ("regmedtechAnchor", "reg-medtechBlue.png"), // k
                 ("umisAnchor", "umisYellow.png"), // k
-//                ("erAnchor", "erGreen.png"), // k
-//                ("etAnchor", "etGreen.png"), // k
+                ("erAnchor", "erGreen.png"), // k
+                ("etAnchor", "etGreen.png"), // k
                 ("ppiemAnchor", "ppiemGreen.png"), // k
                 ("priviotAnchor", "priviotGreen.png"), // k
                 ("ppiteeAnchor", "p-piteeGreen.png"), // k
-//                ("pubviaAnchor", "pubviaGreen.png"), // k
-//                ("secqbsAnchor", "sec-qbsPink.png"), // k
+                ("pubviaAnchor", "pubviaGreen.png"), // k
+                ("secqbsAnchor", "sec-qbsPink.png"), // k
                 ("fireAnchor", "fireOrange.png"), // k
-//                ("cpsociamAnchor", "cp-sociamBlue.png"), // k
+                ("cpsociamAnchor", "cp-sociamBlue.png"), // k
                 ("aikemaAnchor", "aikemaYellow.png"),// k
             ]
             handleBoxTap(hitNodeName: hitNodeName ?? defaultNodeName, tapStatus: &isBlackCentreTapped, anchorImagePairs: anchorImagePairs)
@@ -992,10 +1048,20 @@ class ViewController: UIViewController, ARSCNViewDelegate {
                   let boxNode = SCNReferenceNode(url: boxUrl) else {
                 fatalError("Failed to find \(resourceName).usdz in the bundle.")
             }
+            print(resourceName)
             
-            // Load, rotate, scale.
-            boxNode.eulerAngles = SCNVector3(0, Float.pi, Float.pi)
-            boxNode.scale = SCNVector3(0.0008, 0.0008, 0.0008)
+            // Check if the resource name is "shelf" or not
+            if resourceName == "shelf" {
+                print("Shelf found")
+                // Apply a different scale for "shelf"
+                boxNode.scale = SCNVector3(1, 1, 1)
+                boxNode.eulerAngles = SCNVector3(0, Float.pi/2, Float.pi/2)
+            } else {
+                // Apply a different scale for other objects
+                // Rotate, scale.
+                boxNode.eulerAngles = SCNVector3(0, Float.pi, Float.pi)
+                boxNode.scale = SCNVector3(0.0008, 0.0008, 0.0008) // Adjust the scale as needed
+            }
             boxNode.load()
             
             // Add the box node as a child of the anchor's node
@@ -1011,8 +1077,6 @@ class ViewController: UIViewController, ARSCNViewDelegate {
              //Apply the floating animation to the box
              boxNode.runAction(floatActionLoop)
         }
-        print("Anchor added to the scene.")
-        // print(anchor.name)
         anchors.append(anchor)
         anchorNodes[anchor] = node
         // let rotationAngle = Float.pi / 2.0 // 90 degrees in radians
@@ -1042,6 +1106,9 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         }
         if anchor.name == "blackAnchorCentre" {
             addFloatingBox(to: anchor, with: "blackBoxTextRotatedCentre", animationDuration: 1.25)
+        }
+        if anchor.name == "shelfAnchor" {
+            addFloatingBox(to: anchor, with: "shelf", animationDuration: 1000)
         }
     }
     
