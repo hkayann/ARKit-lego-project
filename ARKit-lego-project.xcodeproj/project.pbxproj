@@ -15,7 +15,7 @@
 		281441B72A7D60CD00BFD700 /* purpleBox.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281441B62A7D60CD00BFD700 /* purpleBox.usdz */; };
 		281FC8DB2AB0A5E000CC1B88 /* blackBoxTextRotatedHub.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281FC8DA2AB0A5E000CC1B88 /* blackBoxTextRotatedHub.usdz */; };
 		281FC8DD2AB0A8F200CC1B88 /* blackBoxTextRotatedCentre.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 281FC8DC2AB0A8F200CC1B88 /* blackBoxTextRotatedCentre.usdz */; };
-		28AD7C232AB3463A0041DB75 /* shelf.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28AD7C222AB346390041DB75 /* shelf.usdz */; };
+		28A62F322AB47AD9001CB8DF /* shelf.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28A62F312AB47AD9001CB8DF /* shelf.usdz */; };
 		28CF71992A83CC430057D798 /* purpleBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF71982A83CC430057D798 /* purpleBoxText.usdz */; };
 		28CF719B2A83D54B0057D798 /* greenBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF719A2A83D54B0057D798 /* greenBoxText.usdz */; };
 		28CF719D2A83D7E20057D798 /* yellowBoxText.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 28CF719C2A83D7E20057D798 /* yellowBoxText.usdz */; };
@@ -157,7 +157,7 @@
 		281441B62A7D60CD00BFD700 /* purpleBox.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = purpleBox.usdz; path = ../../purpleBox.usdz; sourceTree = "<group>"; };
 		281FC8DA2AB0A5E000CC1B88 /* blackBoxTextRotatedHub.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = blackBoxTextRotatedHub.usdz; path = ../../blackBoxTextRotatedHub.usdz; sourceTree = "<group>"; };
 		281FC8DC2AB0A8F200CC1B88 /* blackBoxTextRotatedCentre.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = blackBoxTextRotatedCentre.usdz; sourceTree = "<group>"; };
-		28AD7C222AB346390041DB75 /* shelf.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = shelf.usdz; sourceTree = "<group>"; };
+		28A62F312AB47AD9001CB8DF /* shelf.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = shelf.usdz; path = ../../shelf.usdz; sourceTree = "<group>"; };
 		28CF71982A83CC430057D798 /* purpleBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = purpleBoxText.usdz; sourceTree = "<group>"; };
 		28CF719A2A83D54B0057D798 /* greenBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = greenBoxText.usdz; sourceTree = "<group>"; };
 		28CF719C2A83D7E20057D798 /* yellowBoxText.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; path = yellowBoxText.usdz; sourceTree = "<group>"; };
@@ -455,7 +455,7 @@
 		FFFB11982A7A6C5E002E8BC1 /* objects */ = {
 			isa = PBXGroup;
 			children = (
-				28AD7C222AB346390041DB75 /* shelf.usdz */,
+				28A62F312AB47AD9001CB8DF /* shelf.usdz */,
 				281FC8DC2AB0A8F200CC1B88 /* blackBoxTextRotatedCentre.usdz */,
 				281FC8DA2AB0A5E000CC1B88 /* blackBoxTextRotatedHub.usdz */,
 				28CF728C2A8A8A0C0057D798 /* yellowBoxTextRotated.usdz */,
@@ -540,7 +540,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28AD7C232AB3463A0041DB75 /* shelf.usdz in Resources */,
+				28A62F322AB47AD9001CB8DF /* shelf.usdz in Resources */,
 				281FC8DD2AB0A8F200CC1B88 /* blackBoxTextRotatedCentre.usdz in Resources */,
 				281FC8DB2AB0A5E000CC1B88 /* blackBoxTextRotatedHub.usdz in Resources */,
 				28CF728D2A8A8A0C0057D798 /* yellowBoxTextRotated.usdz in Resources */,

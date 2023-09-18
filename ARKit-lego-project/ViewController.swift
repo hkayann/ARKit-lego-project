@@ -55,12 +55,12 @@ class ViewController: UIViewController, ARSCNViewDelegate {
         // Create and add a directional light to the scene
         let directionalLight = SCNLight()
         directionalLight.type = .directional
-        directionalLight.intensity = 500
+        directionalLight.intensity = 250
         directionalLight.castsShadow = false
         let directionalLightNode = SCNNode()
         directionalLightNode.light = directionalLight
         directionalLightNode.position = SCNVector3(0, 10, 10) // Adjust the position as needed
-        scene.rootNode.addChildNode(directionalLightNode)
+        // scene.rootNode.addChildNode(directionalLightNode)
         /*
          LIGHTS END
          */
